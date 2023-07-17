@@ -8,14 +8,9 @@
 
     menuArray.forEach((i) => {  
         const temp = document.createElement('li');
-        temp.innerHTML = '<button onclick="ajax(\''+i.title+'\')">'+i.title+'</button>';
+        temp.innerHTML = '<button onclick="ajax(\'sample/'+i.title+'\')">'+i.title+'</button>';
         menu_wrap.append(temp);
     });
-
-    // menuArray.forEach((i) => {        
-    //     const menu_temp = '<li><a href="">'+i.title+'</a></li>';
-    //     menu_wrap.innerHTML += menu_temp;
-    // });
 
 </script>
 <div id="header">

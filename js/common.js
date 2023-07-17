@@ -22,3 +22,9 @@ function ajax(_url){
         }
     });
 }
+
+function move_scroll(_this, _target){
+    $('html, body').animate({
+        scrollTop: _target.eq(_this.index()).offset().top
+    });
+}
