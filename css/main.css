@@ -1,60 +1,20 @@
 /* header */
-.gnb{
-  width: 95%;
-  height: inherit;
-  margin: 0 auto;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
+header {width: 100%;}
+header h1 {width: 95%; padding: 1% 0; color: #fff; font-size: 18px; font-weight: 600; text-align: center;}
+header ul {color: #fff; font-weight: 600; border-top: 2px solid #d4d4d4; display: flex; align-items: center;}
+header ul li {width: 150px; padding: 10px 0; text-align: center; border-right: 1px solid #fff; float: left;}
+li:active {color:#000; background-color: #eee;} 
 /* topbtn */
-#container{
-  width: 100%;
-  position: relative;
-}
-.content{
-  width: 95%;
-  margin: 0 auto;
-  border-radius: 1px solid red;
-}
-#container .content .top_btn{
-  width: 30px;
-  height: 30px;
-  padding: 1%;
-  color: #fff;
-  font-weight: 600;
-  line-height: 2em;
-  background-color: coral;
-  border-radius: 50%;
-  position: fixed;
-  right: 5%;
-  bottom: 80px;
-  opacity: 0;  
-  transition: opacity 0.5s, transform 0.5s;
-}
-
-#container .content .top_btn.show{
-  opacity: 1;  
-  transition: opacity 1s, transform 1s;     
-}
-
-section{
-  padding: 1% 0;
-}
+#container {width: 100%; position: relative;}
+.content {width: 95%; margin: 0 auto; border-radius: 1px solid red}
+#container .content .top_btn {width: 30px; height: 30px; padding: 1%; color: #fff; font-weight: 600; line-height: 2em; background-color: coral; border-radius: 50%; position: fixed; right: 5%; bottom: 80px; opacity: 0;  transition: opacity 0.5s, transform 0.5s;}
+#container .content .top_btn.show {opacity: 1; transition: opacity 1s, transform 1s;}
+section {padding: 1% 0;}
 
 /* fullpage */
-/* #page-1, #page-2, #page-3{
-  height: 1000px;
-
-}
-#page-1{
-  background: royalblue;
-}
-#page-2{
-  background: mediumspringgreen;
-}
-#page-3{
-  background-color: pink;
-} */
+/* #page-1, #page-2, #page-3{height: 1000px;}
+#page-1{ background: royalblue;}
+#page-2{background: mediumspringgreen;}
+#page-3{background-color: pink;} */
 
 /* footer */
