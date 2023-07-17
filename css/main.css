@@ -1,0 +1,60 @@
+/* header */
+.gnb{
+  width: 95%;
+  height: inherit;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+/* topbtn */
+#container{
+  width: 100%;
+  position: relative;
+}
+.content{
+  width: 95%;
+  margin: 0 auto;
+  border-radius: 1px solid red;
+}
+#container .content .top_btn{
+  width: 30px;
+  height: 30px;
+  padding: 1%;
+  color: #fff;
+  font-weight: 600;
+  line-height: 2em;
+  background-color: coral;
+  border-radius: 50%;
+  position: fixed;
+  right: 5%;
+  bottom: 80px;
+  opacity: 0;  
+  transition: opacity 0.5s, transform 0.5s;
+}
+
+#container .content .top_btn.show{
+  opacity: 1;  
+  transition: opacity 1s, transform 1s;     
+}
+
+section{
+  padding: 1% 0;
+}
+
+/* fullpage */
+/* #page-1, #page-2, #page-3{
+  height: 1000px;
+
+}
+#page-1{
+  background: royalblue;
+}
+#page-2{
+  background: mediumspringgreen;
+}
+#page-3{
+  background-color: pink;
+} */
+
+/* footer */
