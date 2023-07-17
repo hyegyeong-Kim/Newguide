@@ -1,7 +1,33 @@
+<<<<<<< HEAD
 <div id="header">
   <ul class="gnb">
       <li><a href="#" onclick="pageable.scrollToPage(1);">page1</a></li>
       <li><a href="#" onclick="pageable.scrollToPage(2);">page2</a></li>
       <li><a href="#" onclick="pageable.scrollToPage(3);">page3</a></li>
   </ul>
+=======
+<script>
+    const menu_wrap = document.querySelector("header ul");
+    const menuArray = [
+        {title:"Elements"},
+        {title:"JS"},
+        {link:"", title:"menu04"}
+    ];
+
+    menuArray.forEach((i) => {  
+        const temp = document.createElement('li');
+        temp.innerHTML = '<button onclick="ajax(\''+i.title+'\')">'+i.title+'</button>';
+        menu_wrap.append(temp);
+    });
+
+    // menuArray.forEach((i) => {        
+    //     const menu_temp = '<li><a href="">'+i.title+'</a></li>';
+    //     menu_wrap.innerHTML += menu_temp;
+    // });
+
+</script>
+<div id="header">
+    <h1>Markup Style Guide</h1>
+    <ul></ul>
+>>>>>>> 66364499eb8afc0c7fbe2224fb13e43b6d6ab34a
 </div>

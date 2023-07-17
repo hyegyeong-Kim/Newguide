@@ -1,21 +1,24 @@
-
-window.addEventListener('load', function(){
-    include();/* header & footer include */
+$(document).ready(function(){
+    $('header').load($('header').attr('data-include-path'));
+    $('footer').load($('footer').attr('data-include-path'));
 });
-    
-function include(){
-    var allElements = document.getElementsByTagName('*');
-    Array.prototype.forEach.call(allElements, function(el) {
-        var includePath = el.dataset.includePath;
-        if (includePath) {
-            var xhttp = new XMLHttpRequest();
-            xhttp.onreadystatechange = function () {
-                if (this.readyState == 4 && this.status == 200) {
-                    el.outerHTML = this.responseText;
-                }
-            };
-            xhttp.open('GET', includePath, true);
-            xhttp.send();
+
+function ajax(_url){
+    $.ajax({
+        url: './'+_url+'.html',
+        method: 'get',
+        //dataType:'html',
+        success: function(data) {
+            if(data){
+                $('.content').html(data);
+            } else {
+                console.log(data+'를 불러오지 못했습니다.');
+            }
+        },
+        complete: function(data) {
+        },
+        error: function(data) {
+            alert('페이지를 불러오지 못했습니다.');
         }
     });
 }
