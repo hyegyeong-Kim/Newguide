@@ -6,7 +6,7 @@ header ul li {width: 150px; padding: 10px 0; text-align: center; border-right: 1
 li:active {color:#000; background-color: #eee;} 
 /* topbtn */
 #container {width: 100%; position: relative;}
-.content {width: 95%; margin: 0 auto; border-radius: 1px solid red}
+.content {width: 95%; margin: 0 auto;}
 #container .content .top_btn {width: 30px; height: 30px; padding: 1%; color: #fff; font-weight: 600; line-height: 2em; background-color: coral; border-radius: 50%; position: fixed; right: 5%; bottom: 80px; opacity: 0;  transition: opacity 0.5s, transform 0.5s;}
 #container .content .top_btn.show {opacity: 1; transition: opacity 1s, transform 1s;}
 section {padding: 1% 0;}

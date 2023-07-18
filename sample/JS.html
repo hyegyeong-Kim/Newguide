@@ -1,0 +1,40 @@
+<script>
+var sample_list = document.querySelectorAll('.sample_wrap > li');
+sample_list.forEach((t) => {
+    var design = t.querySelector('.design_box'),
+        code = t.querySelector('.code_box'),
+        Source_code = String(design.innerHTML);
+    
+    code.innerHTML = escapeHtml(Source_code)
+});
+
+function escapeHtml(str) {
+    var map = {
+        '&': '&amp;',
+        '<': '&lt;',
+        '>': '&gt;',
+        '"': '&quot;',
+        "'": '&#039;'
+    };
+    return str.replace(/[&<>"']/g, function(m) { return map[m]; });
+}
+</script>
+<h2>JS</h2>
+<ul class="sample_wrap"><!-- [design_box] pre 자동 생성으로 pre 기준으로 소스 들여쓰기 필요 -->
+    <!-- tab -->
+    <li>
+        <div class="item">
+            <h3>Tab</h3>
+            <div class="design_box">
+<div class="tab_wrap">
+    <ul>
+        <li><button>Tab01</button></li>
+    </ul>
+</div>
+            </div>
+            <pre><code class="code_box"></code></pre>
+            <div class="style_box"></div>
+        </div>
+    </li>
+    <!-- //tab -->
+</ul>

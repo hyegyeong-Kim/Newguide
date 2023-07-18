@@ -16,7 +16,6 @@ function ajax(_url){
             if(data){
                 $('.content').html(data);
             } else {
-                console.log(data+'를 불러오지 못했습니다.');
             }
         },
         complete: function(data) {
