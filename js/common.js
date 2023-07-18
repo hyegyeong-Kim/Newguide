@@ -1,6 +1,10 @@
 $(document).ready(function(){
     $('header').load($('header').attr('data-include-path'));
     $('footer').load($('footer').attr('data-include-path'));
+
+    // $('ul.sample_wrap').delegate('click','li', function(){
+    //     alert('a')
+    // });
 });
 
 function ajax(_url){
