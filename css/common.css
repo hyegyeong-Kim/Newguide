@@ -1,14 +1,1 @@
-/* .gnb, #footer p, #container{
-  max-width: 1280px;
-  box-sizing: border-box;
-  margin: 0 auto;
-  padding: 1% 1%;
-  border: 3px solid red;
-}
-
-#header, #footer{
-  background-color: orange;
-} */
-#header, #footer{width: 100%; height: 60px; background-color: beige;}
-
-#footer p{width: 95%; margin: 0 auto;}
+#header, #footer{width: 100%; background-color: orangered;}
