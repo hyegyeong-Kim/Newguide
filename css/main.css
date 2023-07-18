@@ -1,20 +1,36 @@
 /* header */
-header {width: 100%;}
+header {width: 100%; position: fixed; top: 0; left: 0; right: 0; z-index: 1;}
 header h1 {width: 95%; padding: 1% 0; color: #fff; font-size: 18px; font-weight: 600; text-align: center;}
 header ul {color: #fff; font-weight: 600; border-top: 2px solid #d4d4d4; display: flex; align-items: center;}
-header ul li {width: 150px; padding: 10px 0; text-align: center; border-right: 1px solid #fff; float: left;}
+header ul li {width: 150px; padding: 10px 0; box-sizing: border-box; text-align: center; border-right: 1px solid #fff; float: left;}
 li:active {color:#000; background-color: #eee;} 
+
 /* topbtn */
-#container {width: 100%; position: relative;}
-.content {width: 95%; margin: 0 auto; border-radius: 1px solid red}
+#container {width: 95%; margin: 10% auto; position: relative;}
 #container .content .top_btn {width: 30px; height: 30px; padding: 1%; color: #fff; font-weight: 600; line-height: 2em; background-color: coral; border-radius: 50%; position: fixed; right: 5%; bottom: 80px; opacity: 0;  transition: opacity 0.5s, transform 0.5s;}
 #container .content .top_btn.show {opacity: 1; transition: opacity 1s, transform 1s;}
-section {padding: 1% 0;}
 
-/* fullpage */
-/* #page-1, #page-2, #page-3{height: 1000px;}
-#page-1{ background: royalblue;}
-#page-2{background: mediumspringgreen;}
-#page-3{background-color: pink;} */
+/* progressbar */
+section {height: 500px; margin-bottom: 2% ;padding: 0.5% 0; position: relative;}/* navbar 구현을 위해 임의로 높이 설정 */
+.progress_bar {width: 0; height: 10px; background-color: blue; position: absolute;}
+
+/* follow cursor */
+.cursor {width: 20px; height: 20px; border:2px solid #000; border-radius: 50%; pointer-events: none; box-sizing: border-box; position: absolute; transition: 0.1s; transform: translate(-50%, -50%); }
+
+
+/* gnb_hover */
+.gnb_hover {padding: 2%; border: 2px solid red; box-sizing: border-box;}
+.gnb_list {display: flex; justify-content: space-between; align-items: center;}
+.gnb_list li {width: 50%; padding: 1% 0; box-sizing: border-box; text-align: center; position: relative;}
+.gnb_list a {font-weight: 600; transition: color 0.3s;}
+.gnb_list a::after{content: ''; width: 0; height: 2px; background-color: red; position: absolute; left: 50%; bottom: 0; z-index: 1; display: block; transform: translateX(-50%); transition: width 0.5s;}
+.gnb_list li:hover a {color: red;}
+.gnb_list li:hover a::after{width: 40%;}
+
+/* count_animation */
+.count_animation {border: 2px solid red; display: flex; flex-direction: column; justify-content: center; align-items: center;}
+.count_animation ul {width: 100%; display: flex; justify-content: center;}
+.count_animation li {width: 100px; height: 100px; margin: 2% 2%; box-sizing: border-box; border: 1px solid #e3e3e3; display: flex; flex-direction: column; justify-content: center; align-items: center; }
+.count_animation p {text-align: center;}
 
 /* footer */
