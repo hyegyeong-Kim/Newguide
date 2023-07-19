@@ -106,4 +106,9 @@ section {margin-bottom:2% ;padding:0.5% 0; position:relative;}/* navbar 구현�
 	padding:0px 15px 0px 70px; line-height:1.5; background-color:#f2f2f2; border-top:1px solid #dbdbdb; position:relative; display:none;}
 .show {display: block !important;}
 
-/* footer */
+/* Hamberger_Menu */
+.hamber_btn{width: 50px; height:50px; position:absolute; left:20px; top:20px; background-color: #ff7200; cursor:pointer;}
+.hamber_btn>span{width:50px; height:8px; margin:4px 0 ; background:#000; border-radius:10px; display:block; transition:all 0.5s;}
+.hamber_btn>.on:nth-child(1) {transform:translateY(15px) rotate(225deg); transition-delay:0.2s; }
+.hamber_btn>.on:nth-child(2) {opacity:0; transform:translateX(50px);}
+.hamber_btn>.on:nth-child(3) {transform:translateY(-11px) rotate(-225deg); transition-delay:0.2s; }

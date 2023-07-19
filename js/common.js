@@ -169,3 +169,14 @@ board_type_toggle.forEach(function(a){
       }//2_for   
   }//else
 })//forEach
+
+/* Hamberger_Menu */
+function ham_btn(){
+  document.querySelector('.hamber_btn').addEventListener('click', ()=>{
+    console.log(document.querySelector('.hamber_btn'))
+    let hamber_btn_cont = document.querySelectorAll('.hamber_btn>span')
+    hamber_btn_cont.forEach(function(a){
+      a.classList.toggle('on')
+    })
+  })
+}
