@@ -1,3 +1,6 @@
+#header, #footer{width: 100%; background-color: orangered;}
+h4 {font-size: 28px; font-weight: 600; text-align: center;}
+
 /* tab */
 .tab_wrap [class*='tab_type'] {display:flex;}
 .tab_wrap [class*='tab_type'] > li {flex:1;}

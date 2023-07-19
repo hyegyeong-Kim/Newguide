@@ -34,7 +34,6 @@ function move_scroll(_this, _target){
 
 /* topbtn */
 let top_btn = document.querySelector('.top_btn')
-console.log(top_btn)
 window.addEventListener('scroll', function(){
     if(this.scrollY > 300){/* 높이값 변경을 원할 시, 숫자 부분 수정 */
         top_btn.classList.add('show'); 
@@ -42,10 +41,51 @@ window.addEventListener('scroll', function(){
         top_btn.classList.remove('show')
     }
 })
-
 top_btn.addEventListener('click',function(){
     window.scrollTo({top: 0, behavior: 'smooth'});
 })
 
 /* fullpage*/
 // let pageable = new Pageable("#container");
+
+/* Scroll Indicator */
+window.onscroll = function() {myFunction()};
+function myFunction() {
+  var winScroll = document.body.scrollTop || document.documentElement.scrollTop; /* 요소의 스크롤바 내린 양 (스크롤양) */
+  var height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+  /* 브라우저의 크기에 따른 높이 계산법 =  해당 페이지의 총 높이: scrollHeight - 눈에 보이는 요소의 높이:  clientHeight*/
+  var scrolled = (winScroll / height) * 100;
+  document.querySelector(".progress_bar").style.width = scrolled + "%";
+}
+
+/* cursor event */
+var cursor = document.querySelector('.cursor');
+document.addEventListener('mousemove', function(e){
+    cursor.style.cssText = "left:" + e.clientX + "px; top :" + e.clientY + "px;";
+})
+
+/* typing_animation */
+
+
+
+/* text_rolling */
+
+/* count_animation */
+const counter = ($counter, max) => {
+    let now = max;
+    const handle = setInterval(() => {
+      $counter.innerHTML = Math.ceil(max - now);
+      // 목표수치에 도달하면 정지
+      if (now < 1) {clearInterval(handle);}
+      // 증가되는 값이 계속하여 작아짐
+      const step = now / 10;
+      // 값을 적용시키면서 다음 차례에 영향을 끼침
+      now -= step;}, 50);}
+  window.onload = () => {
+    // 카운트를 적용시킬 요소
+    const $counter = document.querySelectorAll(".count");
+    const max = [333,345,3436];//카운터 데이터 배열형태 숫자로 입력
+    for(let i=0; i<$counter.length; i++){
+        setTimeout(() => counter($counter[i], max[i]), 2000);
+    }
+  }

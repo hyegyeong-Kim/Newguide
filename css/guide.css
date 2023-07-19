@@ -5,3 +5,6 @@
 .sample_wrap > li > .item {padding:15px; border:1px solid #ddd; border-radius:4px; box-shadow:2px 2px 4px rgba(0,0,0,0.25);}
 .sample_wrap pre {display:none;}
 .sample_wrap pre.active {display:block;}
+
+.tit_wrap {margin-top: 3%;}
+.design_box {margin-top: 10px; padding: 10px; border: 1px solid #ddd;}
