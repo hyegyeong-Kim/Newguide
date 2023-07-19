@@ -27,9 +27,7 @@ function ajax(_url){
 }
 
 function move_scroll(_this, _target){
-    $('html, body').animate({
-        scrollTop: _target.eq(_this.index()).offset().top
-    });
+    $('html, body').animate({scrollTop: _target.eq(_this.index()).offset().top});
 }
 
 /* topbtn */
@@ -57,7 +55,6 @@ function myFunction() {
   var scrolled = (winScroll / height) * 100;
   document.querySelector(".progress_bar").style.width = scrolled + "%";
 }
-
 /* cursor event */
 var cursor = document.querySelector('.cursor');
 document.addEventListener('mousemove', function(e){
@@ -65,9 +62,6 @@ document.addEventListener('mousemove', function(e){
 })
 
 /* typing_animation */
-
-
-
 /* text_rolling */
 
 /* count_animation */
@@ -89,3 +83,89 @@ const counter = ($counter, max) => {
         setTimeout(() => counter($counter[i], max[i]), 2000);
     }
   }
+
+/* tab_menu */
+let tab_wrap = document.querySelectorAll('.tab_wrap')
+let ul_tab_type_auto = document.querySelectorAll('ul[class*="tab_type"]')
+let tab_menu_list = document.querySelectorAll('.tab_type_01 li')
+let tab_content = document.querySelectorAll('.tab_content > div')
+if(tab_wrap.length > 0){
+    ul_tab_type_auto.forEach((a)=>{
+        if(a.classList.contains('auto')){
+        for(var i=0; i<a.children.length; i++){ a.children[i].style.width= (100 / a.children.length) + '%';}}
+    })
+}
+tab_wrap.forEach(function(a){
+let tab_wrap_ul = a.querySelectorAll('ul[class*="tab_type"]')
+console.log(tab_wrap_ul)
+let tab_wrap_li = a.querySelectorAll('.tab_type_01 li')
+console.log(tab_wrap_li)
+let tab_wrap_tab_content = a.querySelectorAll('.tab_content > div')
+console.log(tab_wrap_tab_content)
+tab_wrap_li.forEach(function(e, i){
+    e.addEventListener('click', function(){
+    tab_wrap_tab_content.forEach((inner)=>{
+        inner.classList.remove('current') 
+    })
+    tab_wrap_li.forEach((item)=> {
+    item.classList.remove('current')
+    })
+    tab_wrap_li[i].classList.add('current')
+    tab_wrap_tab_content[i].classList.add('current')
+    })
+})
+})
+
+  /* modal */
+let modal_btn = document.querySelector('.btn_ok')
+let modal = document.querySelector('#modal')
+let modal_btn_close = document.querySelector('.btn_close')
+let modal_btn_cancel= document.querySelector('.btn_cancel')
+function init(){
+  modal_btn_close.addEventListener('click', function(){modal.classList.remove('active');});
+  modal_btn_cancel.addEventListener('click', function(){modal.classList.remove('active');});
+  modal_btn.addEventListener('click', function(){modal.classList.add('active');});
+};
+
+/* toast message */
+let _toast = document.querySelector('.toast');
+function toast(_type, _message, _time){
+    _toast.classList.add('active', _type);
+    _toast.innerHTML = '<span>'+_message +'</span>';
+  if(_type == 'auto'){
+    setTimeout(function(){toast_close()},_time)
+  }else if(_type == 'confirm'){
+    _toast.innerHTML =
+    '<span>'+_message +'</span>'+
+    '<a href="#none" onclick="toast_close();" class="btn_close">close</a>';}
+}
+function toast_close(){_toast.classList.remove('active')}
+
+/* accodian toggle */
+let board_type_toggle = document.querySelectorAll('.board_type_toggle')//배열
+board_type_toggle.forEach(function(a){
+  if(a.classList.contains('single')){
+    /* 해당리스트 1개만 오픈 */
+    let board_type_toggle_dt = a.querySelectorAll('dt')
+      for(let j=0; j<board_type_toggle_dt.length; j++){
+        board_type_toggle_dt[j].addEventListener('click', function(){
+            let board_type_toggle_dd = a.querySelectorAll('dd');
+            board_type_toggle_dd.forEach(function(e){
+             
+              e.classList.remove('show')
+              e.style.maxHeight = null;
+            })
+            board_type_toggle_dd[j].classList.toggle('show')
+            board_type_toggle_dd[j].maxHeight = content.scrollHeight + "px";
+          })
+      }//2_for   
+  }else{
+      let board_type_toggle_dt = a.querySelectorAll('dt')
+      for(let j=0; j<board_type_toggle_dt.length; j++){
+        board_type_toggle_dt[j].addEventListener('click', function(){
+            let board_type_toggle_dd = a.querySelectorAll('dd');
+            board_type_toggle_dd[j].classList.toggle('show')
+          })
+      }//2_for   
+  }//else
+})//forEach
