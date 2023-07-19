@@ -1,5 +1,5 @@
 <script>
-var sample_list = document.querySelectorAll('.sample_wrap > li');
+var sample_list = document.querySelectorAll('.sample_wrap > ul > li');
 sample_list.forEach((t) => {
     var design = t.querySelector('.design_box'),
         code = t.querySelector('.code_box'),
@@ -15,13 +15,23 @@ sample_list.forEach((t) => {
             if(code_box[0].classList.contains('active')){
                 code_box[0].classList.remove("active");
                 style_box[0].classList.remove("active");
+                e.currentTarget.textContent = "View source"
             } else {
                 code_box[0].classList.add("active");
                 style_box[0].classList.add("active");
+                e.currentTarget.textContent = "Hide source"
             }
         });
     
     code.children[0].innerHTML = escapeHtml(Source_code)
+});
+
+document.getElementsByTagName('h2')[0].children[0].addEventListener('click', function(e){
+    if(document.querySelector('.sample_wrap').classList.contains('division')){
+        document.querySelector('.sample_wrap').classList.remove('division');
+    } else {
+        document.querySelector('.sample_wrap').classList.add('division');
+    }
 });
 
 function escapeHtml(str) {
@@ -35,26 +45,42 @@ function escapeHtml(str) {
     return str.replace(/[&<>"']/g, function(m) { return map[m]; });
 }
 </script>
-<h2>Elements</h2>
-<ul class="sample_wrap"><!-- [design_box] pre 자동 생성으로 pre 기준으로 소스 들여쓰기 필요 -->
-    <!-- tab -->
-    <li>
-        <div class="item">
-            <h3>Tab</h3>
-            <ul class="explain">
-                <li>class [tab_type_] 로 스타일 구분.</li>
-            </ul>
-            <div class="design_box">
+<div class="sample_wrap">
+    <h2>Elements
+        <button><em>분할</em></button>
+    </h2>
+    <ul><!-- [design_box] pre 자동 생성으로 pre 기준으로 소스 들여쓰기 필요 -->
+        <!-- tab -->
+        <li>
+            <div class="item">
+                <h3>Tab</h3>
+                <ul class="explain">
+                    <li>class [tab_type_] 로 스타일 구분.</li>
+                </ul>
+                <div class="design_box">
 <div class="tab_wrap">
     <ul class="tab_type_01">
         <li class="current"><a href="#none">Tab01</a></li>
         <li><a href="#none">Tab02</a></li>
     </ul>
+    <div class="tab_content">
+        <div class="current">Tab Content 01</div>
+    </div>
 </div>
+                </div>
+                <pre class="code_box"><code></code></pre>
+                <pre class="style_box"><code>
+/* tab */
+.tab_wrap [class*='tab_type'] {display:flex;}
+.tab_wrap [class*='tab_type'] > li {flex:1;}
+.tab_wrap [class*='tab_type'] > li a {display:block;}
+
+.tab_type_01 li + li {border-left:1px solid #fff;}
+.tab_type_01 li a {padding:10px 0; font-size:14px; font-weight:500; background-color:#efefef; text-align:center;}
+.tab_type_01 li.current a {color:#ff7200; background-color:#fff; border-top:1px solid #ff7200;}
+                </code></pre>
             </div>
-            <pre class="code_box"><code></code></pre>
-            <div class="style_box"></div>
-        </div>
-    </li>
-    <!-- //tab -->
-</ul>
+        </li>
+        <!-- //tab -->
+    </ul>
+</div>
