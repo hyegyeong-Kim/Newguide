@@ -1,3 +1,4 @@
+// var $ = jQuery;
 $(document).ready(function(){
     $('header').load($('header').attr('data-include-path'));
     $('footer').load($('footer').attr('data-include-path'));
@@ -26,10 +27,6 @@ function ajax(_url){
     });
 }
 
-function move_scroll(_this, _target){
-    $('html, body').animate({scrollTop: _target.eq(_this.index()).offset().top});
-}
-
 /* topbtn */
 let top_btn = document.querySelector('.top_btn')
 window.addEventListener('scroll', function(){
@@ -42,6 +39,11 @@ window.addEventListener('scroll', function(){
 top_btn.addEventListener('click',function(){
     window.scrollTo({top: 0, behavior: 'smooth'});
 })
+
+/* 해당위치 스크롤 */
+function move_scroll(_this, _target){
+    $('html, body').animate({scrollTop: _target.eq(_this.index()).offset().top});
+}
 
 /* fullpage*/
 // let pageable = new Pageable("#container");
@@ -84,37 +86,53 @@ const counter = ($counter, max) => {
     }
   }
 
+/* tab new function */
+const tab = document.querySelectorAll('.tab_wrap > ul');
+tab.forEach(function(e, i){
+    tab_child = tab[i].querySelectorAll('a');
+    tab_child.forEach(function(e, i){
+        e.parentNode.setAttribute('data-index',i)
+        e.addEventListener('click', function(){
+            for(j=0; j<tab_child.length; j++){
+                if(i != j){
+                    e.closest('ul').children[j].classList.remove('current')
+                }
+            }
+            e.parentNode.classList.add('current')
+        });
+    });
+});
+/* //tab new function */
+
 /* tab_menu */
-let tab_wrap = document.querySelectorAll('.tab_wrap')
-let ul_tab_type_auto = document.querySelectorAll('ul[class*="tab_type"]')
-let tab_menu_list = document.querySelectorAll('.tab_type_01 li')
-let tab_content = document.querySelectorAll('.tab_content > div')
-if(tab_wrap.length > 0){
-    ul_tab_type_auto.forEach((a)=>{
-        if(a.classList.contains('auto')){
-        for(var i=0; i<a.children.length; i++){ a.children[i].style.width= (100 / a.children.length) + '%';}}
-    })
-}
-tab_wrap.forEach(function(a){
-let tab_wrap_ul = a.querySelectorAll('ul[class*="tab_type"]')
-console.log(tab_wrap_ul)
-let tab_wrap_li = a.querySelectorAll('.tab_type_01 li')
-console.log(tab_wrap_li)
-let tab_wrap_tab_content = a.querySelectorAll('.tab_content > div')
-console.log(tab_wrap_tab_content)
-tab_wrap_li.forEach(function(e, i){
-    e.addEventListener('click', function(){
-    tab_wrap_tab_content.forEach((inner)=>{
-        inner.classList.remove('current') 
-    })
-    tab_wrap_li.forEach((item)=> {
-    item.classList.remove('current')
-    })
-    tab_wrap_li[i].classList.add('current')
-    tab_wrap_tab_content[i].classList.add('current')
-    })
-})
-})
+// let tab_wrap = document.querySelectorAll('.tab_wrap')
+// let ul_tab_type_auto = document.querySelectorAll('ul[class*="tab_type"]')
+// let tab_menu_list = document.querySelectorAll('.tab_type_01 li')
+// let tab_content = document.querySelectorAll('.tab_content > div')
+// if(tab_wrap.length > 0){
+//     ul_tab_type_auto.forEach((a)=>{
+//         if(a.classList.contains('auto')){
+//         for(var i=0; i<a.children.length; i++){ a.children[i].style.width= (100 / a.children.length) + '%';}}
+//     })
+// }
+
+// tab_wrap.forEach(function(a){
+//     let tab_wrap_ul = a.querySelectorAll('ul[class*="tab_type"]')
+//     let tab_wrap_li = a.querySelectorAll('.tab_type_01 li')
+//     let tab_wrap_tab_content = a.querySelectorAll('.tab_content > div')
+//     tab_wrap_li.forEach(function(e, i){
+//         e.addEventListener('click', function(){
+//         tab_wrap_tab_content.forEach((inner)=>{
+//             inner.classList.remove('current') 
+//         })
+//         tab_wrap_li.forEach((item)=> {
+//         item.classList.remove('current')
+//         })
+//         tab_wrap_li[i].classList.add('current')
+//         tab_wrap_tab_content[i].classList.add('current')
+//         })
+//     })
+// })
 
   /* modal */
 let modal_btn = document.querySelector('.btn_ok')
