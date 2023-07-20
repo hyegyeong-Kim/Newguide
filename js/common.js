@@ -166,7 +166,7 @@ function accordion(_target, evt){
 
 
 
-/* count_animation */
+/* count_animation javascript */
 const counter = ($counter, max) => {
     let now = max;
     const handle = setInterval(() => {
@@ -187,7 +187,7 @@ const counter = ($counter, max) => {
     }
 }
 
-  /* modal */
+  /* modal javascript */
 let modal_btn = document.querySelector('.btn_ok')
 let modal = document.querySelector('#modal')
 let modal_btn_close = document.querySelector('.btn_close')
@@ -198,7 +198,7 @@ function init(){
   modal_btn.addEventListener('click', function(){modal.classList.add('active');});
 };
 
-/* toast message */
+/* toast message javascript*/
 let _toast = document.querySelector('.toast');
 function toast(_type, _message, _time){
     _toast.classList.add('active', _type);
@@ -213,13 +213,60 @@ function toast(_type, _message, _time){
 function toast_close(){_toast.classList.remove('active')}
 
 
-/* Hamberger_Menu */
-function ham_btn(){
-  document.querySelector('.hamber_btn').addEventListener('click', ()=>{
-    console.log(document.querySelector('.hamber_btn'))
-    let hamber_btn_cont = document.querySelectorAll('.hamber_btn>span')
-    hamber_btn_cont.forEach(function(a){
-      a.classList.toggle('on')
-    })
-  })
-}
+/* Hamberger_Menu js*/
+ function ham_btn(){
+   document.querySelector('.hamber_btn').addEventListener('click', ()=>{
+     console.log(document.querySelector('.hamber_btn'))
+     let hamber_btn_cont = document.querySelectorAll('.hamber_btn>span')
+     hamber_btn_cont.forEach(function(a){
+       a.classList.toggle('on')
+     })
+   })
+ } 
+ ham_btn()
+/* ------------------------------------------------------------ */
+/* jquery */
+
+  /* modal jquery */
+  // function init(){
+  //   $('.btn_close').click(function(){$('#modal').removeClass('active')});
+  //   $('.btn_cancel').click(function(){$('#modal').removeClass('active')});
+  //   $('.btn_ok').click(function(){$('#modal').addClass('active')})
+  // }
+
+  // /* toast message javascript*/
+  // let _toast = $('.toast');
+  // function toast(_type, _message, _time){
+  //     _toast.addClass('active', _type);
+  //     _toast.html = '<span>'+_message +'</span>';
+  //   if(_type == 'auto'){
+  //     setTimeout(function(){toast_close()},_time)
+  //   }else if(_type == 'confirm'){
+  //     _toast.html =
+  //     '<span>'+_message +'</span>'+
+  //     '<a href="#none" onclick="toast_close();" class="btn_close">close</a>';}
+  // }
+  // function toast_close(){_toast.removeClass('active')}
+
+  /* top_btn jquery*/
+  // function scroll_Top(){
+  //   $(window).scroll(function(){
+  //     if(this.scrollY > 300){
+  //       $('.top_btn').addClass('show');
+  //     }else{
+  //       $('.top_btn').removeClass('show');
+  //     };
+  //   })//window scroll//top_btn click
+  //   $(".top_btn").click(function() {
+  //     $("html, body").animate({ scrollTop: 0 }, "slow");
+  //   });
+  // }
+  // scroll_Top()
+
+  /* Hamberger_Menu jquery*/
+  // $('.hamber_btn').click(function(){
+  //   $('.hamber_btn>span').toggleClass('on')
+  // });
+
+  
+
