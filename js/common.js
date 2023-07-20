@@ -30,13 +30,19 @@ function move_scroll(_this, _target){
     $('html, body').animate({scrollTop: _target.eq(_this.index()).offset().top});
 }
 
-/* topbtn */
+
+/* javascript */
+/* topbtn, scrolldownanimation javascript */
 let top_btn = document.querySelector('.top_btn')
+let scroll_down = document.querySelector('.scroll_icon')
 window.addEventListener('scroll', function(){
-    if(this.scrollY > 300){/* 높이값 변경을 원할 시, 숫자 부분 수정 */
-        top_btn.classList.add('show'); 
+  var section_Height01 = document.querySelectorAll('section')[0].clientHeight  
+  console.log(this.scrollY, section_Height01)
+  if(this.scrollY > section_Height01){/* 높이값 변경을 원할 시, 숫자 부분 수정 */
+        top_btn.classList.add('show');
     }else{
         top_btn.classList.remove('show')
+        scroll_down.classList.add('show')
     }
 })
 top_btn.addEventListener('click',function(){
@@ -46,7 +52,7 @@ top_btn.addEventListener('click',function(){
 /* fullpage*/
 // let pageable = new Pageable("#container");
 
-/* Scroll Indicator */
+/* Scroll Indicator javascript */
 window.onscroll = function() {myFunction()};
 function myFunction() {
   var winScroll = document.body.scrollTop || document.documentElement.scrollTop; /* 요소의 스크롤바 내린 양 (스크롤양) */
@@ -64,7 +70,7 @@ document.addEventListener('mousemove', function(e){
 /* typing_animation */
 /* text_rolling */
 
-/* count_animation */
+/* count_animation javascript */
 const counter = ($counter, max) => {
     let now = max;
     const handle = setInterval(() => {
@@ -84,7 +90,7 @@ const counter = ($counter, max) => {
     }
   }
 
-/* tab_menu */
+/* tab_menu javascript */
 let tab_wrap = document.querySelectorAll('.tab_wrap')
 let ul_tab_type_auto = document.querySelectorAll('ul[class*="tab_type"]')
 let tab_menu_list = document.querySelectorAll('.tab_type_01 li')
@@ -116,7 +122,7 @@ tab_wrap_li.forEach(function(e, i){
 })
 })
 
-  /* modal */
+  /* modal javascript */
 let modal_btn = document.querySelector('.btn_ok')
 let modal = document.querySelector('#modal')
 let modal_btn_close = document.querySelector('.btn_close')
@@ -127,7 +133,7 @@ function init(){
   modal_btn.addEventListener('click', function(){modal.classList.add('active');});
 };
 
-/* toast message */
+/* toast message javascript*/
 let _toast = document.querySelector('.toast');
 function toast(_type, _message, _time){
     _toast.classList.add('active', _type);
@@ -170,13 +176,60 @@ board_type_toggle.forEach(function(a){
   }//else
 })//forEach
 
-/* Hamberger_Menu */
-function ham_btn(){
-  document.querySelector('.hamber_btn').addEventListener('click', ()=>{
-    console.log(document.querySelector('.hamber_btn'))
-    let hamber_btn_cont = document.querySelectorAll('.hamber_btn>span')
-    hamber_btn_cont.forEach(function(a){
-      a.classList.toggle('on')
-    })
-  })
-}
+/* Hamberger_Menu js*/
+ function ham_btn(){
+   document.querySelector('.hamber_btn').addEventListener('click', ()=>{
+     console.log(document.querySelector('.hamber_btn'))
+     let hamber_btn_cont = document.querySelectorAll('.hamber_btn>span')
+     hamber_btn_cont.forEach(function(a){
+       a.classList.toggle('on')
+     })
+   })
+ } 
+ ham_btn()
+/* ------------------------------------------------------------ */
+/* jquery */
+
+  /* modal jquery */
+  // function init(){
+  //   $('.btn_close').click(function(){$('#modal').removeClass('active')});
+  //   $('.btn_cancel').click(function(){$('#modal').removeClass('active')});
+  //   $('.btn_ok').click(function(){$('#modal').addClass('active')})
+  // }
+
+  // /* toast message javascript*/
+  // let _toast = $('.toast');
+  // function toast(_type, _message, _time){
+  //     _toast.addClass('active', _type);
+  //     _toast.html = '<span>'+_message +'</span>';
+  //   if(_type == 'auto'){
+  //     setTimeout(function(){toast_close()},_time)
+  //   }else if(_type == 'confirm'){
+  //     _toast.html =
+  //     '<span>'+_message +'</span>'+
+  //     '<a href="#none" onclick="toast_close();" class="btn_close">close</a>';}
+  // }
+  // function toast_close(){_toast.removeClass('active')}
+
+  /* top_btn jquery*/
+  // function scroll_Top(){
+  //   $(window).scroll(function(){
+  //     if(this.scrollY > 300){
+  //       $('.top_btn').addClass('show');
+  //     }else{
+  //       $('.top_btn').removeClass('show');
+  //     };
+  //   })//window scroll//top_btn click
+  //   $(".top_btn").click(function() {
+  //     $("html, body").animate({ scrollTop: 0 }, "slow");
+  //   });
+  // }
+  // scroll_Top()
+
+  /* Hamberger_Menu jquery*/
+  // $('.hamber_btn').click(function(){
+  //   $('.hamber_btn>span').toggleClass('on')
+  // });
+
+  
+
