@@ -1,9 +1,9 @@
 /* header */
 header {width:100%; position:fixed; top:0; left:0; right:0; z-index:1;}
 header h1 {width:95%; padding:1% 0; color:#fff; font-size:18px; font-weight:600; text-align:center;}
-header ul {color:#fff; font-weight:600; border-top:2px solid #d4d4d4; display: flex; align-items:center;}
+header ul {color:#fff; font-weight:600; border-top:2px solid #d4d4d4; display:flex; align-items:center;}
 header ul li {width:150px; padding:10px 0; box-sizing:border-box; text-align:center; border-right:1px solid #fff; float:left;}
-li:active {color:#000; background-color: #eee;} 
+li:active {color:#000; background-color:#eee;} 
 
 /* button */
 [class*='btn_'] {border:1px solid transparent; vertical-align:middle; display:inline-block;}
@@ -21,15 +21,10 @@ li:active {color:#000; background-color: #eee;}
 
 /* topbtn */
 #container {width:95%; margin:10% auto; position:relative;}
-#container .content .top_btn {width:30px; height:30px; padding:1%; color:#fff; font-weight:600; line-height:2em; background-color:coral; border-radius:50%; position:fixed; right: 5%; bottom: 80px; opacity: 0;  transition: opacity 0.5s, transform 0.5s;}
+#container .content .top_btn {width:30px; height:30px; padding:1%; color:#fff; font-weight:600; line-height:2em; background-color:coral; border-radius:50%; position:fixed; right:5%; bottom:80px; opacity:0;  transition:opacity 0.5s, transform 0.5s;}
 #container .content .top_btn.show {opacity:1; transition:opacity 1s, transform 1s;}
 
-/* progressbar */
-section {margin-bottom:2% ;padding:0.5% 0; position:relative;}/* navbar 구현을 위해 임의로 높이 설정 */
-.progress_bar {width:0; height:10px; background-color:blue; position:absolute;}
 
-/* follow cursor */
-.cursor {width: 20px; height: 20px; border:2px solid #000; border-radius: 50%; pointer-events: none; box-sizing: border-box; position: fixed; transition: 0.1s; transform:translate(-50%, -50%)}
 
 
 /* gnb_hover */
@@ -44,7 +39,7 @@ section {margin-bottom:2% ;padding:0.5% 0; position:relative;}/* navbar 구현�
 /* count_animation */
 .count_animation {border:2px solid red; display:flex; flex-direction:column; justify-content:center; align-items:center;}
 .count_animation ul {width:100%; display:flex; justify-content:center;}
-.count_animation li {width:100px; height:100px; margin:2% 2%; box-sizing:border-box; border:1px solid #e3e3e3; display: flex; flex-direction:column; justify-content:center; align-items:center; }
+.count_animation li {width:100px; height:100px; margin:2% 2%; box-sizing:border-box; border:1px solid #e3e3e3; display:flex; flex-direction:column; justify-content:center; align-items:center; }
 .count_animation p {text-align:center;}
 
 /* tab_menu (차장님 가이드 소스)*/
@@ -92,22 +87,8 @@ section {margin-bottom:2% ;padding:0.5% 0; position:relative;}/* navbar 구현�
 .toast .btn_close:before {transform:rotate(45deg);}
 .toast .btn_close:after {transform:rotate(-45deg);}
 
-/* accodian_toggle */
-.board_type_toggle {border-top:1px solid #333; border-bottom:1px solid #333;}
-.board_type_toggle > dt {border-top:1px solid #e8e5e2; position:relative;}
-.board_type_toggle > dt:before, .board_type_toggle > dd:before {font-size:28px; font-weight:500; position:absolute; top:5px; left:20px;}
-.board_type_toggle > dt:before {content:'Q';}
-.board_type_toggle > dd:before {content:'A';}
-.board_type_toggle > dt a {padding:15px 15px 15px 70px; font-size:18px; display:block;}
-.board_type_toggle > dd {
-	max-height: 0;
-  overflow: hidden;
-  transition: max-height 0.2s ease-out;
-	padding:0px 15px 0px 70px; line-height:1.5; background-color:#f2f2f2; border-top:1px solid #dbdbdb; position:relative; display:none;}
-.show {display: block !important;}
-
 /* Hamberger_Menu */
-.hamber_btn{width: 50px; height:50px; position:absolute; left:20px; top:20px; background-color: #ff7200; cursor:pointer;}
+.hamber_btn{width:50px; height:50px; position:absolute; left:20px; top:20px; background-color:#ff7200; cursor:pointer;}
 .hamber_btn>span{width:50px; height:8px; margin:4px 0 ; background:#000; border-radius:10px; display:block; transition:all 0.5s;}
 .hamber_btn>.on:nth-child(1) {transform:translateY(15px) rotate(225deg); transition-delay:0.2s; }
 .hamber_btn>.on:nth-child(2) {opacity:0; transform:translateX(50px);}

@@ -33,3 +33,19 @@ h4 {font-size: 28px; font-weight: 600; text-align: center;}
 .tab_type_01 li + li {border-left:1px solid #fff;}
 .tab_type_01 li a {padding:10px 0; font-size:14px; font-weight:500; background-color:#efefef; text-align:center;}
 .tab_type_01 li.current a {color:#ff7200; background-color:#fff; border-top:1px solid #ff7200;}
+
+/* progress_bar */
+.progress_bar {width:0; height:4px; font-size:0; background-color:blue; position:fixed; top:0; z-index:10; transition:width 0.5s cubic-bezier(.47,1.64,.41,0.8);}
+
+/* follow cursor */
+.cursor {width:20px; height:20px; font-size:0; border:2px solid #000; border-radius:50%; pointer-events:none; box-sizing:border-box; position:fixed; transition:0.1s; transform:translate(-50%, -50%)}
+
+/* accodian_toggle */
+.board_type_toggle {border-top:1px solid #333; border-bottom:1px solid #333;}
+.board_type_toggle > dt {border-top:1px solid #e8e5e2; position:relative;}
+.board_type_toggle > dt:before, .board_type_toggle > dd:before {font-size:28px; font-weight:500; position:absolute; top:5px; left:20px;}
+.board_type_toggle > dt:before {content:'Q';}
+.board_type_toggle > dd:before {content:'A';}
+.board_type_toggle > dt a {padding:15px 15px 15px 70px; font-size:18px; display:block;}
+.board_type_toggle > dd {padding:0px 15px 0px 70px; line-height:1.5; background-color:#f2f2f2; border-top:1px solid #dbdbdb; position:relative; overflow:hidden; display:none; transition:max-height 0.2s ease-out;}
+.show {display:block !important;}

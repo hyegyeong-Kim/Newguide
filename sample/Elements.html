@@ -44,6 +44,8 @@ function escapeHtml(str) {
     };
     return str.replace(/[&<>"']/g, function(m) { return map[m]; });
 }
+
+tab_active('.tab_wrap > ul', 'click')
 </script>
 <div class="sample_wrap">
     <h2>Elements
@@ -65,6 +67,7 @@ function escapeHtml(str) {
     </ul>
     <div class="tab_content">
         <div class="current">Tab Content 01</div>
+        <div>Tab Content 02</div>
     </div>
 </div>
                 </div>
