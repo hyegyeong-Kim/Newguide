@@ -42,7 +42,7 @@ function ajax(_url){
         success: function(data) {
             if(data){
                 const load_wrap = document.createElement('div');
-                load_wrap.classList.add(_wrap) //콘텐츠 담을 그릇 지정 변수
+                // load_wrap.classList.add(_wrap) //콘텐츠 담을 그릇 지정 변수
                 load_wrap.innerHTML = data;
                 // console.log(document.getElementsByClassName('content').length);
                 document.getElementsByClassName('content')[0].append(load_wrap)
