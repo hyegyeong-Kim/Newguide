@@ -64,6 +64,46 @@ function tab_active(_target, evt) {//_target : 대상 / evt : 핸들러
 }
 /* //tab */
 
+/* accordion */
+function accordion(_target, evt){
+    var evt,
+    accordion = document.querySelectorAll(_target, evt);
+
+    accordion.forEach(el => {
+        el.querySelectorAll('dt > a').forEach((el, i) => {
+            console.log(el.parentNode.nextElementSibling.clientHeight)
+            el.addEventListener(evt, function(){
+                if(el.closest('dl').classList.contains('single')){
+                    const parent_index = Array.from(el.closest('dl').getElementsByTagName('dt')).indexOf(el.parentNode);
+
+                    for(j=0; j<el.closest('dl').getElementsByTagName('dt').length; j++){
+                        if(i != j){
+                            el.closest('dl').getElementsByTagName('dt')[j].nextElementSibling.classList.remove('show');
+                        }
+                    }
+                }
+
+                if(el.parentNode.nextElementSibling.classList.contains('show')){
+                    el.parentNode.nextElementSibling.style.height = '0px'
+
+                    el.parentNode.nextElementSibling.addEventListener('transitionend', () => {
+                        el.parentNode.nextElementSibling.classList.remove('show');
+                    }, {once: true})
+                } else {
+                    el.parentNode.nextElementSibling.classList.add('show');
+
+                    el.parentNode.nextElementSibling.style.height = 'auto'
+                    var height = el.parentNode.nextElementSibling.clientHeight + 'px'
+                    el.parentNode.nextElementSibling.style.height = '0px'
+                    setTimeout(() => {
+                        el.parentNode.nextElementSibling.style.height = height
+                    });
+                }
+            });
+        });
+    });
+}
+
 /* go_top */
 function go_top(_target){
     let top_btn = document.querySelector(_target)
@@ -91,7 +131,7 @@ function progress_bar() {
     });
 }
 
-/* new cursor */
+/* cursor */
 function follow_cursor(){
     const b = document.createElement('em');
     b.setAttribute('class','cursor');
@@ -104,88 +144,48 @@ function follow_cursor(){
     })
 }
 
-/* ========= ▽ 정리중 ▽ ==========*/
-function accordion(_target, evt){
-    var evt,
-    accordion = document.querySelectorAll(_target, evt);
-
-    accordion.forEach(el => {
-        el.querySelectorAll('dt > a').forEach((el, i) => {
-            el.addEventListener(evt, function(){
-                if(el.closest('dl').classList.contains('single')){
-                    const parent_index = Array.from(el.closest('dl').getElementsByTagName('dt')).indexOf(el.parentNode);
-
-                    for(j=0; j<el.closest('dl').getElementsByTagName('dt').length; j++){
-                        if(i != j){
-                            el.closest('dl').getElementsByTagName('dt')[j].nextElementSibling.classList.remove('show');
-                        }
-                    }
-                }
-
-                if(el.parentNode.nextElementSibling.classList.contains('show')){
-                    el.parentNode.nextElementSibling.classList.remove('show');
-                } else {
-                    el.parentNode.nextElementSibling.classList.add('show');
-                }
-            });
-        });
-    });
+/* toast message */
+let _toast = document.querySelector('.toast');
+function toast(_type, _message, _time){
+    _toast.classList.add('active', _type);
+    _toast.innerHTML = '<span>'+_message +'</span>';
+  if(_type == 'auto'){
+    setTimeout(function(){toast_close()},_time)
+  }else if(_type == 'confirm'){
+    _toast.innerHTML = '<span>'+_message +'</span>'+
+    '<a href="#none" onclick="toast_close();" class="btn_close">close</a>';}
+}
+function toast_close(){
+    _toast.classList.remove('active')
 }
 
-
-
-/* accodian toggle */
-// let board_type_toggle = document.querySelectorAll('.board_type_toggle')//배열
-// board_type_toggle.forEach(function(a){
-//   if(a.classList.contains('single')){
-//     /* 해당리스트 1개만 오픈 */
-//     let board_type_toggle_dt = a.querySelectorAll('dt')
-//       for(let j=0; j<board_type_toggle_dt.length; j++){
-//         board_type_toggle_dt[j].addEventListener('click', function(){
-//             let board_type_toggle_dd = a.querySelectorAll('dd');
-//             board_type_toggle_dd.forEach(function(e){
-             
-//               e.classList.remove('show')
-//               e.style.maxHeight = null;
-//             })
-//             board_type_toggle_dd[j].classList.toggle('show')
-//             // board_type_toggle_dd[j].maxHeight = content.scrollHeight + "px";
-//           })
-//       }//2_for   
-//   }else{
-//       let board_type_toggle_dt = a.querySelectorAll('dt')
-//       for(let j=0; j<board_type_toggle_dt.length; j++){
-//         board_type_toggle_dt[j].addEventListener('click', function(){
-//             let board_type_toggle_dd = a.querySelectorAll('dd');
-//             board_type_toggle_dd[j].classList.toggle('show')
-//           })
-//       }//2_for   
-//   }//else
-// })//forEach
-
-
-
-
+/* ========= ▽ 정리중 ▽ ==========*/
+const max = [333,666,999,101010]
 /* count_animation javascript */
-const counter = ($counter, max) => {
+const counter = (_target, max) => {
     let now = max;
     const handle = setInterval(() => {
-        $counter.innerHTML = Math.ceil(max - now);
+        _target.innerHTML = Math.ceil(max - now);
         // 목표수치에 도달하면 정지
-        if (now < 1) {clearInterval(handle);}
+        if (now < 1) {
+            clearInterval(handle);
+        }
         // 증가되는 값이 계속하여 작아짐
         const step = now / 10;
         // 값을 적용시키면서 다음 차례에 영향을 끼침
-        now -= step;}, 50);
-    }
-    window.onload = () => {
-    // 카운트를 적용시킬 요소
-    const $counter = document.querySelectorAll(".count");
-    const max = [333,345,3436];//카운터 데이터 배열형태 숫자로 입력
-    for(let i=0; i<$counter.length; i++){
-    setTimeout(() => counter($counter[i], max[i]), 2000);
-    }
+        now -= step;
+    }, 50);
 }
+// window.onload = () => {
+    // 카운트를 적용시킬 요소
+    const _target = document.querySelectorAll(".count");
+    // const max = [333,345,3436];//카운터 데이터 배열형태 숫자로 입력
+    for(let i=0; i<max.length; i++){
+        if(_target.length > i){
+            setTimeout(() => counter(_target[i], max[i]), 1000);
+        }
+    }
+// }
 
   /* modal javascript */
 let modal_btn = document.querySelector('.btn_ok')
@@ -197,20 +197,6 @@ function init(){
   modal_btn_cancel.addEventListener('click', function(){modal.classList.remove('active');});
   modal_btn.addEventListener('click', function(){modal.classList.add('active');});
 };
-
-/* toast message javascript*/
-let _toast = document.querySelector('.toast');
-function toast(_type, _message, _time){
-    _toast.classList.add('active', _type);
-    _toast.innerHTML = '<span>'+_message +'</span>';
-  if(_type == 'auto'){
-    setTimeout(function(){toast_close()},_time)
-  }else if(_type == 'confirm'){
-    _toast.innerHTML =
-    '<span>'+_message +'</span>'+
-    '<a href="#none" onclick="toast_close();" class="btn_close">close</a>';}
-}
-function toast_close(){_toast.classList.remove('active')}
 
 
 /* Hamberger_Menu js*/

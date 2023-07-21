@@ -31,8 +31,12 @@ h4 {font-size: 28px; font-weight: 600; text-align: center;}
 .tab_wrap [class*='tab_type'] > li a {display:block;}
 
 .tab_type_01 li + li {border-left:1px solid #fff;}
-.tab_type_01 li a {padding:10px 0; font-size:14px; font-weight:500; background-color:#efefef; text-align:center;}
-.tab_type_01 li.current a {color:#ff7200; background-color:#fff; border-top:1px solid #ff7200;}
+.tab_type_01 li a {padding:20px 0; font-size:14px; font-weight:500; background-color:#efefef; text-align:center;}
+.tab_type_01 li.current a {color:#ff7200; font-weight:700; background-color:#fff; border-top:1px solid #ff7200;}
+
+.tab_content {margin-top:20px;}
+.tab_content > div {display:none;}
+.tab_content > div.current {display:block;}
 
 /* progress_bar */
 .progress_bar {width:0; height:4px; font-size:0; background-color:blue; position:fixed; top:0; z-index:10; transition:width 0.5s cubic-bezier(.47,1.64,.41,0.8);}
@@ -47,5 +51,5 @@ h4 {font-size: 28px; font-weight: 600; text-align: center;}
 .board_type_toggle > dt:before {content:'Q';}
 .board_type_toggle > dd:before {content:'A';}
 .board_type_toggle > dt a {padding:15px 15px 15px 70px; font-size:18px; display:block;}
-.board_type_toggle > dd {padding:0px 15px 0px 70px; line-height:1.5; background-color:#f2f2f2; border-top:1px solid #dbdbdb; position:relative; overflow:hidden; display:none; transition:max-height 0.2s ease-out;}
+.board_type_toggle > dd {padding:15px 15px 15px 70px; line-height:1.5; background-color:#f2f2f2; border-top:1px solid #dbdbdb; position:relative; overflow:hidden; display:none; transition:height 0.2s ease-out;}
 .show {display:block !important;}
