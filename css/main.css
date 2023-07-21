@@ -34,7 +34,7 @@ li:active {color:#000; background-color:#eee;}
 .gnb_list li:hover a::after{width:40%;}
 
 /* count_animation */
-.count_animation {border:2px solid red; display:flex; flex-direction:column; justify-content:center; align-items:center;}
+.count_animation {display:flex; flex-direction:column; justify-content:center; align-items:center;}
 .count_animation ul {width:100%; display:flex; justify-content:center;}
 .count_animation li {width:100px; height:100px; margin:2% 2%; box-sizing:border-box; border:1px solid #e3e3e3; display:flex; flex-direction:column; justify-content:center; align-items:center; }
 .count_animation p {text-align:center;}
@@ -85,7 +85,7 @@ li:active {color:#000; background-color:#eee;}
 .toast .btn_close:after {transform:rotate(-45deg);}
 
 /* Hamberger_Menu */
-.hamber_btn{width:50px; height:50px; position:absolute; left:20px; top:20px; background-color:#ff7200; cursor:pointer;}
+.hamber_btn{width:50px; height:50px; position:absolute; left:20px; top:20px; cursor:pointer;}
 .hamber_btn>span{width:50px; height:8px; margin:4px 0 ; background:#000; border-radius:10px; display:block; transition:all 0.5s;}
 .hamber_btn>.on:nth-child(1) {transform:translateY(15px) rotate(225deg); transition-delay:0.2s; }
 .hamber_btn>.on:nth-child(2) {opacity:0; transform:translateX(50px);}
@@ -93,7 +93,7 @@ li:active {color:#000; background-color:#eee;}
 
 /* scroll_down */
 .content > section:first-child{height:1000px; border:2px solid blue ; position:relative;}
-div.scroll_icon{width:6%; height:5%; font-weight:600; text-align: center; opacity: 0.7; position:absolute; bottom: 40%; left:50%; transform:translateX(-50%);}
+div.scroll_icon{width:6%; height:5%; font-weight:600; text-align: center; opacity: 0.7; position:absolute; left:50%; transform:translateX(-50%);}
 .scroll_icon img{width:50px; transform:rotate(90deg);}
 .scroll_down{position:relative; animation-name: scroll_down; animation-duration: 2s; animation-iteration-count: infinite;}
 .content .scroll_icon.show{opacity:0; transition:opacity 1s, transform 1s;}
@@ -103,3 +103,17 @@ div.scroll_icon{width:6%; height:5%; font-weight:600; text-align: center; opacit
   75%{top:30px;}
   100%{top:0px;}
 }
+
+/* card new layout */
+.card_layout{position:relative;}
+.card_layout .design_box ul{height:100%; overflow:hidden; display:flex; justify-content:space-around; align-items: center;}
+.card_layout .design_box li {position:relative;}
+.card_layout .design_box li p:first-of-type{font-weight:600; position:absolute; top:10px; opacity:0; transition: all 0.2s;}
+.card_layout .design_box li p:last-of-type{font-weight: 600; position:absolute; bottom:-20px; left:10px; transition: all 0.4s;}
+.card_layout .design_box button{width:80px; height:80px; padding: 2%; color:#fff; font-weight:600; background-color:orange; border-radius:50%; position:absolute; right:0px; bottom:0; opacity:0; transform: translateX(50px); transition:all 0.4s;}
+.card_layout .design_box img{transition:border-radius 0.6s}
+/* hover 시 */
+.card_layout .design_box li:hover p:first-of-type{opacity:1}
+.card_layout .design_box li:hover p:last-of-type{bottom:5px; opacity:0}
+.card_layout .design_box li:hover button{opacity:1; transform: translateX(0px);}
+.card_layout .design_box li:hover img{border-radius: 80% 5% 25% 5%;}

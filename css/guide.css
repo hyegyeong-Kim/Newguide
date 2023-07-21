@@ -1,7 +1,5 @@
 #header.guide, #footer.guide{width: 100%; background-color: orangered;}
 
-h1 {cursor:pointer;}
-
 h2 {margin-bottom:20px; padding-bottom:5px; font-size:28px; font-weight:600; border-bottom:1px dotted #d4d4d4; display:flex; align-items:center; justify-content:space-between;}
 h2 button {width:20px; height:20px; font-size:0; position:relative;}
 h2 button:before, h2 button:after, h2 em:before, h2 em:after {width:7px; height:7px; border:1px solid #df262b; content:''; position:absolute; top:0; left:0; display:block;}
@@ -29,5 +27,24 @@ h2 em:before, h2 em:after {top:inherit; bottom:0;}
 .sample_wrap.division h2 button:after, .sample_wrap.division h2 em:after {width:auto; left:0;}
 
 .tit_wrap {margin-top: 3%;}
-.design_box {margin-top:10px; padding:10px; border:1px solid #ddd;}
+.design_box {margin-top:10px; padding:10px; border:1px solid #ddd; position:relative !important;}
 .code_box, .style_box {margin-top:20px; padding:0 20px; color:#fff; background-color:#000; border-radius:4px; overflow:auto;}
+
+/* scroll down Animation */
+.scroll_icon{width:6%; height:5%; font-weight:600; text-align: center; opacity: 0.7; position:absolute; left:50%; transform:translateX(-50%);}
+.scroll_icon img{width:50px; transform:rotate(90deg);}
+.scroll_down{animation-name: scroll_down; animation-duration: 2s; animation-iteration-count: infinite;}
+.content .scroll_icon.show{opacity:0; transition:opacity 1s, transform 1s;}
+@keyframes scroll_down {
+    0%{top:0px;}
+    75%{top:30px;}
+    100%{top:0px;}
+}
+
+/* Hamberger_Menu */
+.hamber_btn{width:50px; height:50px; position:absolute; left:20px; top:20px; cursor:pointer;}
+.hamber_btn>span{width:50px; height:8px; margin:4px 0 ; background:#000; border-radius:10px; display:block; transition:all 0.5s;}
+.hamber_btn>.on:nth-child(1) {transform:translateY(15px) rotate(225deg); transition-delay:0.2s; }
+.hamber_btn>.on:nth-child(2) {opacity:0; transform:translateX(50px);}
+.hamber_btn>.on:nth-child(3) {transform:translateY(-11px) rotate(-225deg); transition-delay:0.2s; }
+
