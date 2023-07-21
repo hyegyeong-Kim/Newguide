@@ -1,7 +1,5 @@
 #header.guide, #footer.guide{width: 100%; background-color: orangered;}
 
-h1 {cursor:pointer;}
-
 h2 {margin-bottom:20px; padding-bottom:5px; font-size:28px; font-weight:600; border-bottom:1px dotted #d4d4d4; display:flex; align-items:center; justify-content:space-between;}
 h2 button {width:20px; height:20px; font-size:0; position:relative;}
 h2 button:before, h2 button:after, h2 em:before, h2 em:after {width:7px; height:7px; border:1px solid #df262b; content:''; position:absolute; top:0; left:0; display:block;}
