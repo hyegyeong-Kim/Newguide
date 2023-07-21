@@ -20,6 +20,17 @@ $(document).ready(function(){
     /* follow cusor */
     follow_cursor();
     /*============== //sample ==============*/
+
+    ham_btn('.hamber_btn')
+
+    const max = [333,666,999,101010]
+    const _target = document.querySelectorAll(".count");
+    // const max = [333,345,3436];//카운터 데이터 배열형태 숫자로 입력
+    for(let i=0; i<max.length; i++){
+        if(_target.length > i){
+            setTimeout(() => counter(_target[i], max[i]));
+        }
+    }
 });
 
 /* ajax */
@@ -30,7 +41,13 @@ function ajax(_url){
         //dataType:'html',
         success: function(data) {
             if(data){
-                $('.content').html(data);
+                const load_wrap = document.createElement('div');
+                load_wrap.classList.add(_wrap) //콘텐츠 담을 그릇 지정 변수
+                load_wrap.innerHTML = data;
+                // console.log(document.getElementsByClassName('content').length);
+                document.getElementsByClassName('content')[0].append(load_wrap)
+                // console.log(data);
+                // $('.content').html(data);
             } else {
             }
         },
@@ -71,7 +88,6 @@ function accordion(_target, evt){
 
     accordion.forEach(el => {
         el.querySelectorAll('dt > a').forEach((el, i) => {
-            console.log(el.parentNode.nextElementSibling.clientHeight)
             el.addEventListener(evt, function(){
                 if(el.closest('dl').classList.contains('single')){
                     const parent_index = Array.from(el.closest('dl').getElementsByTagName('dt')).indexOf(el.parentNode);
@@ -145,8 +161,8 @@ function follow_cursor(){
 }
 
 /* toast message */
-let _toast = document.querySelector('.toast');
 function toast(_type, _message, _time){
+    var _toast = document.querySelector('.toast');
     _toast.classList.add('active', _type);
     _toast.innerHTML = '<span>'+_message +'</span>';
   if(_type == 'auto'){
@@ -156,13 +172,13 @@ function toast(_type, _message, _time){
     '<a href="#none" onclick="toast_close();" class="btn_close">close</a>';}
 }
 function toast_close(){
+    var _toast = document.querySelector('.toast');
     _toast.classList.remove('active')
 }
 
 /* ========= ▽ 정리중 ▽ ==========*/
-const max = [333,666,999,101010]
 /* count_animation javascript */
-const counter = (_target, max) => {
+function counter(_target, max) {
     let now = max;
     const handle = setInterval(() => {
         _target.innerHTML = Math.ceil(max - now);
@@ -176,16 +192,7 @@ const counter = (_target, max) => {
         now -= step;
     }, 50);
 }
-// window.onload = () => {
-    // 카운트를 적용시킬 요소
-    const _target = document.querySelectorAll(".count");
-    // const max = [333,345,3436];//카운터 데이터 배열형태 숫자로 입력
-    for(let i=0; i<max.length; i++){
-        if(_target.length > i){
-            setTimeout(() => counter(_target[i], max[i]), 1000);
-        }
-    }
-// }
+
 
   /* modal javascript */
 let modal_btn = document.querySelector('.btn_ok')
@@ -200,59 +207,13 @@ function init(){
 
 
 /* Hamberger_Menu js*/
- function ham_btn(){
-   document.querySelector('.hamber_btn').addEventListener('click', ()=>{
-     console.log(document.querySelector('.hamber_btn'))
-     let hamber_btn_cont = document.querySelectorAll('.hamber_btn>span')
-     hamber_btn_cont.forEach(function(a){
-       a.classList.toggle('on')
-     })
-   })
- } 
- ham_btn()
-/* ------------------------------------------------------------ */
-/* jquery */
-
-  /* modal jquery */
-  // function init(){
-  //   $('.btn_close').click(function(){$('#modal').removeClass('active')});
-  //   $('.btn_cancel').click(function(){$('#modal').removeClass('active')});
-  //   $('.btn_ok').click(function(){$('#modal').addClass('active')})
-  // }
-
-  // /* toast message javascript*/
-  // let _toast = $('.toast');
-  // function toast(_type, _message, _time){
-  //     _toast.addClass('active', _type);
-  //     _toast.html = '<span>'+_message +'</span>';
-  //   if(_type == 'auto'){
-  //     setTimeout(function(){toast_close()},_time)
-  //   }else if(_type == 'confirm'){
-  //     _toast.html =
-  //     '<span>'+_message +'</span>'+
-  //     '<a href="#none" onclick="toast_close();" class="btn_close">close</a>';}
-  // }
-  // function toast_close(){_toast.removeClass('active')}
-
-  /* top_btn jquery*/
-  // function scroll_Top(){
-  //   $(window).scroll(function(){
-  //     if(this.scrollY > 300){
-  //       $('.top_btn').addClass('show');
-  //     }else{
-  //       $('.top_btn').removeClass('show');
-  //     };
-  //   })//window scroll//top_btn click
-  //   $(".top_btn").click(function() {
-  //     $("html, body").animate({ scrollTop: 0 }, "slow");
-  //   });
-  // }
-  // scroll_Top()
-
-  /* Hamberger_Menu jquery*/
-  // $('.hamber_btn').click(function(){
-  //   $('.hamber_btn>span').toggleClass('on')
-  // });
-
-  
-
+function ham_btn(_target){
+    var _this = document.querySelector(_target)
+    if(_this != null){
+        _this.addEventListener('click', ()=>{
+            for(i=0; i<_this.children.length; i++){
+                _this.children[i].classList.toggle('on')
+            }
+        })
+    }
+}

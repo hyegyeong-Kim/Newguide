@@ -21,8 +21,6 @@ li:active {color:#000; background-color:#eee;}
 
 /* topbtn*/
 #container {width:95%; margin:10% auto; position:relative;}
-#container .content .top_btn {width:30px; height:30px; padding:1%; color:#fff; font-weight:600; line-height:2em; background-color:coral; border-radius:50%; position:fixed; right:5%; bottom:80px; opacity:0;  transition:opacity 0.5s, transform 0.5s;}
-#container .content .top_btn.show {opacity:1; transition:opacity 1s, transform 1s;}
 
 /* gnb_hover */
 .gnb_hover {padding:2%; border:2px solid red; box-sizing:border-box;}
@@ -33,11 +31,7 @@ li:active {color:#000; background-color:#eee;}
 .gnb_list li:hover a {color:red;}
 .gnb_list li:hover a::after{width:40%;}
 
-/* count_animation */
-.count_animation {border:2px solid red; display:flex; flex-direction:column; justify-content:center; align-items:center;}
-.count_animation ul {width:100%; display:flex; justify-content:center;}
-.count_animation li {width:100px; height:100px; margin:2% 2%; box-sizing:border-box; border:1px solid #e3e3e3; display:flex; flex-direction:column; justify-content:center; align-items:center; }
-.count_animation p {text-align:center;}
+.count {font-size:26px; font-weight:700;}
 
 /* modal */
 [id*='modal'] {background-color:rgba(0,0,0,0); text-align:center; opacity:0; position:fixed; top:50%; right:50%; bottom:50%; left:50%; z-index:100; display:block; overflow:hidden; transition:opacity 0.15s ease-out;}
@@ -56,33 +50,3 @@ li:active {color:#000; background-color:#eee;}
 .modal_wrap.small {width:450px;}
 .modal_wrap.mid {width:650px;}
 .modal_wrap.full {width:98%;}
-
-/* toast */
-.toast {height:50px; line-height:48px; background-color:#fff; border:1px solid #d4d4d4; border-radius:50px; box-shadow:0 4px 6px rgba(0,0,0,0.3); opacity:0; position:fixed; bottom:0px; left:50%; z-index:1; display:inline-block; transform:translateX(-50%); transition:all 0.35s;}
-.toast.confirm {padding:0 50px 0 40px;}
-.toast.auto {padding:0 40px;}
-.toast.active {bottom:100px; opacity:1;}
-.toast .btn_close {width:20px; height:20px; font-size:0; position:absolute; top:50%; right:20px; display:inline-block; transform:translateY(-50%);}
-.toast .btn_close:before, .toast .btn_close:after {width:15px; border-top:1px solid #333; content:''; position:absolute; top:50%; right:0; display:inline-block;}
-.toast .btn_close:before {transform:rotate(45deg);}
-.toast .btn_close:after {transform:rotate(-45deg);}
-
-/* Hamberger_Menu */
-.hamber_btn{width:50px; height:50px; position:absolute; left:20px; top:20px; background-color:#ff7200; cursor:pointer;}
-.hamber_btn>span{width:50px; height:8px; margin:4px 0 ; background:#000; border-radius:10px; display:block; transition:all 0.5s;}
-.hamber_btn>.on:nth-child(1) {transform:translateY(15px) rotate(225deg); transition-delay:0.2s; }
-.hamber_btn>.on:nth-child(2) {opacity:0; transform:translateX(50px);}
-.hamber_btn>.on:nth-child(3) {transform:translateY(-11px) rotate(-225deg); transition-delay:0.2s; }
-
-/* scroll_down */
-.content > section:first-child{height:1000px; border:2px solid blue ; position:relative;}
-div.scroll_icon{width:6%; height:5%; font-weight:600; text-align: center; opacity: 0.7; position:absolute; bottom: 40%; left:50%; transform:translateX(-50%);}
-.scroll_icon img{width:50px; transform:rotate(90deg);}
-.scroll_down{position:relative; animation-name: scroll_down; animation-duration: 2s; animation-iteration-count: infinite;}
-.content .scroll_icon.show{opacity:0; transition:opacity 1s, transform 1s;}
-
-@keyframes scroll_down {
-  0%{top:0px;}
-  75%{top:30px;}
-  100%{top:0px;}
-}

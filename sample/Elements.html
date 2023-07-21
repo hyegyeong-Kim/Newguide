@@ -2,26 +2,26 @@
 var sample_list = document.querySelectorAll('.sample_wrap > ul > li');
 sample_list.forEach((t) => {
     var design = t.querySelector('.design_box'),
-        code = t.querySelector('.code_box'),
-        Source_code = String(design.innerHTML);
+    code = t.querySelector('.code_box'),
+    Source_code = String(design.innerHTML);
 
-        const b = document.createElement('button');
-        b.innerHTML = 'View source'
-        t.querySelector('h3').append(b)
+    const b = document.createElement('button');
+    b.innerHTML = 'View source'
+    t.querySelector('h3').append(b)
 
-        t.getElementsByTagName('h3')[0].children[0].addEventListener('click', function(e){
-            const code_box = t.getElementsByClassName('code_box');
-            const style_box = t.getElementsByClassName('style_box');
-            if(code_box[0].classList.contains('active')){
-                code_box[0].classList.remove("active");
-                style_box[0].classList.remove("active");
-                e.currentTarget.textContent = "View source"
-            } else {
-                code_box[0].classList.add("active");
-                style_box[0].classList.add("active");
-                e.currentTarget.textContent = "Hide source"
-            }
-        });
+    t.getElementsByTagName('h3')[0].children[0].addEventListener('click', function(e){
+        const code_box = t.getElementsByClassName('code_box');
+        const style_box = t.getElementsByClassName('style_box');
+        if(code_box[0].classList.contains('active')){
+            code_box[0].classList.remove("active");
+            style_box[0].classList.remove("active");
+            e.currentTarget.textContent = "View source"
+        } else {
+            code_box[0].classList.add("active");
+            style_box[0].classList.add("active");
+            e.currentTarget.textContent = "Hide source"
+        }
+    });
     
     code.children[0].innerHTML = escapeHtml(Source_code)
 });
@@ -46,6 +46,9 @@ function escapeHtml(str) {
 }
 
 tab_active('.tab_wrap > ul', 'click')
+ham_btn('.hamber_btn')
+accordion('.board_type_toggle', 'click');
+go_top('.top_btn');
 </script>
 <div class="sample_wrap">
     <h2>Elements
@@ -90,74 +93,38 @@ tab_active('.tab_wrap > ul', 'click')
         </li>
         <!-- //tab -->
 
+        <!-- accordion -->
         <li>
             <div class="item">
-                <h3>Modal, Toast popup</h3>
+                <h3>Accordion</h3>
                 <ul class="explain">
-                    <li>class [tab_type] 로 넓이 값 구분.</li>
+                    <li>클래스 single = 해당 리스트 1개만 open / single != 각각 open</li>
                 </ul>
                 <div class="design_box">
-<!-- modal open button -->
-<a href="#none" onclick="init()" class="btn_min btn_ok">Modal</a>
-<!-- // modal open button -->
-<!-- modal -->
-<div id="modal">
-    <div class="modal_wrap full">
-        <div class="modal_header">Modal Title
-            <a href="#none" class="btn_close">Close</a>
-        </div>
-        <div class="modal_content">Modal Content</div>
-        <div class="modal_bottom">
-            <a href="#none" class="btn_min btn_ok">확인</a>
-            <a href="#none" class="btn_min btn_cancel">취소</a>
-        </div>
-    </div>
-</div>
-<!-- //modal -->
-
-<!-- toast open button -->
-<a href="#none" onclick="toast('confirm', '1 확인되었습니다.');" class="btn_min btn_ok">Toast-confirm</a>
-<a href="#none" onclick="toast('auto', '2 확인되었습니다.', 3000);" class="btn_min btn_ok">Toast-auto</a>
-<!-- //toast open button -->
-
-<!-- toast -->
-<div class="toast">
-</div>
-<!-- //toast -->
+<dl class="board_type_toggle single">
+    <dt><a href="#none">제목제목제목1</a></dt>
+    <dd>내용내용내용내용1</dd>
+    <dt><a href="#none">제목제목제목1</a></dt>
+    <dd>내용내용내용내용1</dd>
+    <dt><a href="#none">제목제목제목1</a></dt>
+    <dd>내용내용내용내용1</dd>
+</dl>
                 </div>
                 <pre class="code_box"><code></code></pre>
                 <pre class="style_box"><code>
-/* modal */
-[id*='modal'] {background-color:rgba(0,0,0,0); text-align:center; opacity:0; position:fixed; top:50%; right:50%; bottom:50%; left:50%; z-index:100; display:block; overflow:hidden; transition:opacity 0.15s ease-out;}
-[id*='modal'].active {background-color:rgba(0,0,0,0.7); opacity:1; top:0; right:0; bottom:0; left:0;}
-[id*='modal']:before {height:100%; vertical-align:middle; content:''; display:inline-block;}
-[id*='modal'] .modal_wrap {padding:20px; background-color:#fff; text-align:left; vertical-align:middle; display:inline-block;}
-.modal_header {margin-bottom:10px; padding-bottom:5px; font-size:18px; font-weight:700; border-bottom:1px solid #333; position:relative;}
-.modal_header .btn_close {width:25px; height:25px; font-size:0; position:absolute; top:0; right:0; display:inline-block;}
-.modal_heafder .btn_close:before, .modal_header .btn_close:after {width:30px; border-top:1px solid #333; content:''; position:absolute; top:50%; right:-4px; display:inline-block;}
-.modal_header .btn_close:before {transform:rotate(45deg);}
-.modal_header .btn_close:after {transform:rotate(-45deg);}
-.modal_bottom {margin-top:20px; padding-top:20px; border-top:1px dashed #ccc; text-align:center;}
-
-/* modal size */
-.modal_wrap {max-width:96%;}
-.modal_wrap.small {width:450px;}
-.modal_wrap.mid {width:650px;}
-.modal_wrap.full {width:98%;}
-
-/* toast */
-.toast {height:50px; line-height:48px; background-color:#fff; border:1px solid #d4d4d4; border-radius:50px; box-shadow:0 4px 6px rgba(0,0,0,0.3); opacity:0; position:fixed; bottom:0px; left:50%; z-index:1; display:inline-block; transform:translateX(-50%); transition:all 0.35s;}
-.toast.confirm {padding:0 50px 0 40px;}
-.toast.auto {padding:0 40px;}
-.toast.active {bottom:100px; opacity:1;}
-.toast .btn_close {width:20px; height:20px; font-size:0; position:absolute; top:50%; right:20px; display:inline-block; transform:translateY(-50%);}
-.toast .btn_close:before, .toast .btn_close:after {width:15px; border-top:1px solid #333; content:''; position:absolute; top:50%; right:0; display:inline-block;}
-.toast .btn_close:before {transform:rotate(45deg);}
-.toast .btn_close:after {transform:rotate(-45deg);}
+.board_type_toggle {border-top:1px solid #333; border-bottom:1px solid #333;}
+.board_type_toggle > dt {border-top:1px solid #e8e5e2; position:relative;}
+.board_type_toggle > dt:before, .board_type_toggle > dd:before {font-size:28px; font-weight:500; position:absolute; top:5px; left:20px;}
+.board_type_toggle > dt:before {content:'Q';}
+.board_type_toggle > dd:before {content:'A';}
+.board_type_toggle > dt a {padding:15px 15px 15px 70px; font-size:18px; display:block;}
+.board_type_toggle > dd {padding:15px 15px 15px 70px; line-height:1.5; background-color:#f2f2f2; border-top:1px solid #dbdbdb; position:relative; overflow:hidden; display:none; transition:height 0.2s ease-out;}
+.show {display:block !important;}
                 </code></pre>
             </div>
         </li>
-        <!-- modal,toast -->
+        <!-- //accordion -->
+        <!-- Top Button -->
         <li>
             <div class="item">
                 <h3>Top Button</h3>
@@ -165,7 +132,7 @@ tab_active('.tab_wrap > ul', 'click')
                     <li>class [tab_type] 로 스타일 구현.</li>
                 </ul>
                 <div class="design_box">
-<div class=top_btn>TOP</div>
+<div class="top_btn">TOP</div>
                 </div>
                 <pre class="code_box"><code></code></pre>
                 <pre class="style_box"><code>
@@ -175,14 +142,14 @@ tab_active('.tab_wrap > ul', 'click')
                 </code></pre>
             </div>
         </li>
-        <!-- Top Button -->
-        <li class="li_scrolldown">
+        <!-- scrolldown -->
+        <li>
             <div class="item">
                 <h3>Scroll down Animation</h3>
                 <ul class="explain">
                     <li>@keyframes 활용 및 fadeout 효과 구현</li>
                 </ul>
-                <div class="design_box" style="height:120px">
+                <div class="design_box">
 <div class="scroll_icon">
     <p class="scroll_down">
         scroll down
@@ -193,11 +160,10 @@ tab_active('.tab_wrap > ul', 'click')
                 <pre class="code_box"><code></code></pre>
                 <pre class="style_box"><code>
 /* scroll_down */
-.li_scrolldown > .design_box{position:relative;}
-.scroll_icon{width:6%; height:5%; font-weight:600; text-align: center; opacity: 0.7; position:absolute; left:50%; transform:translateX(-50%);}
-.scroll_icon img{width:50px; transform:rotate(90deg);}
-.scroll_down{animation-name: scroll_down; animation-duration: 2s; animation-iteration-count: infinite;}
-.content .scroll_icon.show{opacity:0; transition:opacity 1s, transform 1s;}
+.scroll_icon{font-weight:600; text-align: center; opacity: 0.7; position:absolute; bottom: 40%; left:50%; transform:translateX(-50%);}
+.scroll_icon img{width:50px; margin:0 auto; display:block; transform:rotate(90deg);}
+.scroll_down{white-space:nowrap; position:relative; animation-name: scroll_down; animation-duration: 2s; animation-iteration-count: infinite;}
+.scroll_icon.show{opacity:0; transition:opacity 1s, transform 1s;}
 
 @keyframes scroll_down {
     0%{top:0px;}
@@ -207,7 +173,33 @@ tab_active('.tab_wrap > ul', 'click')
                 </code></pre>
             </div>
         </li>
-        <!-- scrolldown -->
+        <!-- Hamberger_Menu -->
+        <li>
+            <div class="item">
+                <h3>Hamberger_Menu</h3>
+                <div class="design_box">
+<div class="hamber_btn">
+    <span></span>
+    <span></span>
+    <span></span>
+</div>
+                </div>
+                <pre class="code_box"><code></code></pre>
+                <pre class="style_box"><code>
+/* Hamberger_Menu */
+.hamber_btn {width:50px; height:50px; position:absolute; left:20px; top:20px; cursor:pointer;}
+.hamber_btn > span {position:absolute; top:50%; right:0; left:0; height:8px; background:#000; border-radius:10px; display:block; transition:all 0.5s;}
+.hamber_btn > span:nth-child(1) {top:0;}
+.hamber_btn > span:nth-child(2) {margin-top:-4px;}
+.hamber_btn > span:nth-child(3) {margin-top:-8px; top:100%;}
+
+.hamber_btn > .on:nth-child(1) {top:50%; transform:translateY(-50%) rotate(225deg); transition-delay:0.2s; }
+.hamber_btn > .on:nth-child(2) {opacity:0; transform:translateX(50px);}
+.hamber_btn > .on:nth-child(3) {margin-top:0; top:50%; transform:translateY(-50%) rotate(-225deg); transition-delay:0.2s; }
+                </code></pre>
+            </div>
+        </li>
+        <!-- gnb_hover -->
         <li>
             <div class="item">
                 <h3>gnb hover</h3>
@@ -235,66 +227,5 @@ tab_active('.tab_wrap > ul', 'click')
                 </code></pre>
             </div>
         </li>
-        <!-- gnb_hover -->
-        <li>
-            <div class="item">
-                <h3>Hamberger_Menu</h3>
-                <ul class="explain">
-                    <li></li>
-                </ul>
-                <div class="design_box">
-<div class="hamber_btn">
-    <span></span>
-    <span></span>
-    <span></span>
-</div>
-                </div>
-                <pre class="code_box"><code></code></pre>
-                <pre class="style_box"><code>
-/* Hamberger_Menu */
-.hamber_btn{width: 50px; height:50px; background-color: #ff7200; cursor:pointer;}
-.hamber_btn>span{width:50px; height:8px; margin:4px 0 ; background:#000; border-radius:10px; display:block; transition:all 0.5s;}
-.hamber_btn>.on:nth-child(1) {transform:translateY(15px) rotate(225deg); transition-delay:0.2s; }
-.hamber_btn>.on:nth-child(2) {opacity:0; transform:translateX(50px);}
-.hamber_btn>.on:nth-child(3) {transform:translateY(-11px) rotate(-225deg); transition-delay:0.2s; }                    
-                </code></pre>
-            </div>
-        </li>
-        <!-- Hamberger_Menu -->
-        <li>
-            <div class="item">
-                <h3>count animation</h3>
-                <ul class="explain">
-                    <li>class [tab_type] 로 스타일 구현.</li>
-                </ul>
-                <div class="design_box">
-<section class="count_animation">
-    <ul>
-        <li>
-            <p class="count">0</p>
-            <p>구성원</p>
-        </li>
-        <li>
-            <p class="count">0</p>
-            <p>스튜디오</p>
-        </li>
-        <li>
-            <p class="count">0</p>
-            <p>글로벌 오피스</p>
-        </li>
-    </ul>
-</section>
-                </div>
-                <pre class="code_box"><code></code></pre>
-                <pre class="style_box"><code>
-/* count_animation */
-.count_animation {display:flex; flex-direction:column; justify-content:center; align-items:center;}
-.count_animation ul {width:100%; display:flex; justify-content:center;}
-.count_animation li {width:100px; height:100px; margin:2% 2%; box-sizing:border-box; border:1px solid #e3e3e3; display: flex; flex-direction:column; justify-content:center; align-items:center; }
-.count_animation p {text-align:center;}
-                </code></pre>
-            </div>
-        </li>
-        <!-- count_animation -->
     </ul>
 </div>

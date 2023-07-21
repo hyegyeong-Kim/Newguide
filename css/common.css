@@ -38,12 +38,6 @@ h4 {font-size: 28px; font-weight: 600; text-align: center;}
 .tab_content > div {display:none;}
 .tab_content > div.current {display:block;}
 
-/* progress_bar */
-.progress_bar {width:0; height:4px; font-size:0; background-color:blue; position:fixed; top:0; z-index:10; transition:width 0.5s cubic-bezier(.47,1.64,.41,0.8);}
-
-/* follow cursor */
-.cursor {width:20px; height:20px; font-size:0; border:2px solid #000; border-radius:50%; pointer-events:none; box-sizing:border-box; position:fixed; transition:0.1s; transform:translate(-50%, -50%)}
-
 /* accodian_toggle */
 .board_type_toggle {border-top:1px solid #333; border-bottom:1px solid #333;}
 .board_type_toggle > dt {border-top:1px solid #e8e5e2; position:relative;}
@@ -53,3 +47,46 @@ h4 {font-size: 28px; font-weight: 600; text-align: center;}
 .board_type_toggle > dt a {padding:15px 15px 15px 70px; font-size:18px; display:block;}
 .board_type_toggle > dd {padding:15px 15px 15px 70px; line-height:1.5; background-color:#f2f2f2; border-top:1px solid #dbdbdb; position:relative; overflow:hidden; display:none; transition:height 0.2s ease-out;}
 .show {display:block !important;}
+
+/* toast */
+.toast {height:50px; line-height:48px; background-color:#fff; border:1px solid #d4d4d4; border-radius:50px; box-shadow:0 4px 6px rgba(0,0,0,0.3); opacity:0; position:fixed; bottom:0px; left:50%; z-index:1; display:inline-block; transform:translateX(-50%); transition:all 0.35s;}
+.toast.confirm {padding:0 50px 0 40px;}
+.toast.auto {padding:0 40px;}
+.toast.active {bottom:100px; opacity:1;}
+.toast .btn_close {width:20px; height:20px; font-size:0; position:absolute; top:50%; right:20px; display:inline-block; transform:translateY(-50%);}
+.toast .btn_close:before, .toast .btn_close:after {width:15px; border-top:1px solid #333; content:''; position:absolute; top:50%; right:0; display:inline-block;}
+.toast .btn_close:before {transform:rotate(45deg);}
+.toast .btn_close:after {transform:rotate(-45deg);}
+
+/* progress_bar */
+.progress_bar {width:0; height:4px; font-size:0; background-color:blue; position:fixed; top:0; z-index:10; transition:width 0.5s cubic-bezier(.47,1.64,.41,0.8);}
+
+/* follow cursor */
+.cursor {width:20px; height:20px; font-size:0; border:2px solid #000; border-radius:50%; pointer-events:none; box-sizing:border-box; position:fixed; transition:0.1s; transform:translate(-50%, -50%)}
+
+/* Hamberger button */
+.hamber_btn {width:50px; height:50px; position:absolute; left:20px; top:20px; cursor:pointer;}
+.hamber_btn > span {position:absolute; top:50%; right:0; left:0; height:8px; background:#000; border-radius:10px; display:block; transition:all 0.5s;}
+.hamber_btn > span:nth-child(1) {top:0;}
+.hamber_btn > span:nth-child(2) {margin-top:-4px;}
+.hamber_btn > span:nth-child(3) {margin-top:-8px; top:100%;}
+
+.hamber_btn > .on:nth-child(1) {top:50%; transform:translateY(-50%) rotate(225deg); transition-delay:0.2s; }
+.hamber_btn > .on:nth-child(2) {opacity:0; transform:translateX(50px);}
+.hamber_btn > .on:nth-child(3) {margin-top:0; top:50%; transform:translateY(-50%) rotate(-225deg); transition-delay:0.2s; }
+
+/* go top button */
+.top_btn {width:30px; height:30px; padding:10px; color:#fff; font-weight:600; line-height:2em; background-color:coral; border-radius:50%; position:fixed; right:5%; bottom:80px; opacity:0;  transition:opacity 0.5s, transform 0.5s;}
+.top_btn.show {opacity:1; transition:opacity 1s, transform 1s;}
+
+/* scroll down animation */
+.scroll_icon{font-weight:600; text-align: center; opacity: 0.7; position:absolute; bottom: 40%; left:50%; transform:translateX(-50%);}
+.scroll_icon img{width:50px; margin:0 auto; display:block; transform:rotate(90deg);}
+.scroll_down{white-space:nowrap; position:relative; animation-name: scroll_down; animation-duration: 2s; animation-iteration-count: infinite;}
+.scroll_icon.show{opacity:0; transition:opacity 1s, transform 1s;}
+
+@keyframes scroll_down {
+  0%{top:0px;}
+  75%{top:30px;}
+  100%{top:0px;}
+}
