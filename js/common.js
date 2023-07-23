@@ -268,5 +268,40 @@ function toast_close(){_toast.classList.remove('active')}
   //   $('.hamber_btn>span').toggleClass('on')
   // });
 
-  
+/* sticky_gallery */
+var sticky_gallery = {
+    deployment:function(e, count, hori_mg, verti_mg){
+        var li = document.querySelectorAll(e);
+        var imgStack = new Array();
+        
+        var count;
+        var hori_mg;
+        var verti_mg;
+        var eleWidth = $(e).width(($(e).parent().width() / Number(count)) - Number(hori_mg) + (Number(hori_mg) / Number(count)));
+        setTimeout(function(){
+            var colWidth = $(e).width() + Number(hori_mg);
+
+            for(var i = 0; i < Number(count); i++){
+                imgStack[i] = 0;
+            }
+
+            for(var i = 0; i < li.length; i++){
+
+                var minIndex = imgStack.indexOf(Math.min.apply(0, imgStack));
+
+                var x = colWidth * minIndex;
+                var y = imgStack[minIndex];
+                imgStack[minIndex] += (li[i].offsetHeight + Number(verti_mg));
+                li[i].style.transform = "translateX("+x+"px) translateY("+y+"px)";
+                if(i === li.length - 1){
+                    $(e).parent().css({
+                        // height : Math.max.apply(0, imgStack)+"px"
+                        height : (Math.max.apply(0, imgStack) - verti_mg)+"px"
+                    });
+                }
+            }
+        },500);
+    }
+};
+
 
