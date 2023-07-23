@@ -1,40 +1,111 @@
 <script>
-var sample_list = document.querySelectorAll('.sample_wrap > li');
-sample_list.forEach((t) => {
-    var design = t.querySelector('.design_box'),
+    var sample_list = document.querySelectorAll('.sample_wrap > ul > li');
+    sample_list.forEach((t) => {
+        var design = t.querySelector('.design_box'),
         code = t.querySelector('.code_box'),
         Source_code = String(design.innerHTML);
-    
-    code.innerHTML = escapeHtml(Source_code)
-});
 
-function escapeHtml(str) {
-    var map = {
-        '&': '&amp;',
-        '<': '&lt;',
-        '>': '&gt;',
-        '"': '&quot;',
-        "'": '&#039;'
-    };
-    return str.replace(/[&<>"']/g, function(m) { return map[m]; });
+        const b = document.createElement('button');
+        b.innerHTML = 'View source'
+        t.querySelector('h3').append(b)
+
+        t.getElementsByTagName('h3')[0].children[0].addEventListener('click', function(e){
+            const code_box = t.getElementsByClassName('code_box');
+            const style_box = t.getElementsByClassName('style_box');
+            if(code_box[0].classList.contains('active')){
+                code_box[0].classList.remove("active");
+                style_box[0].classList.remove("active");
+                e.currentTarget.textContent = "View source"
+            } else {
+                code_box[0].classList.add("active");
+                style_box[0].classList.add("active");
+                e.currentTarget.textContent = "Hide source"
+            }
+        });
+        
+        if(code.children[0].textContent == ''){
+            code.children[0].innerHTML = escapeHtml(Source_code)
+        }
+    });
+    
+    document.getElementsByTagName('h2')[0].children[0].addEventListener('click', function(e){
+        if(document.querySelector('.sample_wrap').classList.contains('division')){
+            document.querySelector('.sample_wrap').classList.remove('division');
+        } else {
+            document.querySelector('.sample_wrap').classList.add('division');
+        }
+    });
+    
+    function escapeHtml(str) {
+        var map = {
+            '&': '&amp;',
+            '<': '&lt;',
+            '>': '&gt;',
+            '"': '&quot;',
+            "'": '&#039;'
+        };
+        return str.replace(/[&<>"']/g, function(m) { return map[m]; });
+    }
+
+    const max = [333,666,999,101010]
+    const _target = document.querySelectorAll(".count");
+    for(let i=0; i<max.length; i++){
+        if(_target.length > i){
+            setTimeout(() => counter(_target[i], max[i]));
+        }
+    }
+    </script>
+    <div class="sample_wrap">
+        <h2>JS
+            <button><em>분할</em></button>
+        </h2>
+        <ul><!-- [design_box] pre 자동 생성으로 pre 기준으로 소스 들여쓰기 필요 -->
+            <li>
+                <div class="item">
+                    <h3>count animation</h3>
+                    <ul class="explain">
+                        <li>class [tab_type] 로 스타일 구현.</li>
+                    </ul>
+                    <div class="design_box">
+<p class="count">0</p>
+                    </div>
+                    <pre class="code_box"><code></code></pre>
+                    <pre class="style_box"><code>
+const max = [333,666,999,101010]
+const _target = document.querySelectorAll(".count");
+for(let i=0; i<max.length; i++){
+    if(_target.length > i){
+        setTimeout(() => counter(_target[i], max[i]));
+    }
 }
-</script>
-<h2>JS</h2>
-<ul class="sample_wrap"><!-- [design_box] pre 자동 생성으로 pre 기준으로 소스 들여쓰기 필요 -->
-    <!-- tab -->
-    <li>
-        <div class="item">
-            <h3>Tab</h3>
-            <div class="design_box">
-<div class="tab_wrap">
-    <ul>
-        <li><button>Tab01</button></li>
-    </ul>
+                    </code></pre>
+                </div>
+            </li>
+            <!-- count_animation -->
+            <!-- toast -->
+        <li>
+            <div class="item">
+                <h3>Toast popup</h3>
+                <ul class="explain">
+                    <li>Toast : onclick="toast(타입(자동:auto, 수동:confirm), 노출할 메세지, 토스트팝업이 닫히는 시간);"</li>
+                </ul>
+                <div class="design_box">
+<!-- toast open button -->
+<a href="#none" onclick="toast('confirm', '1 확인되었습니다.');" class="btn_min btn_ok">Toast-confirm</a>
+<a href="#none" onclick="toast('auto', '2 확인되었습니다.', 3000);" class="btn_min btn_ok">Toast-auto</a>
+<!-- //toast open button -->
+
+<!-- toast -->
+<div class="toast">
 </div>
+<!-- //toast -->
+                </div>
+                <pre class="code_box"><code></code></pre>
+                <pre class="style_box"><code>
+toast('confirm', '노출할 내용');
+toast('auto', '노출할 내용', 닫히는 시간);
+                </code></pre>
             </div>
-            <pre><code class="code_box"></code></pre>
-            <div class="style_box"></div>
-        </div>
-    </li>
-    <!-- //tab -->
-</ul>
+        </li>
+        </ul>
+    </div>
