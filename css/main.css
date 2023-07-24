@@ -50,7 +50,6 @@ li:active {color:#000; background-color:#eee;}
 .modal_wrap.small {width:450px;}
 .modal_wrap.mid {width:650px;}
 .modal_wrap.full {width:98%;}
-<<<<<<< HEAD
 
 /* toast */
 .toast {height:50px; line-height:48px; background-color:#fff; border:1px solid #d4d4d4; border-radius:50px; box-shadow:0 4px 6px rgba(0,0,0,0.3); opacity:0; position:fixed; bottom:0px; left:50%; z-index:1; display:inline-block; transform:translateX(-50%); transition:all 0.35s;}
@@ -61,13 +60,6 @@ li:active {color:#000; background-color:#eee;}
 .toast .btn_close:before, .toast .btn_close:after {width:15px; border-top:1px solid #333; content:''; position:absolute; top:50%; right:0; display:inline-block;}
 .toast .btn_close:before {transform:rotate(45deg);}
 .toast .btn_close:after {transform:rotate(-45deg);}
-
-/* Hamberger_Menu */
-.hamber_btn{width:50px; height:50px; position:absolute; left:20px; top:20px; cursor:pointer;}
-.hamber_btn>span{width:50px; height:8px; margin:4px 0 ; background:#000; border-radius:10px; display:block; transition:all 0.5s;}
-.hamber_btn>.on:nth-child(1) {transform:translateY(15px) rotate(225deg); transition-delay:0.2s; }
-.hamber_btn>.on:nth-child(2) {opacity:0; transform:translateX(50px);}
-.hamber_btn>.on:nth-child(3) {transform:translateY(-11px) rotate(-225deg); transition-delay:0.2s; }
 
 /* scroll_down */
 .content > section:first-child{height:1000px; border:2px solid blue ; position:relative;}
@@ -261,5 +253,3 @@ div.scroll_icon{width:6%; height:5%; font-weight:600; text-align: center; opacit
 	.board_type_toggle > dd {font-size:12px;}
 
 }
-=======
->>>>>>> 756b06cff8cdb6baaefaa703dda2f69cb872d488

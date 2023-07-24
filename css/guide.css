@@ -36,3 +36,4 @@ h2 em:before, h2 em:after {top:inherit; bottom:0;}
 .sample_wrap .top_btn {margin:0 auto; opacity:1; position:static;}
 
 .sample_wrap div.scroll_icon {position:relative;}
+.sample_wrap .count {font-size:26px; font-weight:700; text-align:center;}

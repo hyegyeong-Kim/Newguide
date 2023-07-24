@@ -41,13 +41,13 @@ function ajax(_url){
         //dataType:'html',
         success: function(data) {
             if(data){
-                const load_wrap = document.createElement('div');
+                // const load_wrap = document.createElement('div');
                 // load_wrap.classList.add(_wrap) //콘텐츠 담을 그릇 지정 변수
-                load_wrap.innerHTML = data;
-                // console.log(document.getElementsByClassName('content').length);
-                document.getElementsByClassName('content')[0].append(load_wrap)
+                // load_wrap.innerHTML = data;
+                // document.querySelector('.content').innerHTML = '';
+                // document.querySelector('.content').append(load_wrap)
                 // console.log(data);
-                // $('.content').html(data);
+                $('.content').html(data);
             } else {
             }
         },
@@ -207,17 +207,16 @@ function init(){
 
 
 /* Hamberger_Menu js*/
-<<<<<<< HEAD
- function ham_btn(){
-   document.querySelector('.hamber_btn').addEventListener('click', ()=>{
-     console.log(document.querySelector('.hamber_btn'))
-     let hamber_btn_cont = document.querySelectorAll('.hamber_btn>span')
-     hamber_btn_cont.forEach(function(a){
-       a.classList.toggle('on')
-     })
-   })
- } 
- ham_btn()
+function ham_btn(_target){
+    var _this = document.querySelector(_target)
+    if(_this != null){
+        _this.addEventListener('click', ()=>{
+            for(i=0; i<_this.children.length; i++){
+                _this.children[i].classList.toggle('on')
+            }
+        })
+    }
+}
 /* ------------------------------------------------------------ */
 /* jquery */
 
@@ -299,15 +298,3 @@ var sticky_gallery = {
 };
 
 
-=======
-function ham_btn(_target){
-    var _this = document.querySelector(_target)
-    if(_this != null){
-        _this.addEventListener('click', ()=>{
-            for(i=0; i<_this.children.length; i++){
-                _this.children[i].classList.toggle('on')
-            }
-        })
-    }
-}
->>>>>>> 756b06cff8cdb6baaefaa703dda2f69cb872d488

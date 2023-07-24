@@ -49,6 +49,15 @@ tab_active('.tab_wrap > ul', 'click')
 ham_btn('.hamber_btn')
 accordion('.board_type_toggle', 'click');
 go_top('.top_btn');
+
+const max = [333,666,999,101010]
+const _target = document.querySelectorAll(".count");
+// const max = [333,345,3436];//카운터 데이터 배열형태 숫자로 입력
+for(let i=0; i<max.length; i++){
+    if(_target.length > i){
+        setTimeout(() => counter(_target[i], max[i]));
+    }
+}
 </script>
 <div class="sample_wrap">
     <h2>Elements
@@ -230,51 +239,10 @@ go_top('.top_btn');
         <!-- gnb_hover -->
         <li>
             <div class="item">
-                <h3>Hamberger_Menu</h3>
-                <ul class="explain">
-                    <li>class [hamber_btn] 로 스타일 구현.</li>
-                </ul>
-                <div class="design_box" style="height:50px;">
-<div class="hamber_btn">
-    <span></span>
-    <span></span>
-    <span></span>
-</div>
-                </div>
-                <pre class="code_box"><code></code></pre>
-                <pre class="style_box"><code>
-/* Hamberger_Menu */
-.hamber_btn{width: 50px; height:50px; background-color: #ff7200; cursor:pointer;}
-.hamber_btn>span{width:50px; height:8px; margin:4px 0 ; background:#000; border-radius:10px; display:block; transition:all 0.5s;}
-.hamber_btn>.on:nth-child(1) {transform:translateY(15px) rotate(225deg); transition-delay:0.2s; }
-.hamber_btn>.on:nth-child(2) {opacity:0; transform:translateX(50px);}
-.hamber_btn>.on:nth-child(3) {transform:translateY(-11px) rotate(-225deg); transition-delay:0.2s; }                    
-                </code></pre>
-            </div>
-        </li>
-        <!-- Hamberger_Menu -->
-        <li>
-            <div class="item">
                 <h3>count animation</h3>
-                <ul class="explain">
-                    <li>class [tab_type] 로 스타일 구현.</li>
-                </ul>
                 <div class="design_box">
 <section class="count_animation">
-    <ul>
-        <li>
-            <p class="count">0</p>
-            <p>구성원</p>
-        </li>
-        <li>
-            <p class="count">0</p>
-            <p>스튜디오</p>
-        </li>
-        <li>
-            <p class="count">0</p>
-            <p>글로벌 오피스</p>
-        </li>
-    </ul>
+    <p class="count"></p>
 </section>
                 </div>
                 <pre class="code_box"><code></code></pre>
