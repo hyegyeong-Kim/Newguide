@@ -217,6 +217,34 @@ function ham_btn(_target){
         })
     }
 }
+
+/* Input Form */
+function input_btn_chk(){
+    var label_wrap = document.querySelectorAll('.label_wrap')
+    for(let i = 0; i<label_wrap.length; i++){
+        var input = label_wrap[i].querySelector('input')
+        if(input.value>0){
+            var icon_button = label_wrap[i].querySelector('button')
+            icon_button.style.cssText="display:block;"
+        }else if(input.value<=0)
+        {
+            var icon_button = label_wrap[i].querySelector('button')
+            icon_button.style.cssText="display:none;"
+        }
+    }
+}//function input_btn_chk()
+function input_btn_fn(){ //수정중
+    var label_wrap = document.querySelectorAll('.label_wrap')
+    for(let i =0; i<label_wrap.length; i++){
+        var button = label_wrap[i].querySelector('.icon_del')
+        button.addEventListener('click', function(){
+            var input = label_wrap[i].querySelector('input');
+            console.log(input.value)
+            input.value=null;
+        })
+    }
+}//function input_btn_fn()
+
 /* ------------------------------------------------------------ */
 /* jquery */
 
@@ -296,3 +324,22 @@ var sticky_gallery = {
         },500);
     }
 };
+
+/* Input Form */
+// function input_btn_chk(_target){
+//     var _target = $(_target);
+//     if(!_target.closest('label').parent().hasClass('date_form')){
+//         _target = $(_target).closest('.label_wrap');
+//     } else {
+//         _target = $(_target).closest('.input');
+//     }
+
+//     if (_target.find('input').length > 0) {
+//         if(_target.find('input').val().length > 0){
+//             _target.find('[class*="icon_"]').show();
+//         } else {
+//             _target.find('[class*="icon_"]').hide();
+//         }        
+//     }
+// }
+
