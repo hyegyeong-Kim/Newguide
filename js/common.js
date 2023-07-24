@@ -217,6 +217,7 @@ function ham_btn(_target){
         })
     }
 }
+<<<<<<< HEAD
 /* ------------------------------------------------------------ */
 /* jquery */
 
@@ -260,6 +261,8 @@ function ham_btn(_target){
   // $('.hamber_btn').click(function(){
   //   $('.hamber_btn>span').toggleClass('on')
   // });
+=======
+>>>>>>> 28804c3729cca3d8435e3c63d3bbd6e4838b0dec
 
 /* sticky_gallery */
 var sticky_gallery = {
@@ -296,5 +299,8 @@ var sticky_gallery = {
         },500);
     }
 };
+<<<<<<< HEAD
 
 
+=======
+>>>>>>> 28804c3729cca3d8435e3c63d3bbd6e4838b0dec
