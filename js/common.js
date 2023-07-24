@@ -207,60 +207,16 @@ function init(){
 
 
 /* Hamberger_Menu js*/
-<<<<<<< HEAD
- function ham_btn(){
-   document.querySelector('.hamber_btn').addEventListener('click', ()=>{
-     console.log(document.querySelector('.hamber_btn'))
-     let hamber_btn_cont = document.querySelectorAll('.hamber_btn>span')
-     hamber_btn_cont.forEach(function(a){
-       a.classList.toggle('on')
-     })
-   })
- } 
- ham_btn()
-/* ------------------------------------------------------------ */
-/* jquery */
-
-  /* modal jquery */
-  // function init(){
-  //   $('.btn_close').click(function(){$('#modal').removeClass('active')});
-  //   $('.btn_cancel').click(function(){$('#modal').removeClass('active')});
-  //   $('.btn_ok').click(function(){$('#modal').addClass('active')})
-  // }
-
-  // /* toast message javascript*/
-  // let _toast = $('.toast');
-  // function toast(_type, _message, _time){
-  //     _toast.addClass('active', _type);
-  //     _toast.html = '<span>'+_message +'</span>';
-  //   if(_type == 'auto'){
-  //     setTimeout(function(){toast_close()},_time)
-  //   }else if(_type == 'confirm'){
-  //     _toast.html =
-  //     '<span>'+_message +'</span>'+
-  //     '<a href="#none" onclick="toast_close();" class="btn_close">close</a>';}
-  // }
-  // function toast_close(){_toast.removeClass('active')}
-
-  /* top_btn jquery*/
-  // function scroll_Top(){
-  //   $(window).scroll(function(){
-  //     if(this.scrollY > 300){
-  //       $('.top_btn').addClass('show');
-  //     }else{
-  //       $('.top_btn').removeClass('show');
-  //     };
-  //   })//window scroll//top_btn click
-  //   $(".top_btn").click(function() {
-  //     $("html, body").animate({ scrollTop: 0 }, "slow");
-  //   });
-  // }
-  // scroll_Top()
-
-  /* Hamberger_Menu jquery*/
-  // $('.hamber_btn').click(function(){
-  //   $('.hamber_btn>span').toggleClass('on')
-  // });
+function ham_btn(_target){
+    var _this = document.querySelector(_target)
+    if(_this != null){
+        _this.addEventListener('click', ()=>{
+            for(i=0; i<_this.children.length; i++){
+                _this.children[i].classList.toggle('on')
+            }
+        })
+    }
+}
 
 /* sticky_gallery */
 var sticky_gallery = {
@@ -297,17 +253,3 @@ var sticky_gallery = {
         },500);
     }
 };
-
-
-=======
-function ham_btn(_target){
-    var _this = document.querySelector(_target)
-    if(_this != null){
-        _this.addEventListener('click', ()=>{
-            for(i=0; i<_this.children.length; i++){
-                _this.children[i].classList.toggle('on')
-            }
-        })
-    }
-}
->>>>>>> 756b06cff8cdb6baaefaa703dda2f69cb872d488
