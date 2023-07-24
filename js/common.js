@@ -1,39 +1,29 @@
-// var $ = jQuery;
 $(document).ready(function(){
     $('header').load($('header').attr('data-include-path'));
     $('footer').load($('footer').attr('data-include-path'));
-
-    /*============== sample ==============*/
-    /* tab */
-    tab_active('.tab_wrap > ul', 'click');
-    tab_active('.tab_wrap .tab_wrap > ul', 'mouseover');
-
-    /* accordion */
-    accordion('.board_type_toggle', 'click');
-
-    /* go_top */
-    go_top('.top_btn');
-
-    /* page scroll progress */
-    progress_bar();
-
-    /* follow cusor */
-    follow_cursor();
-    /*============== //sample ==============*/
-
-    ham_btn('.hamber_btn')
-
-    const max = [333,666,999,101010]
-    const _target = document.querySelectorAll(".count");
-    // const max = [333,345,3436];//카운터 데이터 배열형태 숫자로 입력
-    for(let i=0; i<max.length; i++){
-        if(_target.length > i){
-            setTimeout(() => counter(_target[i], max[i]));
-        }
-    }
 });
 
+const max = [333,666,999,101010]
+const _target = document.querySelectorAll(".count");
+// const max = [333,345,3436];//카운터 데이터 배열형태 숫자로 입력
+for(let i=0; i<max.length; i++){
+    if(_target.length > i){
+        setTimeout(() => counter(_target[i], max[i]));
+    }
+}
+
 /* ajax */
+// function ajax(_url){
+//     fetch('./'+_url+'.html').then((res) => { // 페이지 호출 후 스크립트가 실행되지 않음..왜일까??
+//         return res.text()
+//     }).then((data) => {
+//         const load_wrap = document.createElement('div');
+//         document.querySelector('.content').innerHTML = '';
+//         load_wrap.innerHTML = data;
+//         // document.querySelector('.content').append(load_wrap)
+//         document.querySelector('.content').insertAdjacentHTML('afterbegin', load_wrap);
+//     });
+// }
 function ajax(_url){
     $.ajax({
         url: './'+_url+'.html',
@@ -41,12 +31,6 @@ function ajax(_url){
         //dataType:'html',
         success: function(data) {
             if(data){
-                // const load_wrap = document.createElement('div');
-                // load_wrap.classList.add(_wrap) //콘텐츠 담을 그릇 지정 변수
-                // load_wrap.innerHTML = data;
-                // document.querySelector('.content').innerHTML = '';
-                // document.querySelector('.content').append(load_wrap)
-                // console.log(data);
                 $('.content').html(data);
             } else {
             }
