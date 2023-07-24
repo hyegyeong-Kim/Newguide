@@ -54,19 +54,6 @@
 .toast .btn_close:before {transform:rotate(45deg);}
 .toast .btn_close:after {transform:rotate(-45deg);}
 
-/* scroll_down */
-.content > section:first-child{height:1000px; border:2px solid blue ; position:relative;}
-div.scroll_icon{width:6%; height:5%; font-weight:600; text-align: center; opacity: 0.7; position:absolute; left:50%; transform:translateX(-50%);}
-.scroll_icon img{width:50px; transform:rotate(90deg);}
-.scroll_down{position:relative; animation-name: scroll_down; animation-duration: 2s; animation-iteration-count: infinite;}
-.content .scroll_icon.show{opacity:0; transition:opacity 1s, transform 1s;}
-
-@keyframes scroll_down {
-  0%{top:0px;}
-  75%{top:30px;}
-  100%{top:0px;}
-}
-
 /* card new layout */
 .card_layout{position:relative;}
 .card_layout .design_box ul{height:100%; overflow:hidden; display:flex; justify-content:space-around; align-items: center;}
