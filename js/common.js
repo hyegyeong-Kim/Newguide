@@ -3,6 +3,8 @@ $(document).ready(function(){
     $('footer').load($('footer').attr('data-include-path'));
 });
 
+progress_bar()
+
 const max = [333,666,999,101010]
 const _target = document.querySelectorAll(".count");
 // const max = [333,345,3436];//카운터 데이터 배열형태 숫자로 입력
@@ -32,7 +34,10 @@ function ajax(_url){
         success: function(data) {
             if(data){
                 $('.content').html(data);
-            } else {
+                // const load_wrap = document.createElement('div');
+                // document.querySelector('.content').innerHTML = '';
+                // load_wrap.innerHTML = data;
+                // document.querySelector('.content').append(load_wrap)
             }
         },
         complete: function(data) {
