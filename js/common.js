@@ -26,14 +26,14 @@ for(let i=0; i<max.length; i++){
 //         document.querySelector('.content').insertAdjacentHTML('afterbegin', load_wrap);
 //     });
 // }
-function ajax(_url){
+function ajax(_url,_wrap){
     $.ajax({
         url: './'+_url+'.html',
         method: 'get',
         //dataType:'html',
         success: function(data) {
             if(data){
-                $('.content').html(data);
+                $(_wrap).html(data);
                 // const load_wrap = document.createElement('div');
                 // document.querySelector('.content').innerHTML = '';
                 // load_wrap.innerHTML = data;
@@ -165,6 +165,33 @@ function toast_close(){
     _toast.classList.remove('active')
 }
 
+/* modal open */
+function modal(_target){
+    var _array = [],
+    attr = _target.getAttribute('data-modal'),
+    split = attr.split('-');
+
+    for(i=0; i<split.length; i++){
+        _array.push(split[i])
+    }
+
+    const creat_modal = document.createElement('div');
+    creat_modal.innerHTML = '<div class="modal_inner">'
+    +   '<button class="btn_close" onclick="modal_close(this)">Close</button>'
+    +   '<div class="modal_container"></div>'
+    '</div>'
+    creat_modal.setAttribute('class','modal_wrap');
+    creat_modal.setAttribute('data-modal',attr);
+    document.querySelector('body').append(creat_modal);
+
+    ajax(_target.getAttribute('data-cont'), creat_modal.querySelector('.modal_container'))
+}
+/* modal close */
+function modal_close(_target){
+    _target.closest('.modal_wrap').remove();
+    // console.log(_target.closest('.modal_wrap'))
+}
+
 /* ========= ▽ 정리중 ▽ ==========*/
 /* count_animation javascript */
 function counter(_target, max) {
@@ -184,15 +211,15 @@ function counter(_target, max) {
 
 
   /* modal javascript */
-let modal_btn = document.querySelector('.btn_ok')
-let modal = document.querySelector('#modal')
-let modal_btn_close = document.querySelector('.btn_close')
-let modal_btn_cancel= document.querySelector('.btn_cancel')
-function init(){
-  modal_btn_close.addEventListener('click', function(){modal.classList.remove('active');});
-  modal_btn_cancel.addEventListener('click', function(){modal.classList.remove('active');});
-  modal_btn.addEventListener('click', function(){modal.classList.add('active');});
-};
+// let modal_btn = document.querySelector('.btn_ok')
+// let modal = document.querySelector('#modal')
+// let modal_btn_close = document.querySelector('.btn_close')
+// let modal_btn_cancel= document.querySelector('.btn_cancel')
+// function init(){
+//   modal_btn_close.addEventListener('click', function(){modal.classList.remove('active');});
+//   modal_btn_cancel.addEventListener('click', function(){modal.classList.remove('active');});
+//   modal_btn.addEventListener('click', function(){modal.classList.add('active');});
+// };
 
 
 /* Hamberger_Menu js*/
