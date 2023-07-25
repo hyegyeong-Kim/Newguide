@@ -58,6 +58,24 @@ h4 {font-size: 28px; font-weight: 600; text-align: center;}
 .toast .btn_close:before {transform:rotate(45deg);}
 .toast .btn_close:after {transform:rotate(-45deg);}
 
+/* modal */
+.modal_wrap {display:flex; align-items:center; justify-content:center;}
+.modal_wrap .modal_inner {padding:20px; background-color:#fff; position:relative;}
+.modal_wrap[data-modal*='-dim'] {background-color:rgba(0,0,0,.6); position:fixed; top:0; right:0; bottom:0; left:0; z-index:100;}
+.modal_wrap .btn_close {width:25px; height:25px; font-size:0; position:absolute; top:20px; right:20px; z-index:1; display:inline-block;}
+.modal_wrap .btn_close:before, .modal_wrap .btn_close:after {width:30px; border-top:1px solid #333; content:''; position:absolute; top:50%; right:-4px; display:inline-block;}
+.modal_wrap .btn_close:before {transform:rotate(45deg);}
+.modal_wrap .btn_close:after {transform:rotate(-45deg);}
+
+.modal_wrap .modal_header {margin-bottom:10px; padding-bottom:5px; font-size:18px; font-weight:700; border-bottom:1px solid #333; position:relative;}
+.modal_wrap .modal_contents {margin-top:50px;}
+.modal_wrap .modal_header .modal_contents {margin-top:0;}
+.modal_bottom {margin-top:20px; padding-top:20px; border-top:1px dashed #ccc; text-align:center;}
+
+/* modal size */
+.modal_wrap[data-modal*='full'] .modal_inner {overflow:auto; position:absolute; top:10px; right:10px; bottom:10px; left:10px;}
+.modal_wrap[data-modal*='small'] .modal_inner {width:450px;}
+
 /* progress_bar */
 .progress_bar {width:0; height:4px; font-size:0; background-color:blue; position:fixed; top:0; z-index:10; transition:width 0.5s cubic-bezier(.47,1.64,.41,0.8);}
 
