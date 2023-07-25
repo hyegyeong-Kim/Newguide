@@ -26,6 +26,34 @@
 
 .count {font-size:26px; font-weight:700;}
 
+/* modal */
+[id*='modal'] {background-color:rgba(0,0,0,0); text-align:center; opacity:0; position:fixed; top:50%; right:50%; bottom:50%; left:50%; z-index:100; display:block; overflow:hidden; transition:opacity 0.15s ease-out;}
+[id*='modal'].active {background-color:rgba(0,0,0,0.7); opacity:1; top:0; right:0; bottom:0; left:0;}
+[id*='modal']:before {height:100%; vertical-align:middle; content:''; display:inline-block;}
+[id*='modal'] .modal_wrap {padding:20px; background-color:#fff; text-align:left; vertical-align:middle; display:inline-block;}
+.modal_header {margin-bottom:10px; padding-bottom:5px; font-size:18px; font-weight:700; border-bottom:1px solid #333; position:relative;}
+.modal_header .btn_close {width:25px; height:25px; font-size:0; position:absolute; top:0; right:0; display:inline-block;}
+.modal_heafder .btn_close:before, .modal_header .btn_close:after {width:30px; border-top:1px solid #333; content:''; position:absolute; top:50%; right:-4px; display:inline-block;}
+.modal_header .btn_close:before {transform:rotate(45deg);}
+.modal_header .btn_close:after {transform:rotate(-45deg);}
+.modal_bottom {margin-top:20px; padding-top:20px; border-top:1px dashed #ccc; text-align:center;}
+
+/* modal size */
+.modal_wrap {max-width:96%;}
+.modal_wrap.small {width:450px;}
+.modal_wrap.mid {width:650px;}
+.modal_wrap.full {width:98%;}
+
+/* toast */
+.toast {height:50px; line-height:48px; background-color:#fff; border:1px solid #d4d4d4; border-radius:50px; box-shadow:0 4px 6px rgba(0,0,0,0.3); opacity:0; position:fixed; bottom:0px; left:50%; z-index:1; display:inline-block; transform:translateX(-50%); transition:all 0.35s;}
+.toast.confirm {padding:0 50px 0 40px;}
+.toast.auto {padding:0 40px;}
+.toast.active {bottom:100px; opacity:1;}
+.toast .btn_close {width:20px; height:20px; font-size:0; position:absolute; top:50%; right:20px; display:inline-block; transform:translateY(-50%);}
+.toast .btn_close:before, .toast .btn_close:after {width:15px; border-top:1px solid #333; content:''; position:absolute; top:50%; right:0; display:inline-block;}
+.toast .btn_close:before {transform:rotate(45deg);}
+.toast .btn_close:after {transform:rotate(-45deg);}
+
 /* card new layout */
 .card_layout{position:relative;}
 .card_layout .design_box ul{height:100%; overflow:hidden; display:flex; justify-content:space-around; align-items: center;}
@@ -258,6 +286,7 @@ label.input * {flex:1 auto;}
 .label_wrap button.icon_pss {background-image:url('../image/icon_pass_hide.png');}
 
 .label_wrap + .label_wrap {margin-top:10px;}
+
 
 /* input + button */
 label.input div {display:flex;}
