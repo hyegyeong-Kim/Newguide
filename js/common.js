@@ -188,6 +188,7 @@ function modal(_target){
         _target.parentNode.append(create_modal)
     } else {
         document.querySelector('body').append(create_modal);
+        document.querySelector('body').style.overflow = 'hidden'
     }
 
     ajax(_target.getAttribute('data-cont'), create_modal.querySelector('.modal_container'))
@@ -195,6 +196,7 @@ function modal(_target){
 /* modal close */
 function modal_close(_target){
     _target.closest('.modal_wrap').remove();
+    document.querySelector('body').style.removeProperty('overflow');
     // console.log(_target.closest('.modal_wrap'))
 }
 
