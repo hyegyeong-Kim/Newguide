@@ -8,3 +8,5 @@ button{border:none; background: none; cursor: pointer;}
 iframe,fieldset{border:none;}
 .hidden{position: fixed; left:-10000px}
 .clearfix::after{content:""; display: block; clear: both;}
+input[type="password"]::-ms-reveal,
+input[type="password"]::-ms-clear {display: none;}

@@ -208,7 +208,7 @@ function ham_btn(_target){
 }
 
 /* Input Form */
-function input_btn_chk(){
+function input_btn_chk(){ // 버튼보이기
     var label_wrap = document.querySelectorAll('.label_wrap')
     for(let i = 0; i<label_wrap.length; i++){
         var input = label_wrap[i].querySelector('input')
@@ -222,17 +222,34 @@ function input_btn_chk(){
         }
     }
 }//function input_btn_chk()
-function input_btn_fn(){ //수정중
-    var label_wrap = document.querySelectorAll('.label_wrap')
-    for(let i =0; i<label_wrap.length; i++){
-        var button = label_wrap[i].querySelector('.icon_del')
-        button.addEventListener('click', function(){
-            var input = label_wrap[i].querySelector('input');
-            console.log(input.value)
-            input.value=null;
+function input_btn_fn(){ // del 클릭시, input 내용 삭제
+    var label_wrap = document.querySelectorAll('.label_wrap');
+    var icon = document.querySelectorAll('.label_wrap button[type="button"]');
+    var input = document.querySelectorAll('.label_wrap .input input');
+    for(let i = 0; i<label_wrap.length; i++){
+         icon[i].addEventListener('click', function(){
+           input[i].value = null;
         })
+     }
+}//function input_btn_fn()S
+function input_btn_chg(){
+    var icon_pss = document.querySelector('button.icon_pss')
+    var input_password = document.querySelector('input.password')
+    console.log(icon_pss,input_password)
+    icon_pss.classList.toggle('active');
+    if(icon_pss.classList.contains('active')){
+        
+        input_password.setAttribute('type', 'text');
+    }else{
+        input_password.setAttribute('type', 'password');
     }
-}//function input_btn_fn()
+
+    //만약 클래스 명이 해당 버튼을 찾는다.
+    //버튼을 클릭하면 이미지가 변경된다(toggle)
+    //view 이미지 클릭 시, 이미지 url 변경, style autocomplete="off"
+    //hide 이미지 클릭 시, style autocomplete="current-password"
+}
+
 
 /* ------------------------------------------------------------ */
 /* jquery */

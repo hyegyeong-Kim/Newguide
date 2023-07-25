@@ -1,65 +1,64 @@
 <script>
-    var sample_list = document.querySelectorAll('.sample_wrap > ul > li');
-    sample_list.forEach((t) => {
-        var design = t.querySelector('.design_box'),
-        code = t.querySelector('.code_box'),
-        Source_code = String(design.innerHTML);
+var sample_list = document.querySelectorAll('.sample_wrap > ul > li');
+sample_list.forEach((t) => {
+    var design = t.querySelector('.design_box'),
+    code = t.querySelector('.code_box'),
+    Source_code = String(design.innerHTML);
 
-        const b = document.createElement('button');
-        b.innerHTML = 'View source'
-        t.querySelector('h3').append(b)
+    const b = document.createElement('button');
+    b.innerHTML = 'View source'
+    t.querySelector('h3').append(b)
 
-        t.getElementsByTagName('h3')[0].children[0].addEventListener('click', function(e){
-            const code_box = t.getElementsByClassName('code_box');
-            const style_box = t.getElementsByClassName('style_box');
-            if(code_box[0].classList.contains('active')){
-                code_box[0].classList.remove("active");
-                style_box[0].classList.remove("active");
-                e.currentTarget.textContent = "View source"
-            } else {
-                code_box[0].classList.add("active");
-                style_box[0].classList.add("active");
-                e.currentTarget.textContent = "Hide source"
-            }
-        });
-        
-        code.children[0].innerHTML = escapeHtml(Source_code)
-    });
-
-    document.getElementsByTagName('h2')[0].children[0].addEventListener('click', function(e){
-        if(document.querySelector('.sample_wrap').classList.contains('division')){
-            document.querySelector('.sample_wrap').classList.remove('division');
+    t.getElementsByTagName('h3')[0].children[0].addEventListener('click', function(e){
+        const code_box = t.getElementsByClassName('code_box');
+        const style_box = t.getElementsByClassName('style_box');
+        if(code_box[0].classList.contains('active')){
+            code_box[0].classList.remove("active");
+            style_box[0].classList.remove("active");
+            e.currentTarget.textContent = "View source"
         } else {
-            document.querySelector('.sample_wrap').classList.add('division');
+            code_box[0].classList.add("active");
+            style_box[0].classList.add("active");
+            e.currentTarget.textContent = "Hide source"
         }
     });
+    
+    code.children[0].innerHTML = escapeHtml(Source_code)
+});
 
-    function escapeHtml(str) {
-        var map = {
-            '&': '&amp;',
-            '<': '&lt;',
-            '>': '&gt;',
-            '"': '&quot;',
-            "'": '&#039;'
-        };
-        return str.replace(/[&<>"']/g, function(m) { return map[m]; });
+document.getElementsByTagName('h2')[0].children[0].addEventListener('click', function(e){
+    if(document.querySelector('.sample_wrap').classList.contains('division')){
+        document.querySelector('.sample_wrap').classList.remove('division');
+    } else {
+        document.querySelector('.sample_wrap').classList.add('division');
     }
+});
 
-    tab_active('.tab_wrap > ul', 'click')
-    ham_btn('.hamber_btn')
-    accordion('.board_type_toggle', 'click');
-    go_top('.top_btn');
+function escapeHtml(str) {
+    var map = {
+        '&': '&amp;',
+        '<': '&lt;',
+        '>': '&gt;',
+        '"': '&quot;',
+        "'": '&#039;'
+    };
+    return str.replace(/[&<>"']/g, function(m) { return map[m]; });
+}
 
-    const max = [333,666,999,101010]
-    const _target = document.querySelectorAll(".count");
-    // const max = [333,345,3436];//카운터 데이터 배열형태 숫자로 입력
-    for(let i=0; i<max.length; i++){
-        if(_target.length > i){
-            setTimeout(() => counter(_target[i], max[i]));
-        }
+tab_active('.tab_wrap > ul', 'click')
+ham_btn('.hamber_btn')
+accordion('.board_type_toggle', 'click');
+go_top('.top_btn');
+
+const max = [333,666,999,101010]
+const _target = document.querySelectorAll(".count");
+// const max = [333,345,3436];//카운터 데이터 배열형태 숫자로 입력
+for(let i=0; i<max.length; i++){
+    if(_target.length > i){
+        setTimeout(() => counter(_target[i], max[i]));
     }
+}
 </script>
-
 <div class="sample_wrap">
     <h2>Elements
         <button><em>분할</em></button>
@@ -244,6 +243,9 @@
         <li class="card_layout">
             <div class="item">
                 <h3>card new layout</h3>
+                <ul class="explain">
+                    <li>class [hamber_btn] 로 스타일 구현.</li>
+                </ul>
                 <div class="design_box" style="height:500px">
 <ul class="card_layout">
     <li>
@@ -596,7 +598,7 @@ input[type="text"], input[type="email"], input[type="number"], input[type="tel"]
     <li>
         <p class="form_tit">Default :</p>
         <div class="label_wrap">
-            <button class="icon_del" type="button" onclick="input_btn_fn()">delete</button> <!-- 추가해야함 onclick="input_btn_fn(this);"--->
+            <button class="icon_del" type="button" onclick="input_btn_fn()">delete</button> 
             <label class="input">
                 <i style="display: none;">Placeholder</i>
                 <input type="text" onkeyup="input_btn_chk();">
@@ -607,10 +609,10 @@ input[type="text"], input[type="email"], input[type="number"], input[type="tel"]
     <li>
         <p class="form_tit">Password :</p>
         <div class="label_wrap">
-            <button type="button" class="icon_pss" onclick="input_btn_fn()">text</button> <!-- 추가해야함 onclick="input_btn_fn(this);"--->
+            <button type="button" class="icon_pss" onclick="input_btn_chg()">text</button> 
             <label class="input err">
                 <i style="display: none;">Placeholder</i>
-                <input type="password" onkeyup="input_btn_chk();">
+                <input class="password" type="password" onkeyup="input_btn_chk();">
                 <em>error message</em>
             </label>
         </div>
@@ -618,9 +620,9 @@ input[type="text"], input[type="email"], input[type="number"], input[type="tel"]
     <li>
         <p class="form_tit">Input + Button :</p>
         <div class="label_wrap">
-            <button class="icon_del" type="button" onclick="input_btn_fn()">delete</button> <!-- 추가해야함 onclick="input_btn_fn(this);"--->
+            <button class="icon_del" type="button" onclick="input_btn_fn()"style="right:91px;">delete</button> 
             <label class="input err">
-                <div>
+                <div class="multi_form">
                     <i style="display: none;">Placeholder</i>
                     <input type="text" onkeyup="input_btn_chk()">
                     <button class="btn_mid btn_ok"><em>Check</em></button>

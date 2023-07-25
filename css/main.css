@@ -281,8 +281,8 @@ label.input * {flex:1 auto;}
 .label_wrap button[class*='icon_'] {width:24px; height:24px; font-size:0; background-repeat:no-repeat; position:absolute; top:13px; right:20px; z-index:1; display:none;}
 .label_wrap button[class*='icon_'] + button[class*='icon_'] {margin-right:34px;}
 .label_wrap button.icon_del {background:url('../image/icon_search_del.png') 50% no-repeat; background-size:cover;}
-.label_wrap button.icon_txt, .label_wrap button.icon_pss {background-size:cover;}
-.label_wrap button.icon_txt {background-image:url('../image/icon_pass_view.png');}
+.label_wrap button.icon_pss.active, .label_wrap button.icon_pss {background-size:cover;}
+.label_wrap button.icon_pss.active {background-image:url('../image/icon_pass_view.png');}
 .label_wrap button.icon_pss {background-image:url('../image/icon_pass_hide.png');}
 
 .label_wrap + .label_wrap {margin-top:10px;}
