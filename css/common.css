@@ -67,7 +67,7 @@ h4 {font-size: 28px; font-weight: 600; text-align: center;}
 .modal_wrap .btn_close:before {transform:rotate(45deg);}
 .modal_wrap .btn_close:after {transform:rotate(-45deg);}
 
-.modal_wrap .modal_header {margin-bottom:10px; padding-bottom:5px; font-size:18px; font-weight:700; border-bottom:1px solid #333; position:relative;}
+.modal_wrap .modal_header {margin-bottom:10px; padding-right:50px; padding-bottom:5px; font-size:18px; font-weight:700; border-bottom:1px solid #333; position:relative;}
 .modal_wrap .modal_contents {margin-top:50px;}
 .modal_wrap .modal_header .modal_contents {margin-top:0;}
 .modal_bottom {margin-top:20px; padding-top:20px; border-top:1px dashed #ccc; text-align:center;}
@@ -75,6 +75,8 @@ h4 {font-size: 28px; font-weight: 600; text-align: center;}
 /* modal size */
 .modal_wrap[data-modal*='full'] .modal_inner {overflow:auto; position:absolute; top:10px; right:10px; bottom:10px; left:10px;}
 .modal_wrap[data-modal*='small'] .modal_inner {width:450px;}
+
+.modal_wrap[data-modal='layer'] {background-color:#fff; position:absolute; top:0; left:0; z-index:100;}
 
 /* progress_bar */
 .progress_bar {width:0; height:4px; font-size:0; background-color:blue; position:fixed; top:0; z-index:10; transition:width 0.5s cubic-bezier(.47,1.64,.41,0.8);}

@@ -175,16 +175,22 @@ function modal(_target){
         _array.push(split[i])
     }
 
-    const creat_modal = document.createElement('div');
-    creat_modal.innerHTML = '<div class="modal_inner">'
+    const create_modal = document.createElement('div');
+    create_modal.innerHTML = '<div class="modal_inner">'
     +   '<button class="btn_close" onclick="modal_close(this)">Close</button>'
     +   '<div class="modal_container"></div>'
     '</div>'
-    creat_modal.setAttribute('class','modal_wrap');
-    creat_modal.setAttribute('data-modal',attr);
-    document.querySelector('body').append(creat_modal);
+    create_modal.setAttribute('class','modal_wrap');
+    create_modal.setAttribute('data-modal',attr);
 
-    ajax(_target.getAttribute('data-cont'), creat_modal.querySelector('.modal_container'))
+    if(_array[0] == 'layer'){
+        console.log(_target.parentNode)
+        _target.parentNode.append(create_modal)
+    } else {
+        document.querySelector('body').append(create_modal);
+    }
+
+    ajax(_target.getAttribute('data-cont'), create_modal.querySelector('.modal_container'))
 }
 /* modal close */
 function modal_close(_target){
@@ -192,7 +198,6 @@ function modal_close(_target){
     // console.log(_target.closest('.modal_wrap'))
 }
 
-/* ========= ▽ 정리중 ▽ ==========*/
 /* count_animation javascript */
 function counter(_target, max) {
     let now = max;
@@ -208,19 +213,6 @@ function counter(_target, max) {
         now -= step;
     }, 50);
 }
-
-
-  /* modal javascript */
-// let modal_btn = document.querySelector('.btn_ok')
-// let modal = document.querySelector('#modal')
-// let modal_btn_close = document.querySelector('.btn_close')
-// let modal_btn_cancel= document.querySelector('.btn_cancel')
-// function init(){
-//   modal_btn_close.addEventListener('click', function(){modal.classList.remove('active');});
-//   modal_btn_cancel.addEventListener('click', function(){modal.classList.remove('active');});
-//   modal_btn.addEventListener('click', function(){modal.classList.add('active');});
-// };
-
 
 /* Hamberger_Menu js*/
 function ham_btn(_target){
@@ -259,57 +251,10 @@ function input_btn_chg(){
     }else{
         input_password.setAttribute('type', 'password');
     }
-
-    //만약 클래스 명이 해당 버튼을 찾는다.
-    //버튼을 클릭하면 이미지가 변경된다(toggle)
-    //view 이미지 클릭 시, 이미지 url 변경, style autocomplete="off"
-    //hide 이미지 클릭 시, style autocomplete="current-password"
 }
 
 
-/* ------------------------------------------------------------ */
 /* jquery */
-
-  /* modal jquery */
-  // function init(){
-  //   $('.btn_close').click(function(){$('#modal').removeClass('active')});
-  //   $('.btn_cancel').click(function(){$('#modal').removeClass('active')});
-  //   $('.btn_ok').click(function(){$('#modal').addClass('active')})
-  // }
-
-  // /* toast message javascript*/
-  // let _toast = $('.toast');
-  // function toast(_type, _message, _time){
-  //     _toast.addClass('active', _type);
-  //     _toast.html = '<span>'+_message +'</span>';
-  //   if(_type == 'auto'){
-  //     setTimeout(function(){toast_close()},_time)
-  //   }else if(_type == 'confirm'){
-  //     _toast.html =
-  //     '<span>'+_message +'</span>'+
-  //     '<a href="#none" onclick="toast_close();" class="btn_close">close</a>';}
-  // }
-  // function toast_close(){_toast.removeClass('active')}
-
-  /* top_btn jquery*/
-  // function scroll_Top(){
-  //   $(window).scroll(function(){
-  //     if(this.scrollY > 300){
-  //       $('.top_btn').addClass('show');
-  //     }else{
-  //       $('.top_btn').removeClass('show');
-  //     };
-  //   })//window scroll//top_btn click
-  //   $(".top_btn").click(function() {
-  //     $("html, body").animate({ scrollTop: 0 }, "slow");
-  //   });
-  // }
-  // scroll_Top()
-
-  /* Hamberger_Menu jquery*/
-  // $('.hamber_btn').click(function(){
-  //   $('.hamber_btn>span').toggleClass('on')
-  // });
 
 /* sticky_gallery */
 var sticky_gallery = {
@@ -346,22 +291,3 @@ var sticky_gallery = {
         },500);
     }
 };
-
-/* Input Form */
-// function input_btn_chk(_target){
-//     var _target = $(_target);
-//     if(!_target.closest('label').parent().hasClass('date_form')){
-//         _target = $(_target).closest('.label_wrap');
-//     } else {
-//         _target = $(_target).closest('.input');
-//     }
-
-//     if (_target.find('input').length > 0) {
-//         if(_target.find('input').val().length > 0){
-//             _target.find('[class*="icon_"]').show();
-//         } else {
-//             _target.find('[class*="icon_"]').hide();
-//         }        
-//     }
-// }
-
