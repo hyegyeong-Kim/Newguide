@@ -598,10 +598,10 @@ input[type="text"], input[type="email"], input[type="number"], input[type="tel"]
     <li>
         <p class="form_tit">Default :</p>
         <div class="label_wrap">
-            <button class="icon_del" type="button" onclick="input_btn_fn()">delete</button> 
+            <button class="icon_del" type="button" onclick="input_btn_fn(this)">delete</button> 
             <label class="input">
                 <i style="display: none;">Placeholder</i>
-                <input type="text" onkeyup="input_btn_chk();">
+                <input type="text" onkeyup="input_btn_chk(this);">
                 <em>error message</em>
         </label>
         </div>
@@ -612,7 +612,7 @@ input[type="text"], input[type="email"], input[type="number"], input[type="tel"]
             <button type="button" class="icon_pss" onclick="input_btn_chg()">text</button> 
             <label class="input err">
                 <i style="display: none;">Placeholder</i>
-                <input class="password" type="password" onkeyup="input_btn_chk();">
+                <input class="password" type="password" onkeyup="input_btn_chk(this);">
                 <em>error message</em>
             </label>
         </div>
@@ -620,11 +620,11 @@ input[type="text"], input[type="email"], input[type="number"], input[type="tel"]
     <li>
         <p class="form_tit">Input + Button :</p>
         <div class="label_wrap">
-            <button class="icon_del" type="button" onclick="input_btn_fn()"style="right:91px;">delete</button> 
+            <button class="icon_del" type="button" onclick="input_btn_fn(this)"style="right:91px;">delete</button> 
             <label class="input err">
                 <div class="multi_form">
                     <i style="display: none;">Placeholder</i>
-                    <input type="text" onkeyup="input_btn_chk()">
+                    <input type="text" onkeyup="input_btn_chk(this)">
                     <button class="btn_mid btn_ok"><em>Check</em></button>
                 </div>
             <!-- <em>This is a duplicate e-mail.</em> -->

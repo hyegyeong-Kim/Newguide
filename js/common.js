@@ -235,30 +235,19 @@ function ham_btn(_target){
 }
 
 /* Input Form */
-function input_btn_chk(){ // 버튼보이기
-    var label_wrap = document.querySelectorAll('.label_wrap')
-    for(let i = 0; i<label_wrap.length; i++){
-        var input = label_wrap[i].querySelector('input')
-        if(input.value>0){
-            var icon_button = label_wrap[i].querySelector('button')
-            icon_button.style.cssText="display:block;"
-        }else if(input.value<=0)
-        {
-            var icon_button = label_wrap[i].querySelector('button')
-            icon_button.style.cssText="display:none;"
-        }
-    }
+function input_btn_chk(e){ // 버튼보이기
+    var icon_button = e.closest('.label_wrap').querySelector('button')
+    if(e.value.length>0){
+        icon_button.style.cssText="display:block;"
+    }else{
+        icon_button.style.cssText="display:none;"
+    }    
 }//function input_btn_chk()
-function input_btn_fn(){ // del 클릭시, input 내용 삭제
-    var label_wrap = document.querySelectorAll('.label_wrap');
-    var icon = document.querySelectorAll('.label_wrap button[type="button"]');
-    var input = document.querySelectorAll('.label_wrap .input input');
-    for(let i = 0; i<label_wrap.length; i++){
-         icon[i].addEventListener('click', function(){
-           input[i].value = null;
-        })
-     }
-}//function input_btn_fn()S
+function input_btn_fn(e){ // del 클릭시, input 내용 삭제
+    var input = e.closest('.label_wrap').querySelector('input')
+    input.value = null
+    e.style.display="none"
+}//function input_btn_fn()
 function input_btn_chg(){
     var icon_pss = document.querySelector('button.icon_pss')
     var input_password = document.querySelector('input.password')
