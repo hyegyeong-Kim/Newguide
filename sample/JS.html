@@ -109,11 +109,16 @@ for(let i=0; i<max.length; i++){
             <li>
                 <div class="item">
                     <h3>Modal</h3>
+                    <ul class="explain">
+                        <li>Modal 호출 : modal(this)</li>
+                        <li>data-modal : 사이즈 및 형태 지정 [-dim = 배경 dim처리 / 사이즈 = full, medium, small]</li>
+                        <li>data-cont : 호출할 콘텐츠 경로</li>
+                    </ul>
                     <div class="design_box">
     <!-- modal open button -->
-    <a href="#none" onclick="modal(this);" data-modal="full-dim" data-cont="modal_sample/sample_full" class="btn_min btn_ok">Full Modal</a>
+    <a href="#none" onclick="modal(this);" data-modal="full-dim" data-cont="modal_sample/sample_small" class="btn_min btn_ok">Full Modal</a>
     <a href="#none" onclick="modal(this);" data-modal="small-dim" data-cont="modal_sample/sample_small" class="btn_min btn_ok">small Modal</a>
-    <a href="#none" onclick="modal(this);" data-modal="layer" data-cont="" class="btn_min btn_ok">Layer Modal</a>
+    <a href="#none" onclick="modal(this);" data-modal="layer" data-cont="modal_sample/sample_small" class="btn_min btn_ok">Layer Modal</a>
     <!-- //modal open button -->
 
     <!-- toast -->
@@ -122,7 +127,9 @@ for(let i=0; i<max.length; i++){
     <!-- //toast -->
                     </div>
                     <pre class="code_box"><code></code></pre>
-                    <pre class="style_box"><code></code></pre>
+                    <pre class="style_box"><code>
+onclick="modal(this)" data-modal="사이즈 및 형태" data-cont="호출할 콘텐츠 경로"
+                    </code></pre>
                 </div>
             </li>
         </ul>
