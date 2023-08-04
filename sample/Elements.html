@@ -45,7 +45,11 @@ function escapeHtml(str) {
     return str.replace(/[&<>"']/g, function(m) { return map[m]; });
 }
 
+
+progress_bar(document.querySelector('h2'))
+
 tab_active('.tab_wrap > ul', 'click')
+
 ham_btn('.hamber_btn')
 accordion('.board_type_toggle', 'click');
 go_top('.top_btn');
@@ -79,7 +83,19 @@ for(let i=0; i<max.length; i++){
     </ul>
     <div class="tab_content">
         <div class="current">Tab Content 01</div>
-        <div>Tab Content 02</div>
+        <div>Tab Content 02
+
+            <div class="tab_wrap">
+                <ul class="tab_type_01">
+                    <li class="current"><a href="#none">Tab02-1</a></li>
+                    <li><a href="#none">Tab02-2</a></li>
+                </ul>
+                <div class="tab_content">
+                    <div class="current">Tab Content 02-1</div>
+                    <div>Tab Content 02-2</div>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
                 </div>
