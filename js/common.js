@@ -264,10 +264,11 @@ var sticky_gallery = {
         var li = document.querySelectorAll(e);
         var imgStack = new Array();
         
-        var count;
-        var hori_mg;
-        var verti_mg;
-        var eleWidth = $(e).width(($(e).parent().width() / Number(count)) - Number(hori_mg) + (Number(hori_mg) / Number(count)));
+        var count, hori_mg, verti_mg;
+
+        li.forEach(e=> {
+            e.style.width = (e.parentNode.clientWidth / Number(count)) - Number(hori_mg) + (Number(hori_mg) / Number(count))+'px';
+        });
         setTimeout(function(){
             var colWidth = $(e).width() + Number(hori_mg);
 
@@ -284,10 +285,7 @@ var sticky_gallery = {
                 imgStack[minIndex] += (li[i].offsetHeight + Number(verti_mg));
                 li[i].style.transform = "translateX("+x+"px) translateY("+y+"px)";
                 if(i === li.length - 1){
-                    $(e).parent().css({
-                        // height : Math.max.apply(0, imgStack)+"px"
-                        height : (Math.max.apply(0, imgStack) - verti_mg)+"px"
-                    });
+                    li[i].parentElement.style.height =  (Math.max.apply(0, imgStack) - verti_mg)+"px"
                 }
             }
         },500);

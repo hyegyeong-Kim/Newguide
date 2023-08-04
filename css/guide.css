@@ -7,7 +7,7 @@ header li {width:150px; border-right:1px solid #fff; float:left;}
 header li:active {color:#000; background-color:#eee;} 
 header li button {width:100%; padding:10px 0; box-sizing:border-box; text-align:center; display:block;}
 
-h2 {margin-bottom:20px; padding-bottom:5px; font-size:28px; font-weight:600; border-bottom:1px dotted #d4d4d4; display:flex; align-items:center; justify-content:space-between;}
+h2 {margin:-8px -20px 20px -20px; padding:10px 20px 5px; font-size:28px; font-weight:600; background-color:#fff; border-bottom:1px dotted #d4d4d4; box-shadow:0px 6px 6px rgba(0,0,0,0.2); position:sticky; top:112px; z-index:1; display:flex; align-items:center; justify-content:space-between;}
 h2 button {width:20px; height:20px; font-size:0; position:relative;}
 h2 button:before, h2 button:after, h2 em:before, h2 em:after {width:7px; height:7px; border:1px solid #df262b; content:''; position:absolute; top:0; left:0; display:block;}
 h2 button:after, h2 em:after {right:0; left:inherit;}

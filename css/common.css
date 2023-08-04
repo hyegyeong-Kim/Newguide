@@ -99,6 +99,13 @@ h4 {font-size: 28px; font-weight: 600; text-align: center;}
 .top_btn {width:30px; height:30px; padding:10px; color:#fff; font-weight:600; line-height:2em; background-color:coral; border-radius:50%; position:fixed; right:5%; bottom:80px; opacity:0;  transition:opacity 0.5s, transform 0.5s;}
 .top_btn.show {opacity:1; transition:opacity 1s, transform 1s;}
 
+/* sticky gallery */
+.sticky_gallery {width:100%; margin-top:20px; box-sizing:border-box; min-height:100px;}
+.sticky_gallery ul {position:relative;}
+.sticky_gallery ul:after {display:block; clear:both; content:"";}
+.sticky_gallery ul li {display:inline-block; position:absolute; transition:all 0.5s;}
+.sticky_gallery ul li img {display:block; width:100%;}
+
 /* scroll down animation */
 .scroll_icon{font-weight:600; text-align: center; opacity: 0.7; position:absolute; bottom: 40%; left:50%; transform:translateX(-50%);}
 .scroll_icon img{width:50px; margin:0 auto; display:block; transform:rotate(90deg);}

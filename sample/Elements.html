@@ -26,11 +26,31 @@ sample_list.forEach((t) => {
     code.children[0].innerHTML = escapeHtml(Source_code)
 });
 
+var count = 5;
+var hori_mg = 10;
+var verti_mg = 10;
+
 document.getElementsByTagName('h2')[0].children[0].addEventListener('click', function(e){
     if(document.querySelector('.sample_wrap').classList.contains('division')){
         document.querySelector('.sample_wrap').classList.remove('division');
+
+        /* function 재호출 */
+        var e = '.sticky_gallery ul li';
+        sticky_gallery.deployment(e, count, hori_mg, verti_mg);
+
+
+        progress_bar(document.querySelector('h2'))
+        /* //function 재호출 */
     } else {
         document.querySelector('.sample_wrap').classList.add('division');
+
+        /* function 재호출 */
+        var e = '.sticky_gallery ul li';
+        sticky_gallery.deployment(e, count, hori_mg, verti_mg);
+
+
+        progress_bar(document.querySelector('h2'))
+        /* //function 재호출 */
     }
 });
 
@@ -44,6 +64,11 @@ function escapeHtml(str) {
     };
     return str.replace(/[&<>"']/g, function(m) { return map[m]; });
 }
+
+/* sticky gallery */
+var e = '.sticky_gallery ul li';
+sticky_gallery.deployment(e, count, hori_mg, verti_mg);
+/* //sticky gallery */
 
 
 progress_bar(document.querySelector('h2'))
@@ -683,6 +708,58 @@ label.input div input + [class*='btn_'] {flex:0 auto !important;}
             </div>
         </li>
         <!-- //Input Form -->
+
+        <!-- sticky galler -->
+        <li>
+            <div class="item">
+                <h3>Sticky Gallery</h3>
+                <div class="design_box">
+<div class="sticky_gallery">
+    <ul>
+        <li>
+            <span class="thumb"><em><img src="./image/sample/house_01.jpg" alt=""></em></span>
+        </li>
+        <li>
+            <span class="thumb"><em><img src="./image/sample/house_02.jpg" alt=""></em></span>
+        </li>
+        <li>
+            <span class="thumb"><em><img src="./image/sample/house_03.jpg" alt=""></em></span>
+        </li>
+        <li>
+            <span class="thumb"><em><img src="./image/sample/house_04.jpg" alt=""></em></span>
+        </li>
+        <li>
+            <span class="thumb"><em><img src="./image/sample/house_03.jpg" alt=""></em></span>
+        </li>
+        <li>
+            <span class="thumb"><em><img src="./image/sample/house_04.jpg" alt=""></em></span>
+        </li>
+        <li>
+            <span class="thumb"><em><img src="./image/sample/house_02.jpg" alt=""></em></span>
+        </li>
+        <li>
+            <span class="thumb"><em><img src="./image/sample/house_03.jpg" alt=""></em></span>
+        </li>
+        <li>
+            <span class="thumb"><em><img src="./image/sample/house_03.jpg" alt=""></em></span>
+        </li>
+        <li>
+            <span class="thumb"><em><img src="./image/sample/house_04.jpg" alt=""></em></span>
+        </li>
+    </ul>
+</div>
+                </div>
+                <pre class="code_box"><code></code></pre>
+                <pre class="style_box"><code>
+.sticky_gallery {width:100%; margin-top:20px; box-sizing:border-box; min-height:100px;}
+.sticky_gallery ul {position:relative;}
+.sticky_gallery ul:after {display:block; clear:both; content:"";}
+.sticky_gallery ul li {display:inline-block; position:absolute; transition:all 0.5s;}
+.sticky_gallery ul li img {display:block; width:100%;}
+                </code></pre>
+            </div>
+        </li>
+        <!-- //sticky galler -->
 
         
     </ul>
