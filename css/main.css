@@ -280,3 +280,40 @@ label.input div input + [class*='btn_'] {flex:0 auto !important;}
 @media screen and (max-width:768px){
 	.sample_wrap .Select_Radio_Check .design_box{display: flex; flex-direction:column; justify-content:space-around; align-items: flex-start;}
 }
+
+/* arrow hover */
+.swiper-button-next::after, .swiper-button-prev::after{display:none;}
+.swiper-button-next,.swiper-button-prev {color:#000; position:absolute; top:50%; display:flex; align-items:center;}
+.swiper-button-prev{left:20px;}
+.swiper-button-next{right:20px;}
+.swiper-button-next,.swiper-button-prev{width:5%; height:40%; transform: translateY(-50%);}
+.swiper-button-next >p,.swiper-button-prev>p{color:#000; letter-spacing: 0.5vw; line-height:1vw; text-transform:uppercase;}
+.swiper-button-next >p{margin-right:15%; transform:rotate(-90deg);}
+.swiper-button-prev>p{margin-left:15%; transform:rotate(-90deg);}
+.swiper-button-prev > span,.swiper-button-next > span{width:4px; background:#000; position:absolute; display:block; transition:all 0.3s;}
+.swiper-button-prev span:first-of-type,.swiper-button-next span:first-of-type{top: 50%; bottom:0; }
+.swiper-button-prev span:last-of-type,.swiper-button-next span:last-of-type{top: 0%; bottom: 50%;}
+.swiper-button-prev span:first-of-type,.swiper-button-prev span:last-of-type{left:0;}
+.swiper-button-next span:first-of-type,.swiper-button-next span:last-of-type{right:0;}
+
+/* arrow hover */
+.swiper-button-prev:hover span:first-of-type{margin-top:-5px; transform:rotate(-45deg);}
+.swiper-button-prev:hover span:last-of-type{margin-bottom:-5px; transform:rotate(45deg);}
+.swiper-button-next:hover span:first-of-type{margin-top:-5px; transform:rotate(45deg);}
+.swiper-button-next:hover span:last-of-type{margin-bottom:-5px; transform:rotate(-45deg);}
+
+/* element_jumps */
+.element_jumps {display:flex; flex-wrap:wrap;}
+.element_jumps li {width:20%; padding:0 2vw 2vw 2vw; box-sizing: border-box;}
+.element_jumps li img{width:100%;}
+
+/* keyframes animation */
+@keyframes jumps {
+  0%, 40%, 100% {transform:translateY(0)}
+  20% {transform: translateY(-1.2rem);}
+}
+
+@keyframes titledeco {
+  0% {opacity:0; transform: translateY(125%);}
+  100% {opacity:1; transform: translateY(0);}
+}

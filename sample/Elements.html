@@ -761,6 +761,94 @@ label.input div input + [class*='btn_'] {flex:0 auto !important;}
         </li>
         <!-- //sticky galler -->
 
+        <!-- arrow hover -->
+        <li class="arrow hover">
+            <div class="item">
+                <h3>arrow hover</h3>
+                <ul class="explain">
+                    <li>class [swiper-button-next], [swiper-button-prev]로 스타일 구현.</li>
+                    <li>swiper로 이용 시, .swiper-button-next::after, .swiper-button-prev::after{display:none;} 진행 후 css 작성</li>
+                </ul>
+                <div class="design_box" style="height: 100px; position:relative;">
+<div class="swiper-button-next">
+    <p>Next</p>
+    <span></span>
+    <span></span>
+</div>
+<div class="swiper-button-prev">
+    <p>prev</p>
+    <span></span>
+    <span></span>
+</div>
+                </div>
+                <pre class="code_box"><code></code></pre>
+                <pre class="style_box"><code>
+.swiper-button-next::after, .swiper-button-prev::after{display:none;}
+.swiper-button-prev{margin-left:1%}
+.swiper-button-next{margin-right:1%}
+.swiper-button-next,.swiper-button-prev{width:5%; height:4%; transform: translateY(-50%);}
+.swiper-button-next >p,.swiper-button-prev>p{color:#fff; letter-spacing: 0.5vw; line-height:1vw; text-transform:uppercase;}
+.swiper-button-next >p{margin-right:15%; transform:rotate(-90deg);}
+.swiper-button-prev>p{margin-left:15%; transform:rotate(-90deg);}
+.swiper-button-prev > span,.swiper-button-next > span{width:4px; background:#fff; position:absolute; display:block; transition:all 0.3s;}
+.swiper-button-prev span:first-of-type,.swiper-button-next span:first-of-type{top: 50%; bottom:0}
+.swiper-button-prev span:last-of-type,.swiper-button-next span:last-of-type{top: 0%; bottom: 50%;}
+.swiper-button-prev span:first-of-type,.swiper-button-prev span:last-of-type{left:0;}
+.swiper-button-next span:first-of-type,.swiper-button-next span:last-of-type{right:0;}
+
+/* hover */
+.swiper-button-prev:hover span:first-of-type{margin-top:-5px; transform:rotate(-45deg);}
+.swiper-button-prev:hover span:last-of-type{margin-bottom:-5px; transform:rotate(45deg);}
+.swiper-button-next:hover span:first-of-type{margin-top:-5px; transform:rotate(45deg);}
+.swiper-button-next:hover span:last-of-type{margin-bottom:-5px; transform:rotate(-45deg);}
+                </code></pre>
+            </div>
+        </li>
+        <!-- // arrow hover -->
+
+        <!-- element_jumps -->
+        <li class="jumps">
+        <div class="item">
+            <h3>element_jumps</h3>
+            <ul class="explain">
+                <li>스크롤 이벤트이기 때문에 거꾸로 다시 진행하는 부분은 현재까지 불가함(해당부분 확인 중)</li>
+                <li>반복횟수 등은 js파일에서 수정 가능!</li>
+            </ul>
+            <div class="design_box">
+<ul class="element_jumps">
+    <li><img src="../image//clients_01.png" alt="홈앤쇼핑"></li>
+    <li><img src="../image//clients_02.png" alt="이마트"></li>
+    <li><img src="../image//clients_03.png" alt="우리은행"></li>
+    <li><img src="../image//clients_04.png" alt="롯데면세점"></li>
+    <li><img src="../image//clients_05.png" alt="신세계"></li>
+    <li><img src="../image//clients_06.png" alt="리바트"></li>
+    <li><img src="../image//clients_07.png" alt="미래에셋"></li>
+    <li><img src="../image//clients_08.png" alt="gsshop"></li>
+    <li><img src="../image//clients_09.png" alt="nice평가정보"></li>
+    <li><img src="../image//clients_10.png" alt="cj프레시웨어"></li>
+</ul>
+            </div>
+            <pre class="code_box"><code></code></pre>
+            <pre class="style_box"><code>
+                /* element_jumps */
+.element_jumps.ul {display:flex; flex-wrap:wrap;}
+.element_jumps.ul li {width:20%; padding:0 2vw 2vw 2vw; box-sizing: border-box;}
+.element_jumps.ul li img{width:100%;}
+
+/* keyframes animation */
+@keyframes jumps {
+  0%, 40%, 100% {transform:translateY(0)}
+  20% {transform: translateY(-1.2rem);}
+}
+
+@keyframes titledeco {
+  0% {opacity:0; transform: translateY(125%);}
+  100% {opacity:1; transform: translateY(0);}
+}
+            </code></pre>
+        </div>
+    </li>
+    <!-- //element_jumps -->
         
     </ul>
 </div>
