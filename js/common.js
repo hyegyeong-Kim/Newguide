@@ -272,7 +272,7 @@ var sticky_gallery = {
             e.style.width = (e.parentNode.clientWidth / Number(count)) - Number(hori_mg) + (Number(hori_mg) / Number(count))+'px';
         });
         setTimeout(function(){
-            var colWidth = $(e).width() + Number(hori_mg);
+            var colWidth = document.querySelector(e).offsetWidth + Number(hori_mg);
 
             for(var i = 0; i < Number(count); i++){
                 imgStack[i] = 0;
