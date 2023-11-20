@@ -10,7 +10,7 @@
     menuArray.forEach((i) => {  
         const temp = document.createElement('li');
         temp.innerHTML = '<button onclick="ajax(\'sample/'+i.title+'\',\'.content\')">'+i.title+'</button>';
-        menu_wrap.append(temp);
+        // menu_wrap.append(temp);
     });
 
     let menu_btn = document.querySelectorAll('header li button');
