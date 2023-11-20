@@ -1,6 +1,10 @@
 $(document).ready(function(){
     $('header').load($('header').attr('data-include-path'));
     $('footer').load($('footer').attr('data-include-path'));
+
+    $('label.input').each(function(){
+        placeholder(this);
+    });
 });
 
 progress_bar()
@@ -39,6 +43,10 @@ function ajax(_url,_wrap){
                 // load_wrap.innerHTML = data;
                 // document.querySelector('.content').append(load_wrap)
             }
+
+            $('label.input').each(function(){
+                placeholder(this);
+            });
         },
         complete: function(data) {
         },
@@ -240,14 +248,14 @@ function input_btn_chk(e){ // 버튼보이기
     }    
 }//function input_btn_chk()
 function input_btn_fn(e){ // del 클릭시, input 내용 삭제
-    var input = e.closest('.label_wrap').querySelector('input')
-    input.value = null
-    e.style.display="none"
+    var input = e.closest('.label_wrap').querySelector('input');
+    input.value = null;
+    e.style.display="none";
+    e.parentNode.querySelector('i').style.display="block";
 }//function input_btn_fn()
 function input_btn_chg(){
     var icon_pss = document.querySelector('button.icon_pss')
     var input_password = document.querySelector('input.password')
-    console.log(icon_pss,input_password)
     icon_pss.classList.toggle('active');
     if(icon_pss.classList.contains('active')){
         
@@ -257,8 +265,22 @@ function input_btn_chg(){
     }
 }
 
-
-/* jquery */
+/* input focus */
+function placeholder(_target){
+    _target = $(_target);
+    _target.find('i').click(function(){
+        $(this).hide();
+        $(this).siblings('input').focus();
+    });
+    _target.find('input').focus(function(){
+        $(this).siblings('i').hide();
+    });
+    _target.find('input').blur(function(){
+        if($(this).val().length < 1){
+            $(this).siblings('i').show();
+        }
+    });
+}
 
 /* sticky_gallery */
 var sticky_gallery = {

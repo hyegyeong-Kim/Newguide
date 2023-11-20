@@ -203,7 +203,7 @@ for(let i=0; i<max.length; i++){
 <div class="scroll_icon">
     <p class="scroll_down">
         scroll down
-        <img src="./image/arrow_icon.png" alt="scroll_img">
+        <img src="./images/arrow_icon.png" alt="scroll_img">
     </p>
 </div>
                 </div>
@@ -291,21 +291,21 @@ for(let i=0; i<max.length; i++){
 <ul class="card_layout">
     <li>
         <p>웹에이전시</p>
-        <img src="./image/cardnew_01.png" alt="img1">
+        <img src="./images/cardnew_01.png" alt="img1">
         <button><span>Go</span></button>
         <p>웹에이전시</p>
         
     </li>
     <li>
         <p>SI</p>
-        <img src="./image/cardnew_02.png" alt="img2">
+        <img src="./images/cardnew_02.png" alt="img2">
         <button><span>Go</span></button>
         <p>SI</p>
         
     </li>
     <li>
         <p>GUIDE</p>
-        <img src="./image/cardnew_03.png" alt="img3">
+        <img src="./images/cardnew_03.png" alt="img3">
         <button><span>Go</span></button>
         <p>GUIDE</p>
         
@@ -636,42 +636,42 @@ input[type="text"], input[type="email"], input[type="number"], input[type="tel"]
                     <li>&lt;label &gt;에 [err] 클래스 추가 시 오류문구 노출</li>
                 </ul>
                 <div class="design_box">
-<ul class="form_group">
-    <li>
-        <p class="form_tit">Default :</p>
-        <div class="label_wrap">
-            <label class="input">
-                <i style="display: none;">Placeholder</i>
-                <input type="text" onkeyup="input_btn_chk(this);">
-                <em>error message</em>
-                <button class="icon_del" type="button" onclick="input_btn_fn(this)">delete</button> 
-            </label>
-        </div>
-    </li>
-    <li>
-        <p class="form_tit">Password :</p>
-        <div class="label_wrap">
-            <label class="input err">
-                <i style="display: none;">Placeholder</i>
-                <input class="password" type="password" onkeyup="input_btn_chk(this);">
-                <em>error message</em>
-                <button type="button" class="icon_pss" onclick="input_btn_chg()">text</button> 
-            </label>
-        </div>
-    </li>
-    <li>
-        <p class="form_tit">Input + button :</p>
-        <div class="label_wrap">
-            <label class="input">
-                <i style="display: none;">Placeholder</i>
-                <input class="text" type="text" onkeyup="input_btn_chk(this);">
-                <em>error message</em>
-                <button class="icon_del" type="button" onclick="input_btn_fn(this)">text</button> 
-            </label>
-            <button class="btn_mid btn_ok"><em>Check</em></button>
-        </div>
-    </li>
-</ul>          
+                    <ul class="form_group">
+                        <li>
+                            <p class="form_tit">Default :</p>
+                            <div class="label_wrap">
+                                <label class="input">
+                                    <i>Placeholder</i>
+                                    <input type="text" onkeyup="input_btn_chk(this);">
+                                    <em>error message</em>
+                                    <button class="icon_del" type="button" onclick="input_btn_fn(this)">delete</button> 
+                                </label>
+                            </div>
+                        </li>
+                        <li>
+                            <p class="form_tit">Password :</p>
+                            <div class="label_wrap">
+                                <label class="input err">
+                                    <i>Placeholder</i>
+                                    <input class="password" type="password" onkeyup="input_btn_chk(this);">
+                                    <em>error message</em>
+                                    <button type="button" class="icon_pss" onclick="input_btn_chg()">text</button> 
+                                </label>
+                            </div>
+                        </li>
+                        <li>
+                            <p class="form_tit">Input + button :</p>
+                            <div class="label_wrap">
+                                <label class="input">
+                                    <i>Placeholder</i>
+                                    <input class="text" type="text" onkeyup="input_btn_chk(this);">
+                                    <em>error message</em>
+                                    <button class="icon_del" type="button" onclick="input_btn_fn(this)">text</button> 
+                                </label>
+                                <button class="btn_mid btn_ok"><em>Check</em></button>
+                            </div>
+                        </li>
+                    </ul>         
                 </div>
                 <pre class="code_box"><code></code></pre>
                 <pre class="style_box"><code>
@@ -686,13 +686,13 @@ label.input > em {margin-top:5px; color:#ff7200; font-size:12px; font-family:'No
 label.input.err > em {display:block;}
 label.input * {flex:1 auto;}
 
-.label_wrap {position:relative; flex:1;}
+.label_wrap {position: relative; flex: 1; display: flex; gap: 10px;}
 .label_wrap button[class*='icon_'] {width:24px; height:24px; font-size:0; background-repeat:no-repeat; position:absolute; top:13px; right:20px; z-index:1; display:none;}
 .label_wrap button[class*='icon_'] + button[class*='icon_'] {margin-right:34px;}
-.label_wrap button.icon_del {background:url('../image/icon_search_del.png') 50% no-repeat; background-size:cover;}
+.label_wrap button.icon_del {background:url('../images/icon_search_del.png') 50% no-repeat; background-size:cover;}
 .label_wrap button.icon_pss.active, .label_wrap button.icon_pss {background-size:cover;}
-.label_wrap button.icon_pss.active {background-image:url('../image/icon_pass_view.png');}
-.label_wrap button.icon_pss {background-image:url('../image/icon_pass_hide.png');}
+.label_wrap button.icon_pss.active {background-image:url('../images/icon_pass_view.png');}
+.label_wrap button.icon_pss {background-image:url('../images/icon_pass_hide.png');}
 
 .label_wrap + .label_wrap {margin-top:10px;}
 
@@ -716,34 +716,34 @@ label.input div input + [class*='btn_'] {flex:0 auto !important;}
 <div class="sticky_gallery">
     <ul>
         <li>
-            <span class="thumb"><em><img src="./image/sample/house_01.jpg" alt=""></em></span>
+            <span class="thumb"><em><img src="./images/sample/house_01.jpg" alt=""></em></span>
         </li>
         <li>
-            <span class="thumb"><em><img src="./image/sample/house_02.jpg" alt=""></em></span>
+            <span class="thumb"><em><img src="./images/sample/house_02.jpg" alt=""></em></span>
         </li>
         <li>
-            <span class="thumb"><em><img src="./image/sample/house_03.jpg" alt=""></em></span>
+            <span class="thumb"><em><img src="./images/sample/house_03.jpg" alt=""></em></span>
         </li>
         <li>
-            <span class="thumb"><em><img src="./image/sample/house_04.jpg" alt=""></em></span>
+            <span class="thumb"><em><img src="./images/sample/house_04.jpg" alt=""></em></span>
         </li>
         <li>
-            <span class="thumb"><em><img src="./image/sample/house_03.jpg" alt=""></em></span>
+            <span class="thumb"><em><img src="./images/sample/house_03.jpg" alt=""></em></span>
         </li>
         <li>
-            <span class="thumb"><em><img src="./image/sample/house_04.jpg" alt=""></em></span>
+            <span class="thumb"><em><img src="./images/sample/house_04.jpg" alt=""></em></span>
         </li>
         <li>
-            <span class="thumb"><em><img src="./image/sample/house_02.jpg" alt=""></em></span>
+            <span class="thumb"><em><img src="./images/sample/house_02.jpg" alt=""></em></span>
         </li>
         <li>
-            <span class="thumb"><em><img src="./image/sample/house_03.jpg" alt=""></em></span>
+            <span class="thumb"><em><img src="./images/sample/house_03.jpg" alt=""></em></span>
         </li>
         <li>
-            <span class="thumb"><em><img src="./image/sample/house_03.jpg" alt=""></em></span>
+            <span class="thumb"><em><img src="./images/sample/house_03.jpg" alt=""></em></span>
         </li>
         <li>
-            <span class="thumb"><em><img src="./image/sample/house_04.jpg" alt=""></em></span>
+            <span class="thumb"><em><img src="./images/sample/house_04.jpg" alt=""></em></span>
         </li>
     </ul>
 </div>

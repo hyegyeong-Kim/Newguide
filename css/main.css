@@ -50,8 +50,6 @@
 .card_layout .design_box li:hover button{opacity:1; transform: translateX(0px);}
 .card_layout .design_box li:hover img{border-radius: 80% 5% 25% 5%;}
 
-
-
 /* bottom button section */
 .btnSection {margin-top:50px; text-align:center;}
 
@@ -217,65 +215,7 @@
 	.board_type_toggle > dt a {font-size:14px;}
 	.board_type_toggle > dt a, .board_type_toggle > dd {padding-left:35px;}
 	.board_type_toggle > dd {font-size:12px;}
-
 }
-
-/*  Select / Radio / CheckInput */
-/* input */
-input {vertical-align:middle;}
-
-input[type="text"], input[type="email"], input[type="number"], input[type="tel"], input[type="password"], input[type="url"], input[type="search"], input[type="file"], textarea {height:42px; padding:0 15px; background-color:#fff; border:1px solid #e8e5e2; border-radius:0; -webkit-appearance:none; -moz-appearance:none; -ms-appearance:none; -o-appearance:none;}
-
-.check {padding-left:20px; line-height:1; position:relative; display:inline-block;}
-.check > * {line-height:1.4; vertical-align:middle; display:inline-block;}
-.check input {margin:0 0 0 1px; position:absolute;}
-.check .label:before, .check .label:after {content:''; position:absolute; display:inline-block;}
-
-/* radio */
-.check input[type='radio'], .check input[type='radio'] + .label:before {width:12px; height:12px; background-color:#fff; border:1px solid #ccc; border-radius:50%; top:3px; left:0;}
-.check input[type='radio']:checked + .label:after {width:8px; height:8px; background-color:#333; border-radius:50%; top:6px; left:3px;}
-
-/* checkbox */
-.check input[type='checkbox'], .check input[type='checkbox'] + .label:before {width:12px; height:12px; background-color:#fff; border:1px solid #ccc; top:3px; left:0;}
-.check input[type='checkbox']:checked + .label:after {width:5px; height:9px; border:2px solid #333; border-top:0; border-left:0; top:2px; left:4px; -webkit-transform:rotate(45deg); transform:rotate(45deg);}
-
-.check_ani {position:relative; display:inline-block;}
-.check_ani input {margin:0 0 0 1px; position:absolute; opacity:0;}
-.check_ani em {min-height:22px; padding-left:48px; position:relative; display:block;}
-.check_ani input[type='checkbox'] {opacity:0;}
-.check_ani input[type='checkbox'] + em:after {width:18px; height:18px; background-color:#fff; border-radius:50%; content:''; position:absolute; top:50%; left:2px; z-index:1; display:block; transform:translateY(-50%); transition:all 0.2s;}
-.check_ani input[type='checkbox']:checked + em:before {background-color:#ff7200;}
-.check_ani em:before {width:42px; height:22px; background-color:#ccc; border:0; border-radius:60px; content:''; position:absolute; top:0; left:0; display:inline-block;}
-.check_ani input[type='checkbox']:checked + em:after {left:22px;}
-
-/* input form*/
-/* input */
-input {vertical-align:middle;}
-
-label.input, label.select > div {position:relative; display:block;}
-label.input i {color:#aaa; font-size:16px; line-height:18px; position:absolute; top:50%; left:15px; transform:translateY(-50%);}/* placeholder */
-label.input input[type='text'], label.input input[type='password'], label.input input[type='number'] {width:100%; font-size:16px; font-family:'MyLotte'; line-height:18px;}
-label.input > em {margin-top:5px; color:#ff7200; font-size:12px; font-family:'Noto Sans'; line-height:18px; display:none;}
-label.input.err > em {display:block;}
-label.input * {flex:1 auto;}
-
-.label_wrap {position:relative; flex:1;}
-.label_wrap button[class*='icon_'] {width:24px; height:24px; font-size:0; background-repeat:no-repeat; position:absolute; top:13px; right:20px; z-index:1; display:none;}
-.label_wrap button[class*='icon_'] + button[class*='icon_'] {margin-right:34px;}
-.label_wrap button.icon_del {background:url('../image/icon_search_del.png') 50% no-repeat; background-size:cover;}
-.label_wrap button.icon_pss.active, .label_wrap button.icon_pss {background-size:cover;}
-.label_wrap button.icon_pss.active {background-image:url('../image/icon_pass_view.png');}
-.label_wrap button.icon_pss {background-image:url('../image/icon_pass_hide.png');}
-
-.label_wrap + .label_wrap {margin-top:10px;}
-
-
-/* input + button */
-label.input div {display:flex;}
-label.input div input {width:auto !important; margin-right:8px;}
-label.input div input + [class*='btn_'] {flex:0 auto !important;}
-
-.form_group > li + li {padding-top:20px;}
 
 @media screen and (max-width:768px){
 	.sample_wrap .Select_Radio_Check .design_box{display: flex; flex-direction:column; justify-content:space-around; align-items: flex-start;}
