@@ -569,15 +569,25 @@ input[type="text"], input[type="email"], input[type="number"], input[type="tel"]
                 <h3>Select / Radio / CheckInput</h3>
                 <div class="design_box">
 <!-- select form -->
-<div class="select_form">
+<label class="select">
     <select>
-        <option>Selected</option>
-        <option>Option01</option>
+        <optgroup label="Option01">
+            <option>Option Group01-1</option>
+            <option>Option Group01-2</option>
+            <option>Option Group01-3</option>
+            <option>Option Group01-4</option>
+        </optgroup>
         <option>Option02</option>
-        <option>Option03</option>
+        <optgroup label="Option03">
+            <option>Option Group03-1</option>
+            <option>Option Group03-2</option>
+            <option>Option Group03-3</option>
+            <option>Option Group03-4</option>
+        </optgroup>
     </select>
-</div>
+</label>
 <!-- //select form -->
+<br/>
 
 <!-- switch -->
 <label class="check_ani">
@@ -593,6 +603,31 @@ input[type="text"], input[type="email"], input[type="number"], input[type="tel"]
 <!-- check -->
 <label class="check"><input type="checkbox" /><em class="label">Checkbox</em></label>
 <!-- //check -->
+<br/>
+
+<!-- group의 경우 "check_group"으로 묶어 줌 -->
+<div class="check_group">
+    <label class="check">
+        <input type="radio" name="group" />
+        <em class="label">Radio01</em>
+    </label>
+    <label class="check">
+        <input type="radio" name="group" />
+        <em class="label">Radio02</em>
+    </label>
+    <label class="check">
+        <input type="radio" name="group" />
+        <em class="label">Radio03</em>
+    </label>
+    <label class="check">
+        <input type="radio" name="group" />
+        <em class="label">Radio04</em>
+    </label>
+    <label class="check">
+        <input type="radio" name="group" />
+        <em class="label">Radio05</em>
+    </label>
+</div>
                 </div>
                 <pre class="code_box"><code></code></pre>
                 <pre class="style_box"><code>
@@ -636,77 +671,147 @@ input[type="text"], input[type="email"], input[type="number"], input[type="tel"]
                     <li>&lt;label &gt;에 [err] 클래스 추가 시 오류문구 노출</li>
                 </ul>
                 <div class="design_box">
-                    <ul class="form_group">
-                        <li>
-                            <p class="form_tit">Default :</p>
-                            <div class="label_wrap">
-                                <label class="input">
-                                    <i>Placeholder</i>
-                                    <input type="text" onkeyup="input_btn_chk(this);">
-                                    <em>error message</em>
-                                    <button class="icon_del" type="button" onclick="input_btn_fn(this)">delete</button> 
-                                </label>
-                            </div>
-                        </li>
-                        <li>
-                            <p class="form_tit">Password :</p>
-                            <div class="label_wrap">
-                                <label class="input err">
-                                    <i>Placeholder</i>
-                                    <input class="password" type="password" onkeyup="input_btn_chk(this);">
-                                    <em>error message</em>
-                                    <button type="button" class="icon_pss" onclick="input_btn_chg()">text</button> 
-                                </label>
-                            </div>
-                        </li>
-                        <li>
-                            <p class="form_tit">Input + button :</p>
-                            <div class="label_wrap">
-                                <label class="input">
-                                    <i>Placeholder</i>
-                                    <input class="text" type="text" onkeyup="input_btn_chk(this);">
-                                    <em>error message</em>
-                                    <button class="icon_del" type="button" onclick="input_btn_fn(this)">text</button> 
-                                </label>
-                                <button class="btn_mid btn_ok"><em>Check</em></button>
-                            </div>
-                        </li>
-                    </ul>         
+<ul class="form_group">
+    <li>
+        <p class="form_tit">Default :</p>
+        <label class="input">
+            <i>Placeholder</i>
+            <input type="text" onkeyup="input_btn_chk(this);">
+            <em>error message</em>
+            <button class="icon_del" type="button" onclick="input_btn_fn(this)">delete</button>
+        </label>
+    </li>
+    <li>
+        <p class="form_tit">Password :</p>
+        <label class="input err">
+            <i>Placeholder</i>
+            <input class="password" type="password" onkeyup="input_btn_chk(this);">
+            <em>error message</em>
+            <button type="button" class="icon_pss" onclick="input_btn_chg()">text</button> 
+        </label>
+    </li>
+    <li>
+        <p class="form_tit">Input + button :</p>
+        <div class="label_wrap">
+            <label class="input">
+                <i>Placeholder</i>
+                <input class="text" type="text" onkeyup="input_btn_chk(this);">
+                <em>error message</em>
+                <button class="icon_del" type="button" onclick="input_btn_fn(this)">text</button> 
+            </label>
+            <button class="btn_mid btn_ok"><em>Check</em></button>
+        </div>
+    </li>
+</ul>         
                 </div>
                 <pre class="code_box"><code></code></pre>
                 <pre class="style_box"><code>
-/* input form*/
-/* input */
-input {vertical-align:middle;}
+.form_group > li + li {padding-top:20px;}
+.form_group .form_tit {margin-top:0; margin-bottom:6px; font-size:14px !important; font-family:'Noto Sans'; line-height:20px !important; text-align:left !important;}
+.form_group .form_tit em {color:#888; font-weight:400; display:inline-block;}
+.form_group .form_tit.required:after {margin-left:2px; color:#d60812; font-size:14px; content:'*'; display:inline-block;}
 
-label.input, label.select > div {position:relative; display:block;}
-label.input i {color:#aaa; font-size:16px; line-height:18px; position:absolute; top:50%; left:15px; transform:translateY(-50%);}/* placeholder */
+label.input, label.select {position:relative; display:block; flex:1;}
+label.input i {color:#aaa; font-size:16px; font-style:normal; line-height:18px; white-space:nowrap; text-overflow:ellipsis; overflow:hidden; position:absolute; top:11px; right:0; left:15px;}/* placeholder */
 label.input input[type='text'], label.input input[type='password'], label.input input[type='number'] {width:100%; font-size:16px; font-family:'MyLotte'; line-height:18px;}
 label.input > em {margin-top:5px; color:#ff7200; font-size:12px; font-family:'Noto Sans'; line-height:18px; display:none;}
 label.input.err > em {display:block;}
 label.input * {flex:1 auto;}
 
-.label_wrap {position: relative; flex: 1; display: flex; gap: 10px;}
-.label_wrap button[class*='icon_'] {width:24px; height:24px; font-size:0; background-repeat:no-repeat; position:absolute; top:13px; right:20px; z-index:1; display:none;}
-.label_wrap button[class*='icon_'] + button[class*='icon_'] {margin-right:34px;}
-.label_wrap button.icon_del {background:url('../images/icon_search_del.png') 50% no-repeat; background-size:cover;}
-.label_wrap button.icon_pss.active, .label_wrap button.icon_pss {background-size:cover;}
-.label_wrap button.icon_pss.active {background-image:url('../images/icon_pass_view.png');}
-.label_wrap button.icon_pss {background-image:url('../images/icon_pass_hide.png');}
+label.input button[class*='icon_'] {width:24px; height:24px; font-size:0; background-repeat:no-repeat; position:absolute; top:10px; right:10px; z-index:1; display:none;}
+label.input button[class*='icon_'] + button[class*='icon_'] {margin-right:34px;}
+label.input button.icon_del {background:url('../images/common/icon_search_del.png') 50% no-repeat; background-size:cover; border:0;}
+label.input button.icon_pss.active, label.input  button.icon_pss {background-size:cover;}
+label.input button.icon_pss.active {background-image:url('../images/common/icon_pass_view.png');}
+label.input button.icon_pss {background-image:url('../images/common/icon_pass_hide.png'); border:0;}
+.select select{width:100%; height:42px; padding:0 20px 0 10px; border:1px solid #e8e5e2;}
 
-.label_wrap + .label_wrap {margin-top:10px;}
+.label_wrap {position:relative; flex:1; display:flex; gap:10px;}
 
-
-/* input + button */
-label.input div {display:flex;}
-label.input div input {width:auto !important; margin-right:8px;}
-label.input div input + [class*='btn_'] {flex:0 auto !important;}
-
-.form_group > li + li {padding-top:20px;}
+.label_wrap label + label {margin-top:10px;}
                 </code></pre>
             </div>
         </li>
         <!-- //Input Form -->
+
+        <!-- multi form -->
+        <li>
+            <div class="item">
+                <h3>Multi Form</h3>
+                <ul class="explain">
+                    <li>multi_form에 에러 메시지 노출 시 "multi_form"에 err 클래스 추가, "multi_form err"와 근접해 있는 em이 노출됨</li>
+                </ul>
+                <div class="design_box">
+<ul class="form_group">
+    <li>
+        <!-- select + input -->
+        <div class="multi_form">
+            <label class="select">
+                <select>
+                    <option>Option01</option>
+                    <option>Option02</option>
+                    <option>Option03</option>
+                </select>
+            </label>
+            <label class="input">
+                <i>Placeholder</i>
+                <input type="text" onkeyup="input_btn_chk(this);">
+                <em>error message</em>
+                <button class="icon_del" type="button" onclick="input_btn_fn(this)">delete</button>
+            </label>
+        </div>
+        <!-- error message -->
+        <em>error message!!</em>
+        <!-- //error message -->
+        <!-- //select + input -->
+    </li>
+    <li>
+        <!-- input + input -->
+        <div class="multi_form">
+            <label class="input">
+                <i>Placeholder</i>
+                <input type="number" onkeyup="input_btn_chk(this);">
+                <em>error message</em>
+                <button class="icon_del" type="button" onclick="input_btn_fn(this)">delete</button>
+            </label>
+            <label class="input">
+                <i>Placeholder</i>
+                <input type="text" onkeyup="input_btn_chk(this);">
+                <em>error message</em>
+                <button class="icon_del" type="button" onclick="input_btn_fn(this)">delete</button>
+            </label>
+        </div>
+        <!-- //input + input -->
+    </li>
+</ul>
+                </div>
+                <pre class="code_box"><code></code></pre>
+                <pre class="style_box"><code>.multi_form {display:flex; flex-wrap:wrap; align-items:center; gap:8px;}
+.multi_form label {flex:1;}
+.multi_form + em {display:none;}
+.multi_form.err + em {margin-top: 5px;color: #ff7200; font-size: 12px; font-family: 'Noto Sans'; line-height: 18px; display:block;}
+
+label.input, label.select {position:relative; display:block; flex:1;}
+label.input i {color:#aaa; font-size:16px; font-style:normal; line-height:18px; white-space:nowrap; text-overflow:ellipsis; overflow:hidden; position:absolute; top:11px; right:0; left:15px;}/* placeholder */
+label.input input[type='text'], label.input input[type='password'], label.input input[type='number'] {width:100%; font-size:16px; font-family:'MyLotte'; line-height:18px;}
+label.input > em {margin-top:5px; color:#ff7200; font-size:12px; font-family:'Noto Sans'; line-height:18px; display:none;}
+label.input.err > em {display:block;}
+label.input * {flex:1 auto;}
+
+label.input button[class*='icon_'] {width:24px; height:24px; font-size:0; background-repeat:no-repeat; position:absolute; top:10px; right:10px; z-index:1; display:none;}
+label.input button[class*='icon_'] + button[class*='icon_'] {margin-right:34px;}
+label.input button.icon_del {background:url('../images/common/icon_search_del.png') 50% no-repeat; background-size:cover; border:0;}
+label.input button.icon_pss.active, label.input  button.icon_pss {background-size:cover;}
+label.input button.icon_pss.active {background-image:url('../images/common/icon_pass_view.png');}
+label.input button.icon_pss {background-image:url('../images/common/icon_pass_hide.png'); border:0;}
+.select select{width:100%; height:42px; padding:0 20px 0 10px; border:1px solid #e8e5e2;}
+
+.label_wrap {position:relative; flex:1; display:flex; gap:10px;}
+
+.label_wrap label + label {margin-top:10px;}</code></pre>
+            </div>
+        </li>
+        <!-- //multi form -->
 
         <!-- sticky galler -->
         <li>
