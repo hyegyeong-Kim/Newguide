@@ -57,23 +57,61 @@ function ajax(_url,_wrap){
 }
 /* //ajax */
 
+/* ajax - vanilla */
+//XMLHttpRequest 객체 생성
+function van_ajax(_url,_wrap){
+    var xhr = new XMLHttpRequest();
+
+    //요청을 보낼 방식, url, 비동기여부 설정
+    xhr.open('POST', _load, true);
+
+    //HTTP 요청 헤더 설정
+    xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+
+    //요청 전송
+    xhr.send("id=post_ajax");
+
+    //Callback
+    xhr.onload = function () {
+        if (xhr.status == 200) {
+            //success
+            _wrap.innerHTML = xhr.response;
+        } else {
+            //failed
+        }
+    }
+}
+/* //ajax - vanilla */
+
 /* tab */
 function tab_active(_target, evt) {//_target : 대상 / evt : 핸들러
     var evt,
     tab = document.querySelectorAll(_target);
     
     tab.forEach(el => {
-        el.querySelectorAll('a').forEach((el, i) => {
-            el.addEventListener(evt, function(){
-                const parent_index = Array.from(el.closest('ul').children).indexOf(el.parentNode);
-                for(j=0; j<el.closest('ul').childElementCount; j++){
-                    el.closest('ul').children[j].classList.remove('current')
-                    el.closest('ul').nextElementSibling.children[j].classList.remove('current');
-                }
-                el.parentNode.classList.add('current');
-                el.closest('ul').nextElementSibling.children[i].classList.add('current');
+        if(el.classList.contains('demo')){// 탭버튼에만 current 효과 줄 때
+            el.querySelectorAll('button').forEach((el, i) => {
+                el.addEventListener(evt, function(){
+                    const parent_index = Array.from(el.closest('ul').children).indexOf(el.parentNode);
+                    for(j=0; j<el.closest('ul').childElementCount; j++){
+                        el.closest('ul').children[j].classList.remove('current');
+                    }
+                    el.parentNode.classList.add('current');
+                });
             });
-        });
+        } else {
+            el.querySelectorAll('button').forEach((el, i) => {
+                el.addEventListener(evt, function(){
+                    const parent_index = Array.from(el.closest('ul').children).indexOf(el.parentNode);
+                    for(j=0; j<el.closest('ul').childElementCount; j++){
+                        el.closest('ul').children[j].classList.remove('current');
+                        el.closest('.tab_wrap').querySelector('.tab_content').children[j].classList.remove('current');
+                    }
+                    el.parentNode.classList.add('current');
+                    el.closest('.tab_wrap').querySelector('.tab_content').children[i].classList.add('current');
+                });
+            });
+        }
     })
 }
 /* //tab */
