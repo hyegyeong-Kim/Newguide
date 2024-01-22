@@ -90,7 +90,7 @@ function tab_active(_target, evt) {//_target : 대상 / evt : 핸들러
     
     tab.forEach(el => {
         if(el.classList.contains('demo')){// 탭버튼에만 current 효과 줄 때
-            el.querySelectorAll('button').forEach((el, i) => {
+            el.querySelectorAll('button, a').forEach((el, i) => {
                 el.addEventListener(evt, function(){
                     const parent_index = Array.from(el.closest('ul').children).indexOf(el.parentNode);
                     for(j=0; j<el.closest('ul').childElementCount; j++){
@@ -100,7 +100,7 @@ function tab_active(_target, evt) {//_target : 대상 / evt : 핸들러
                 });
             });
         } else {
-            el.querySelectorAll('button').forEach((el, i) => {
+            el.querySelectorAll('button, a').forEach((el, i) => {
                 el.addEventListener(evt, function(){
                     const parent_index = Array.from(el.closest('ul').children).indexOf(el.parentNode);
                     for(j=0; j<el.closest('ul').childElementCount; j++){
