@@ -364,7 +364,9 @@ window.addEventListener('scroll', function(){
     // console.log(document.querySelector('.sec_3').offsetTop-250,scrollTop)
     if(document.querySelector('.jumps') != null){
         let sec_offset = document.querySelector('.jumps').offsetTop - winHeight;
-        if(scrollTop >=sec_offset){
+        let header_height = document.querySelector('header').offsetHeight;
+       
+        if(scrollTop >= (sec_offset - header_height)){
             var text = document.querySelectorAll('.jumps .element_jumps > li > img')
             text.forEach(function(a,i){
                 setTimeout(function(){
