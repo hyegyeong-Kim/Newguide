@@ -362,16 +362,18 @@ window.addEventListener('scroll', function(){
     let winHeight = window.outerHeight * 0.4
     let delay = 100
     // console.log(document.querySelector('.sec_3').offsetTop-250,scrollTop)
-    let sec_offset = document.querySelector('.jumps').offsetTop-winHeight;
-      if(scrollTop >=sec_offset){
-          var text = document.querySelectorAll('.jumps .element_jumps > li > img')
-          text.forEach(function(a,i){
-            setTimeout(function(){
-              a.style.animation = "jumps 2s ease-in-out 1 alternate";
-              a.style.animationDelay = (delay*i);
-              // console.log('1 : '+i)
-            }, (delay*i))
-            console.log(delay*i)
-          })
-      }
+    if(document.querySelector('.jumps') != null){
+        let sec_offset = document.querySelector('.jumps').offsetTop - winHeight;
+        if(scrollTop >=sec_offset){
+            var text = document.querySelectorAll('.jumps .element_jumps > li > img')
+            text.forEach(function(a,i){
+                setTimeout(function(){
+                a.style.animation = "jumps 2s ease-in-out 1 alternate";
+                a.style.animationDelay = (delay*i);
+                // console.log('1 : '+i)
+                }, (delay*i))
+                console.log(delay*i)
+            })
+        }
+    }
   })
