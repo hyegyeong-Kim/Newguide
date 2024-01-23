@@ -74,13 +74,15 @@ function tab_active(_target, evt) {//_target : 대상 / evt : 핸들러
 function accordion(_target, evt){ // 23.08.18 nextElementSibling 테그가 없는 경우를 위한 수정
     var evt,
     accordion = document.querySelectorAll(_target, evt);
-
+    console.log('accordion :', accordion)
     accordion.forEach(el => {
-        el.querySelectorAll('dt > a').forEach((el, i) => {
+        console.log('el :', el)
+        el.querySelectorAll('.board_type_toggle > dt > a').forEach((el, i) => {
             el.addEventListener(evt, function(){
                 if(el.closest('dl').classList.contains('single')){
+                    console.log('closet :', el.closest('dl'))
                     const parent_index = Array.from(el.closest('dl').getElementsByTagName('dt')).indexOf(el.parentNode);
-
+                    console.log('parent_index :', parent_index)
                     for(j=0; j<el.closest('dl').getElementsByTagName('dt').length; j++){
                         if(i != j && el.closest('dl').getElementsByTagName('dt')[j].nextElementSibling != null){
                             el.closest('dl').getElementsByTagName('dt')[j].nextElementSibling.classList.remove('show');
