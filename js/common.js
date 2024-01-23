@@ -1,6 +1,10 @@
 $(document).ready(function(){
     $('header').load($('header').attr('data-include-path'));
     $('footer').load($('footer').attr('data-include-path'));
+
+    $('label.input').each(function(){
+        placeholder(this);
+    });
 });
 
 progress_bar()
@@ -39,6 +43,10 @@ function ajax(_url,_wrap){
                 // load_wrap.innerHTML = data;
                 // document.querySelector('.content').append(load_wrap)
             }
+
+            $('label.input').each(function(){
+                placeholder(this);
+            });
         },
         complete: function(data) {
         },
@@ -49,23 +57,61 @@ function ajax(_url,_wrap){
 }
 /* //ajax */
 
+/* ajax - vanilla */
+//XMLHttpRequest 객체 생성
+function van_ajax(_url,_wrap){
+    var xhr = new XMLHttpRequest();
+
+    //요청을 보낼 방식, url, 비동기여부 설정
+    xhr.open('POST', _load, true);
+
+    //HTTP 요청 헤더 설정
+    xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+
+    //요청 전송
+    xhr.send("id=post_ajax");
+
+    //Callback
+    xhr.onload = function () {
+        if (xhr.status == 200) {
+            //success
+            _wrap.innerHTML = xhr.response;
+        } else {
+            //failed
+        }
+    }
+}
+/* //ajax - vanilla */
+
 /* tab */
 function tab_active(_target, evt) {//_target : 대상 / evt : 핸들러
     var evt,
     tab = document.querySelectorAll(_target);
     
     tab.forEach(el => {
-        el.querySelectorAll('a').forEach((el, i) => {
-            el.addEventListener(evt, function(){
-                const parent_index = Array.from(el.closest('ul').children).indexOf(el.parentNode);
-                for(j=0; j<el.closest('ul').childElementCount; j++){
-                    el.closest('ul').children[j].classList.remove('current')
-                    el.closest('ul').nextElementSibling.children[j].classList.remove('current');
-                }
-                el.parentNode.classList.add('current');
-                el.closest('ul').nextElementSibling.children[i].classList.add('current');
+        if(el.classList.contains('demo')){// 탭버튼에만 current 효과 줄 때
+            el.querySelectorAll('button, a').forEach((el, i) => {
+                el.addEventListener(evt, function(){
+                    const parent_index = Array.from(el.closest('ul').children).indexOf(el.parentNode);
+                    for(j=0; j<el.closest('ul').childElementCount; j++){
+                        el.closest('ul').children[j].classList.remove('current');
+                    }
+                    el.parentNode.classList.add('current');
+                });
             });
-        });
+        } else {
+            el.querySelectorAll('button, a').forEach((el, i) => {
+                el.addEventListener(evt, function(){
+                    const parent_index = Array.from(el.closest('ul').children).indexOf(el.parentNode);
+                    for(j=0; j<el.closest('ul').childElementCount; j++){
+                        el.closest('ul').children[j].classList.remove('current');
+                        el.closest('.tab_wrap').querySelector('.tab_content').children[j].classList.remove('current');
+                    }
+                    el.parentNode.classList.add('current');
+                    el.closest('.tab_wrap').querySelector('.tab_content').children[i].classList.add('current');
+                });
+            });
+        }
     })
 }
 /* //tab */
@@ -234,7 +280,7 @@ function ham_btn(_target){
 
 /* Input Form */
 function input_btn_chk(e){ // 버튼보이기
-    var icon_button = e.closest('.label_wrap').querySelector('button')
+    var icon_button = e.closest('.input').querySelector('button')
     if(e.value.length>0){
         icon_button.style.cssText="display:block;"
     }else{
@@ -242,14 +288,14 @@ function input_btn_chk(e){ // 버튼보이기
     }    
 }//function input_btn_chk()
 function input_btn_fn(e){ // del 클릭시, input 내용 삭제
-    var input = e.closest('.label_wrap').querySelector('input')
-    input.value = null
-    e.style.display="none"
+    var input = e.closest('.input').querySelector('input');
+    input.value = null;
+    e.style.display="none";
+    e.parentNode.querySelector('i').style.display="block";
 }//function input_btn_fn()
 function input_btn_chg(){
     var icon_pss = document.querySelector('button.icon_pss')
     var input_password = document.querySelector('input.password')
-    console.log(icon_pss,input_password)
     icon_pss.classList.toggle('active');
     if(icon_pss.classList.contains('active')){
         
@@ -259,8 +305,22 @@ function input_btn_chg(){
     }
 }
 
-
-/* jquery */
+/* input focus */
+function placeholder(_target){
+    _target = $(_target);
+    _target.find('i').click(function(){
+        $(this).hide();
+        $(this).siblings('input').focus();
+    });
+    _target.find('input').focus(function(){
+        $(this).siblings('i').hide();
+    });
+    _target.find('input').blur(function(){
+        if($(this).val().length < 1){
+            $(this).siblings('i').show();
+        }
+    });
+}
 
 /* sticky_gallery */
 var sticky_gallery = {
