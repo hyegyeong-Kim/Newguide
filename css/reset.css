@@ -1,0 +1,12 @@
+html,body{height: 100%;}
+*{margin:0; padding: 0; font-family:inherit; font-size: inherit; color:inherit; box-sizing:border-box; text-decoration: inherit; font-style: inherit; font-weight: inherit; line-height: inherit; word-break: keep-all;}
+body{text-decoration: none; font-style: normal; font-weight: normal;} 
+li{list-style: none;}
+table{border-spacing: 0; border-collapse: collapse;}
+select,textarea,input{box-sizing: border-box;}
+button{border:none; background: none; cursor: pointer;}
+iframe,fieldset{border:none;}
+.hidden{position: fixed; left:-10000px}
+.clearfix::after{content:""; display: block; clear: both;}
+input[type="password"]::-ms-reveal,
+input[type="password"]::-ms-clear {display: none;}

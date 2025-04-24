@@ -1,0 +1,50 @@
+#header.guide, #footer.guide{width: 100%; background-color: orangered;}
+/* header */
+header {width:100%; position:fixed; top:0; left:0; right:0; z-index:1;}
+header h1 {width:95%; padding:1% 0; color:#fff; font-size:18px; font-weight:600; text-align:center;}
+header ul {color:#fff; font-weight:600; border-top:2px solid #d4d4d4; display:flex; align-items:center;}
+header li {width:150px; border-right:1px solid #fff; float:left;}
+header li:active {color:#000; background-color:#eee;} 
+header li button {width:100%; padding:10px 0; box-sizing:border-box; text-align:center; display:block;}
+
+h2 {margin:-8px -20px 20px -20px; padding:10px 20px 5px; font-size:28px; font-weight:600; background-color:#fff; border-bottom:1px dotted #d4d4d4; box-shadow:0px 6px 6px rgba(0,0,0,0.2); position:sticky; top:112px; z-index:1; display:flex; align-items:center; justify-content:space-between;}
+h2 > span {margin-right:auto; margin-left:10px; font-size:14px;}
+h2 button {width:20px; height:20px; font-size:0; position:relative;}
+h2 button:before, h2 button:after, h2 em:before, h2 em:after {width:9px; height:9px; border:1px solid #df262b; content:''; position:absolute; top:0; left:0; display:block;}
+h2 button:after, h2 em:after {right:0; left:inherit;}
+h2 em:before, h2 em:after {top:inherit; bottom:0;}
+
+.sample_wrap > ul {margin-top:-20px;}
+.sample_wrap > ul > li {padding-top:20px; box-sizing:border-box;}
+.sample_wrap > ul > li > .item {padding:15px; border:1px solid #ddd; border-radius:4px; box-shadow:2px 2px 4px rgba(0,0,0,0.25);}
+.sample_wrap h3 {margin-bottom:20px; padding-left:15px; font-size:18px; font-weight:700; position:relative; display:flex; justify-content:space-between;}
+.sample_wrap h3 button {padding:5px 10px; color:#fff; font-size:14px; background-color:#df262b; border-radius:50px;}
+.sample_wrap h3:before {border-left:5px solid #df262b; content:''; position:absolute; top:5px; bottom:5px; left:0;}
+.sample_wrap .explain {margin:20px 0;}
+.sample_wrap .explain li {padding-left:10px; position:relative;}
+.sample_wrap .explain li + li {margin-top:5px;}
+.sample_wrap .explain li:before {width:3px; height:3px; background-color:#666; content:''; position:absolute; top:10px; left:0; display:inline-block;}
+.sample_wrap .explain li em {font-size:12px;}
+.sample_wrap pre {display:none;}
+.sample_wrap pre.active {display:block;}
+
+.sample_wrap.division > ul {margin-top:-20px; margin-left:-20px; display:flex; flex-wrap:wrap;}
+.sample_wrap.division > ul > li {width:50%; padding-top:20px; padding-left:20px;}
+
+.sample_wrap.division h2 button:before, .sample_wrap.division h2 em:before {display:none;}
+.sample_wrap.division h2 button:after, .sample_wrap.division h2 em:after {width:auto; left:0;}
+
+.tit_wrap {margin-top: 3%;}
+.design_box {margin-top:10px; padding:10px; border:1px solid #ddd; position:relative;}
+.design_box:has(.board_wrap) {overflow:hidden;}
+.code_box, .style_box {margin-top:20px; padding:0 20px; color:#fff; background-color:#000; border-radius:4px; overflow:auto;}
+
+/* guide용 재정의 */
+.sample_wrap .hamber_btn {margin:0 auto; position:relative; top:0; left:0;}
+
+.sample_wrap .top_btn {margin:0 auto; opacity:1; position:static;}
+
+.sample_wrap div.scroll_icon {position:relative;}
+.sample_wrap .count {font-size:26px; font-weight:700; text-align:center;}
+
+/* .sample_wrap .Select_Radio_Check .design_box{height: 100px; display:flex; align-items:center; justify-content:space-around;} */

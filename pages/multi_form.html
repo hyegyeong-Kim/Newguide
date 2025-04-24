@@ -1,0 +1,52 @@
+<ul class="explain">
+    <li>multi_form에 에러 메시지 노출 시 "multi_form"에 err 클래스 추가, "multi_form err"와 근접해 있는 em이 노출됨</li>
+</ul>
+
+<ul class="form_group">
+    <li>
+        <!-- select + input -->
+        <div class="multi_form">
+            <label class="select">
+                <select>
+                    <option>Option01</option>
+                    <option>Option02</option>
+                    <option>Option03</option>
+                </select>
+            </label>
+            <label class="input">
+                <i>Placeholder</i>
+                <input type="text" onkeyup="input_btn_chk(this);">
+                <em>error message</em>
+                <button class="icon_del" type="button" onclick="input_btn_fn(this)">delete</button>
+            </label>
+        </div>
+        <!-- error message -->
+        <em>error message!!</em>
+        <!-- //error message -->
+        <!-- //select + input -->
+    </li>
+    <li>
+        <!-- input + input -->
+        <div class="multi_form">
+            <label class="input">
+                <i>Placeholder</i>
+                <input type="number" onkeyup="input_btn_chk(this);">
+                <em>error message</em>
+                <button class="icon_del" type="button" onclick="input_btn_fn(this)">delete</button>
+            </label>
+            <label class="input">
+                <i>Placeholder</i>
+                <input type="text" onkeyup="input_btn_chk(this);">
+                <em>error message</em>
+                <button class="icon_del" type="button" onclick="input_btn_fn(this)">delete</button>
+            </label>
+        </div>
+        <!-- //input + input -->
+    </li>
+</ul>
+
+<script>
+    $('label.input').each(function(){
+        placeholder(this); //placeholder 관련 기능
+    });
+</script>

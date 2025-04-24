@@ -1,0 +1,81 @@
+<style type="text/css">
+    /* 오늘 날짜 카운트 */
+    .section_today {height:220px; background: rgba(0, 0, 0, 0.7); text-align:center; position:relative; overflow:hidden;}
+    .section_today .date_box {height: 100%;}
+    .section_today .date_box .t_date {color:#fff; font-size:300px; -webkit-text-fill-color:transparent; -webkit-text-stroke:2px #fff; position: absolute; left:20px; top:400px; z-index:100; opacity: .1; transform:translateX(-100%); transition:transform 1s;}
+    .section_today.active .date_box .t_date {transform:translateX(0%);}
+    .section_today .date_box .date_count {height:200px; position: relative; display:inline-block;opacity: 0; transition:opacity .5s 1s; overflow:hidden;}
+    .section_today.active .date_box .date_count {opacity: 1;}
+    .section_today .date_box .date_count:after {clear:both; display:block; content:'';}
+    .section_today .date_box .date_count .count_box { float: left;  animation: count_date 2.8s 1 ease-out both paused;}
+    .section_today .date_box .date_count .count_box.active { animation-play-state: running;}
+    .section_today .date_box .date_count .count_box span {height:200px; color:#fff; font-size:200px; line-height: 1; text-align: center; -webkit-text-fill-color:transparent; -webkit-text-stroke:6px #fff; display:block;}
+    
+    
+    @keyframes count_date {
+        0%{
+            transform: translateY(0px);
+        }
+        100% {
+            transform: translateY(-4800px); /* 높이 x 롤링될 개수로 구한값 */
+        }
+    }
+    
+    </style>
+    <body>
+        <div class="wrap">
+            <section class="section_today">
+                <article class="date_box">
+                    <div class="tb_row">
+                        <div class="tb_cell">
+                            <div class="date_count"></div> <!-- 롤링될 날짜가 추가될 엘리먼트 -->
+                        </div>
+                    </div>
+                </article>
+            </section>
+        </div>
+    <script type="text/javascript">
+    
+    $(function(){
+    
+        /* 날짜 카운트*/
+        function countDate() {
+    
+            var el = $('.date_count');
+            var date = new Date();
+            var todayDate = String(date.getFullYear()) + String(date.getMonth() + 1) + String(date.getDate());
+            var rolling = 24;
+            var resultArray = [];
+                resultArray = todayDate.split('');
+    
+            $.each(resultArray, function(idx, val) {
+                var conuntBox = $('<div class="count_box" />');
+                var numberArray = [];
+                var number = Number(val);
+                for(var i = 0; i <= rolling; i++) {
+                    var sum = number + i;
+                    var num = sum >= 10 ? Number(String(sum).split('')[1]) : sum;
+                    numberArray[i] = num;
+                };
+                numberArray.reverse()
+                numberArray.forEach(function(val) {
+                    var countValue = $('<span/>', {
+                        text: val
+                    });
+                countValue.appendTo(conuntBox);
+                });
+                conuntBox
+                .appendTo(el)
+                .delay(idx * 300)
+                .queue(function(){
+                    $(this).addClass('active');
+                });
+            });
+        };
+        countDate();
+    });
+    setTimeout(function() {
+        $('section').addClass('active');
+    },200);
+    
+    </script>

@@ -1,0 +1,966 @@
+<script>
+var sample_list = document.querySelectorAll('.sample_wrap > ul > li');
+sample_list.forEach((t) => {
+    var design = t.querySelector('.design_box'),
+    code = t.querySelector('.code_box'),
+    Source_code = String(design.innerHTML);
+
+    const b = document.createElement('button');
+    b.innerHTML = 'View source'
+    t.querySelector('h3').append(b)
+
+    t.getElementsByTagName('h3')[0].children[0].addEventListener('click', function(e){
+        const code_box = t.getElementsByClassName('code_box');
+        const style_box = t.getElementsByClassName('style_box');
+        if(code_box[0].classList.contains('active')){
+            code_box[0].classList.remove("active");
+            style_box[0].classList.remove("active");
+            e.currentTarget.textContent = "View source"
+        } else {
+            code_box[0].classList.add("active");
+            style_box[0].classList.add("active");
+            e.currentTarget.textContent = "Hide source"
+        }
+    });
+    
+    code.children[0].innerHTML = escapeHtml(Source_code)
+});
+
+var count = 5;
+var hori_mg = 10;
+var verti_mg = 10;
+
+document.getElementsByTagName('h2')[0].children[0].addEventListener('click', function(e){
+    if(document.querySelector('.sample_wrap').classList.contains('division')){
+        document.querySelector('.sample_wrap').classList.remove('division');
+
+        /* function 재호출 */
+        var e = '.sticky_gallery ul li';
+        sticky_gallery.deployment(e, count, hori_mg, verti_mg);
+
+
+        progress_bar(document.querySelector('h2'))
+        /* //function 재호출 */
+    } else {
+        document.querySelector('.sample_wrap').classList.add('division');
+
+        /* function 재호출 */
+        var e = '.sticky_gallery ul li';
+        sticky_gallery.deployment(e, count, hori_mg, verti_mg);
+
+
+        progress_bar(document.querySelector('h2'))
+        /* //function 재호출 */
+    }
+});
+
+function escapeHtml(str) {
+    var map = {
+        '&': '&amp;',
+        '<': '&lt;',
+        '>': '&gt;',
+        '"': '&quot;',
+        "'": '&#039;'
+    };
+    return str.replace(/[&<>"']/g, function(m) { return map[m]; });
+}
+
+/* sticky gallery */
+var e = '.sticky_gallery ul li';
+sticky_gallery.deployment(e, count, hori_mg, verti_mg);
+/* //sticky gallery */
+
+
+progress_bar(document.querySelector('h2'))
+
+tab_active('.tab_wrap > ul', 'click')
+
+ham_btn('.hamber_btn')
+accordion('.board_type_toggle', 'click');
+go_top('.top_btn');
+
+const max = [333,666,999,101010]
+const _target = document.querySelectorAll(".count");
+// const max = [333,345,3436];//카운터 데이터 배열형태 숫자로 입력
+for(let i=0; i<max.length; i++){
+    if(_target.length > i){
+        setTimeout(() => counter(_target[i], max[i]));
+    }
+}
+</script>
+<div class="sample_wrap">
+    <h2>Elements
+        <button><em>분할</em></button>
+    </h2>
+    <ul><!-- [design_box] pre 자동 생성으로 pre 기준으로 소스 들여쓰기 필요 -->
+        <!-- tab -->
+        <li>
+            <div class="item">
+                <h3>Tab</h3>
+                <ul class="explain">
+                    <li>class [tab_type_] 로 스타일 구분.</li>
+                    <li>tab_content 없이 기능만 필요할 때 [tab_type_]에 'demo' 클래스 추가</li>
+                </ul>
+                <div class="design_box">
+<div class="tab_wrap">
+    <ul class="tab_type_01 demo">
+        <li class="current"><a href="#none">Demo Tab01</a></li>
+        <li><a href="#none">Demo Tab02</a></li>
+    </ul>
+    <ul class="tab_type_01" style="margin-top:20px;">
+        <li class="current"><a href="#none">Tab01</a></li>
+        <li><a href="#none">Tab02</a></li>
+    </ul>
+    <div class="tab_content">
+        <div class="current">Tab Content 01</div>
+        <div>Tab Content 02
+
+            <div class="tab_wrap">
+                <ul class="tab_type_01">
+                    <li class="current"><a href="#none">Tab02-1</a></li>
+                    <li><a href="#none">Tab02-2</a></li>
+                </ul>
+                <div class="tab_content">
+                    <div class="current">Tab Content 02-1</div>
+                    <div>Tab Content 02-2</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+                </div>
+                <pre class="code_box"><code></code></pre>
+                <pre class="style_box"><code>
+/* tab */
+.tab_wrap [class*='tab_type'] {display:flex;}
+.tab_wrap [class*='tab_type'] > li {flex:1;}
+.tab_wrap [class*='tab_type'] > li a {display:block;}
+
+.tab_type_01 li + li {border-left:1px solid #fff;}
+.tab_type_01 li a {padding:20px 0; font-size:14px; font-weight:500; background-color:#efefef; text-align:center;}
+.tab_type_01 li.current a {color:#ff7200; font-weight:700; background-color:#fff; border-top:1px solid #ff7200;}
+
+.tab_content {margin-top:20px;}
+.tab_content > div {display:none;}
+.tab_content > div.current {display:block;}
+                </code></pre>
+            </div>
+        </li>
+        <!-- //tab -->
+        <!-- accordion -->
+        <li>
+            <div class="item">
+                <h3>Accordion</h3>
+                <ul class="explain">
+                    <li>클래스 single = 해당 리스트 1개만 open / single != 각각 open</li>
+                </ul>
+                <div class="design_box">
+<dl class="board_type_toggle single">
+    <dt><a href="#none">제목제목제목1</a></dt>
+    <dd>내용내용내용내용1</dd>
+    <dt><a href="#none">제목제목제목1</a></dt>
+    <dd>내용내용내용내용1</dd>
+    <dt><a href="#none">제목제목제목1</a></dt>
+    <dd>내용내용내용내용1</dd>
+</dl>
+                </div>
+                <pre class="code_box"><code></code></pre>
+                <pre class="style_box"><code>
+.board_type_toggle {border-top:1px solid #333; border-bottom:1px solid #333;}
+.board_type_toggle > dt {border-top:1px solid #e8e5e2; position:relative;}
+.board_type_toggle > dt:before, .board_type_toggle > dd:before {font-size:28px; font-weight:500; position:absolute; top:5px; left:20px;}
+.board_type_toggle > dt:before {content:'Q';}
+.board_type_toggle > dd:before {content:'A';}
+.board_type_toggle > dt a {padding:15px 15px 15px 70px; font-size:18px; display:block;}
+.board_type_toggle > dd {padding:15px 15px 15px 70px; line-height:1.5; background-color:#f2f2f2; border-top:1px solid #dbdbdb; position:relative; overflow:hidden; display:none; transition:height 0.2s ease-out;}
+.show {display:block !important;}
+                </code></pre>
+            </div>
+        </li>
+        <!-- //accordion -->
+        <!-- Top Button -->
+        <li>
+            <div class="item">
+                <h3>Top Button</h3>
+                <ul class="explain">
+                    <li>class [tab_type] 로 스타일 구현.</li>
+                </ul>
+                <div class="design_box">
+<div class="top_btn">TOP</div>
+                </div>
+                <pre class="code_box"><code></code></pre>
+                <pre class="style_box"><code>
+/* Top button */
+.top_btn {width:30px; height:30px; padding:1%; color:#fff; font-weight:600; line-height:2em; background-color:coral; border-radius:50%; position:fixed; right: 5%; bottom: 80px; opacity: 0;  transition: opacity 0.5s, transform 0.5s;}
+.top_btn.show {opacity:1; transition:opacity 1s, transform 1s;}
+                </code></pre>
+            </div>
+        </li>
+        <!-- //Top Button -->
+        <!-- scrolldown -->
+        <li>
+            <div class="item">
+                <h3>Scroll down Animation</h3>
+                <ul class="explain">
+                    <li>@keyframes 활용 및 fadeout 효과 구현</li>
+                </ul>
+                <div class="design_box">
+<div class="scroll_icon">
+    <p class="scroll_down">
+        scroll down
+        <img src="./images/arrow_icon.png" alt="scroll_img">
+    </p>
+</div>
+                </div>
+                <pre class="code_box"><code></code></pre>
+                <pre class="style_box"><code>
+/* scroll_down */
+.scroll_icon{font-weight:600; text-align: center; opacity: 0.7; position:absolute; bottom: 40%; left:50%; transform:translateX(-50%);}
+.scroll_icon img{width:50px; margin:0 auto; display:block; transform:rotate(90deg);}
+.scroll_down{white-space:nowrap; position:relative; animation-name: scroll_down; animation-duration: 2s; animation-iteration-count: infinite;}
+.scroll_icon.show{opacity:0; transition:opacity 1s, transform 1s;}
+
+@keyframes scroll_down {
+    0%{top:0px;}
+    75%{top:30px;}
+    100%{top:0px;}
+}
+                </code></pre>
+            </div>
+        </li>
+        <!-- //scrolldown -->
+        <!-- Hamberger_Menu -->
+        <li>
+            <div class="item">
+                <h3>Hamberger_Menu</h3>
+                <div class="design_box">
+<div class="hamber_btn">
+    <span></span>
+    <span></span>
+    <span></span>
+</div>
+                </div>
+                <pre class="code_box"><code></code></pre>
+                <pre class="style_box"><code>
+/* Hamberger_Menu */
+.hamber_btn {width:50px; height:50px; position:absolute; left:20px; top:20px; cursor:pointer;}
+.hamber_btn > span {position:absolute; top:50%; right:0; left:0; height:8px; background:#000; border-radius:10px; display:block; transition:all 0.5s;}
+.hamber_btn > span:nth-child(1) {top:0;}
+.hamber_btn > span:nth-child(2) {margin-top:-4px;}
+.hamber_btn > span:nth-child(3) {margin-top:-8px; top:100%;}
+
+.hamber_btn > .on:nth-child(1) {top:50%; transform:translateY(-50%) rotate(225deg); transition-delay:0.2s; }
+.hamber_btn > .on:nth-child(2) {opacity:0; transform:translateX(50px);}
+.hamber_btn > .on:nth-child(3) {margin-top:0; top:50%; transform:translateY(-50%) rotate(-225deg); transition-delay:0.2s; }
+                </code></pre>
+            </div>
+        </li>
+        <!-- // Hamberger_Menu -->
+        <!-- gnb_hover -->
+        <li>
+            <div class="item">
+                <h3>gnb hover</h3>
+                <ul class="explain">
+                    <li>class [gnb_list] 로 스타일 구현.</li>
+                </ul>
+                <div class="design_box">
+<ul class="gnb_list">
+    <li><a href="#">Home</a></li>
+    <li><a href="#">About</a></li>
+    <li><a href="#">상품소개</a></li>
+    <li><a href="#">채용정보</a></li>
+    <li><a href="#">게시판</a></li>
+</ul>
+                </div>
+                <pre class="code_box"><code></code></pre>
+                <pre class="style_box"><code>
+/* gnb_hover */
+.gnb_list {display:flex; justify-content:space-between; align-items:center;}
+.gnb_list li {width:50%; padding:1% 0; box-sizing:border-box; text-align:center; position:relative;}
+.gnb_list a {font-weight:600; transition:color 0.3s;}
+.gnb_list a::after{content:''; width:0; height:2px; background-color:red; position:absolute; left:50%; bottom:0; z-index:1; display:block; transform:translateX(-50%); transition:width 0.5s;}
+.gnb_list li:hover a {color:red;}
+.gnb_list li:hover a::after{width:40%;}
+                </code></pre>
+            </div>
+        </li>
+        <!-- // gnb_hover -->
+       <!-- card_layout -->
+        <li class="card_layout">
+            <div class="item">
+                <h3>card new layout</h3>
+                <ul class="explain">
+                    <li>class [hamber_btn] 로 스타일 구현.</li>
+                </ul>
+                <div class="design_box" style="height:500px">
+<ul class="card_layout">
+    <li>
+        <p>웹에이전시</p>
+        <img src="./images/cardnew_01.png" alt="img1">
+        <button><span>Go</span></button>
+        <p>웹에이전시</p>
+        
+    </li>
+    <li>
+        <p>SI</p>
+        <img src="./images/cardnew_02.png" alt="img2">
+        <button><span>Go</span></button>
+        <p>SI</p>
+        
+    </li>
+    <li>
+        <p>GUIDE</p>
+        <img src="./images/cardnew_03.png" alt="img3">
+        <button><span>Go</span></button>
+        <p>GUIDE</p>
+        
+    </li>
+</ul>
+                </div>
+                <pre class="code_box"><code></code></pre>
+                <pre class="style_box"><code>
+/* card new layout */
+.card_layout .design_box ul{height:100%; overflow:hidden; display:flex; justify-content:space-around; align-items: center;}
+.card_layout .design_box li {position:relative;}
+.card_layout .design_box li p:first-of-type{font-weight:600; position:absolute; top:10px; opacity:0; transition: all 0.2s;}
+.card_layout .design_box li p:last-of-type{font-weight: 600; position:absolute; bottom:-20px; left:10px; transition: all 0.4s;}
+.card_layout .design_box button{width:80px; height:80px; padding: 2%; color:#fff; font-weight:600; background-color:orange; border-radius:50%; position:absolute; right:0px; bottom:0; opacity:0; transform: translateX(50px); transition:all 0.4s;}
+.card_layout .design_box img{transition:border-radius 0.6s}
+/* hover 시 */
+.card_layout .design_box li:hover p:first-of-type{opacity:1}
+.card_layout .design_box li:hover p:last-of-type{bottom:5px; opacity:0}
+.card_layout .design_box li:hover button{opacity:1; transform: translateX(0px);}
+.card_layout .design_box li:hover img{border-radius: 80% 5% 25% 5%;}
+                </code></pre>
+            </div>
+        </li>
+        <!-- // card new layout -->
+         <!-- Data Grid : Type-Gallery -->
+         <li>
+            <div class="item">
+                <h3>Data Grid : Type-Gallery</h3>
+                <div class="design_box">
+<div class="board_info_wrap">
+    <p class="result_count">총<strong>999</strong>건의 게시물이 있습니다.</p>
+    <div class="search_wrap">
+        <!-- select -->
+        <div class="select_form">
+            <select>
+                <option>Option01</option>
+                <option>Option01</option>
+                <option>Option02</option>
+                <option>Option03</option>
+            </select>
+        </div>
+        <!-- //select -->
+        <input type="text">
+        <a href="#none" class="btn_search">검색</a>
+    </div>
+</div>
+<!-- board_type_gallery -->
+<div class="board_wrap">
+    <div class="board_type_gallery">
+        <ul class="body">
+            <li style="transform: translateX(0px);">
+                <a href="#none">
+                    <span class="thumb">
+                        <em>배경 또는 이미지</em>
+                    </span>
+                    <p class="board_cont">
+                        <strong class="subject">제목제목</strong>
+                        <span>내용내용</span>
+                    </p>
+                </a>
+            </li>
+            <li style="transform: translateX(0px);">
+                <a href="#none">
+                    <span class="thumb">
+                        <em>배경 또는 이미지</em>
+                    </span>
+                    <p class="board_cont">
+                        <strong class="subject">제목제목</strong>
+                        <span>내용내용</span>
+                    </p>
+                </a>
+            </li>
+            <li style="transform: translateX(0px);">
+                <a href="#none">
+                    <span class="thumb">
+                        <em>배경 또는 이미지</em>
+                    </span>
+                    <p class="board_cont">
+                        <strong class="subject">제목제목</strong>
+                        <span>내용내용</span>
+                    </p>
+                </a>
+            </li>
+            <li style="transform: translateX(0px);">
+                <a href="#none">
+                    <span class="thumb">
+                        <em>배경 또는 이미지</em>
+                    </span>
+                    <p class="board_cont">
+                        <strong class="subject">제목제목</strong>
+                        <span>내용내용</span>
+                    </p>
+                </a>
+            </li>
+            <li style="transform: translateX(0px);">
+                <a href="#none">
+                    <span class="thumb">
+                        <em>배경 또는 이미지</em>
+                    </span>
+                    <p class="board_cont">
+                        <strong class="subject">제목제목</strong>
+                        <span>내용내용</span>
+                    </p>
+                </a>
+            </li>
+        </ul>
+    </div>
+</div>
+<!--페이징 -->
+<div class="paging">
+    <div>
+        <a href="#none" class="first">처음으로</a>
+        <a href="#none" class="prev">이전</a>
+
+        <strong>1</strong>
+        <a href="#none">2</a>
+        <a href="#none">3</a>
+        <a href="#none">4</a>
+        <a href="#none">5</a>
+
+        <a href="#none" class="next">다음</a>
+        <a href="#none" class="last">마지막으로</a>
+    </div>
+</div>
+<script>
+    swip_delete($('.board_type_gallery li'));
+</script>
+                </div>
+                <pre class="code_box"><code>
+                </code></pre>
+                <pre class="style_box"><code>
+/* type-gallery */
+.board_type_gallery {padding-top:20px; border-top:1px solid #333;}
+.board_type_gallery ul.body {margin-top:-20px; margin-left:-20px;}
+.board_type_gallery ul.body:after {clear:both; content:''; display:block;}
+.board_type_gallery ul.body > li {width:25%; padding-top:20px; padding-left:20px; float:left;}
+.board_type_gallery ul.body > li > * {border:1px solid #e8e5e2; display:block;}
+.board_type_gallery .thumb {height:150px; background-color:#f1f1f1; background-position:50%; background-repeat:no-repeat; background-size:cover; text-align:center; display:block;}
+.board_type_gallery .thumb:after {height:100%; vertical-align:middle; content:''; display:inline-block;}
+.board_type_gallery .thumb em {max-width:95%; color:#cfcfcf; font-size:24px; font-weight:700; vertical-align:middle; display:inline-block;}
+.board_type_gallery .board_cont {padding:20px;}
+.board_type_gallery .board_cont > * {display:block;}
+.board_type_gallery .board_cont .subject {font-size:20px; font-weight:500;}
+
+/* paging */
+.paging {margin-top:50px; text-align:center;}
+.paging > div {display:inline-block;}
+.paging > div:after {clear:both; content:''; display:block;}
+.paging > div > * {width:40px; height:40px; margin:0 2px; color:#555; font-size:14px; line-height:38px; border:1px solid #e8e5e2; vertical-align:middle; float:left; position:relative; display:inline-block; transition:all 0.35s;}
+.paging > div > *:hover {color:#fff; background-color:#666; border-color:#666;}
+.paging > div strong {color:#fff; background-color:#666; border-color:#666;}
+.paging .first, .paging .prev, .paging .next, .paging .last {font-size:0;}
+.paging .first:before, .paging .prev:before, .paging .next:before, .paging .last:before {width:8px; height:8px; border-top:1px solid #666; border-right:1px solid #666; vertical-align:middle; content:''; display:inline-block;}
+.paging .first:hover:before, .paging .prev:hover:before, .paging .next:hover:before, .paging .last:hover:before, .paging .first:hover:after, .paging .last:hover:after {border-color:#fff;}
+.paging .first:after, .paging .last:after {width:8px; height:8px; border-top:1px solid #666; border-right:1px solid #666; vertical-align:middle; content:''; display:inline-block;}
+.paging .first:before, .paging .first:after, .paging .prev:before {margin-right:-3px; transform:rotate(-135deg);}
+.paging .next:before, .paging .last:before, .paging .last:after {margin-left:-3px; transform:rotate(45deg);}
+.paging .prev {margin-right:16px;}
+.paging .next {margin-left:16px;}
+
+
+/* result & search */
+.board_info_wrap {margin-bottom:20px;}
+.board_info_wrap:after {clear:both; content:''; display:block;}
+.board_info_wrap .result_count {margin-top:10px; float:left;}
+.board_info_wrap .search_wrap {float:right; position:relative; display:flex;}
+.board_info_wrap .search_wrap input[type='text'] {height:42px; margin-left:5px; padding-right:45px; vertical-align:middle;}
+.board_info_wrap .search_wrap .btn_search {width:40px; font-size:0; background-color:#ff7200; position:absolute; top:0; right:0; bottom:0;}
+.board_info_wrap .search_wrap .btn_search:before {width:12px; height:12px; margin-top:-2px; margin-left:-2px; border:2px solid #fff; border-radius:50%; content:''; position:absolute; top:50%; left:50%; display:inline-block; transform:translate(-50%, -50%);}
+.board_info_wrap .search_wrap .btn_search:after {height:8px; margin-top:4px; margin-left:8px; border-left:2px solid #fff; content:''; position:absolute; top:50%; left:50%; display:inline-block; transform:rotate(-45deg) translate(-50%, -50%);}
+
+/* select_form*/
+.select_form select{height:42px;}
+
+/* 미디어쿼리 */
+@media screen and (max-width:768px){
+/* input */
+input[type="text"], input[type="email"], input[type="number"], input[type="tel"], input[type="password"], input[type="url"], input[type="search"], input[type="file"], textarea {height:32px; line-height:30px;}
+
+/* button */
+[class*='btn_min'] {height:26px; font-size:12px; line-height:24px;}
+[class*='btn_mid'] {height:36px; font-size:13px; line-height:34px;}
+[class*='btn_large'] {height:40px; font-size:16px; line-height:38px;}
+
+/* select */
+.select_form dl {display:none;}
+.select_form {background-color:#fff; border:1px solid #e8e5e2; vertical-align:middle; display:inline-block; position:relative;}
+.select_form:after {width:4px; height:4px; margin-top:-4px; border-right:2px solid #353535; border-bottom:2px solid #353535; content:''; position:absolute; top:50%; right:8px; display:inline-block; transform:rotate(45deg); transition:all 0.2s;}
+.select_form select {height:30px; padding:0 20px 0 10px; line-height:28px; background-color:#fff; display:block;}
+
+/* result * search */
+.board_info_wrap .result_count {margin-top:6px; font-size:13px;}
+.board_info_wrap .search_wrap {float:right;}
+.board_info_wrap .search_wrap .btn_search {width:32px;}
+.board_info_wrap .search_wrap .btn_search:before {width:9px; height:9px;}
+.board_info_wrap .search_wrap .btn_search:after {height:6px;margin-top:3px; margin-left:7px;}
+.board_info_wrap .search_wrap input[type='text'] {padding-left:5px; padding-right:40px; vertical-align:middle;}
+
+/* paging */
+.paging > div > * {width:30px; height:30px; line-height:28px;}
+.paging .first:before, .paging .prev:before, .paging .next:before, .paging .last:before {width:5px; height:5px;}
+.paging .first:after, .paging .last:after {width:5px; height:5px;}
+.paging .next:before, .paging .last:before, .paging .last:after {margin-left:-1px;}
+.paging .first:before, .paging .first:after, .paging .prev:before {margin-right:-1px;}
+
+/* tab */
+.tab_type_01 a {padding:6px 0; font-size:13px;}
+
+/* board */
+.board_type_list01 > ul > li > * {height:40px; padding:10px; box-sizing: border-box;}
+
+.board_type_gallery ul.body > li {width:96% !important;}
+.board_type_gallery .thumb {width:100%;}
+.board_type_gallery .thumb em {font-size:20px;}
+.board_type_gallery .board_cont {padding:10px 15px;}
+.board_type_gallery .board_cont .subject {font-size:18px;}
+}
+
+@media screen and (max-width:768px){
+.board_info_wrap .result_count, .board_info_wrap .search_wrap {float:none; display: block;}
+.board_info_wrap .search_wrap {margin-top:6px;}
+.board_info_wrap .search_wrap .select_form {margin-bottom:5px; display:block;}
+.board_info_wrap .search_wrap .select_form select {width:100%;}
+.board_info_wrap .search_wrap input[type='text'] {width:100%; margin-left:0;}
+.board_info_wrap .search_wrap .btn_search {top:37px;}
+
+/* paging */
+.paging, .btnSection {margin-top:25px;}
+.paging > div > * {width:24px; height:24px; font-size:12px; line-height:22px;}
+.paging .prev {margin-right:10px;}
+.paging .next {margin-left:10px;}
+.paging .next:before, .paging .last:before, .paging .last:after {margin-left:-2px;}
+.paging .first:before, .paging .first:after, .paging .prev:before {margin-right:-2px;}
+
+/* button */
+[class*='btn_min'] {height:22px; line-height:20px;}
+[class*='btn_mid'] {height:30px; line-height:28px;}
+[class*='btn_large'] {height:34px; font-size:14px; line-height:32px;}
+
+/* board */
+[class*='board_type_list'] > ul > li {position:relative; display:block;}
+[class*='board_type_list'] > ul > li > * {display:inline-block;}
+[class*='board_type_list'] > ul > li > .subject {display:block;}
+
+.board_type_list01 {text-align:left;}
+.board_type_list01 > ul.header {display:none;}
+.board_type_list01 > ul > li {padding:5px;}
+.board_type_list01 > ul > li > * {height:inherit; padding:0; font-size:12px; line-height:1.5;}
+.board_type_list01 > ul > li > .subject {font-size:14px;}
+.board_type_list01 > ul > li > .w_date {width:70px;}
+
+.board_type_gallery ul.body > li {width:100%;}
+.board_type_gallery .board_cont > * {font-size:13px;}
+.board_type_gallery .board_cont .subject {font-size:15px;}
+
+}
+                </code></pre>
+            </div>
+        </li>
+        <!-- // Data Grid : Type-Gallery -->
+                  <!-- Select / Radio / CheckInput -->
+        <li class="Select_Radio_Check">
+            <div class="item">
+                <h3>Select / Radio / CheckInput</h3>
+                <div class="design_box">
+<!-- select form -->
+<label class="select">
+    <select>
+        <optgroup label="Option01">
+            <option>Option Group01-1</option>
+            <option>Option Group01-2</option>
+            <option>Option Group01-3</option>
+            <option>Option Group01-4</option>
+        </optgroup>
+        <option>Option02</option>
+        <optgroup label="Option03">
+            <option>Option Group03-1</option>
+            <option>Option Group03-2</option>
+            <option>Option Group03-3</option>
+            <option>Option Group03-4</option>
+        </optgroup>
+    </select>
+</label>
+<!-- //select form -->
+<br/>
+
+<!-- switch -->
+<label class="check_ani">
+    <input type="checkbox">
+    <em>Switch</em>
+</label>
+<!-- //switch -->
+
+<!-- radio -->
+<label class="check"><input type="radio" /><em class="label">Radio</em></label>
+<!-- //radio -->
+
+<!-- check -->
+<label class="check"><input type="checkbox" /><em class="label">Checkbox</em></label>
+<!-- //check -->
+<br/><br/>
+
+<!-- group의 경우 "check_group"으로 묶어 줌 -->
+<div class="check_group">
+    <label class="check">
+        <input type="radio" name="group" />
+        <em class="label">Radio01</em>
+    </label>
+    <label class="check">
+        <input type="radio" name="group" />
+        <em class="label">Radio02</em>
+    </label>
+    <label class="check">
+        <input type="radio" name="group" />
+        <em class="label">Radio03</em>
+    </label>
+    <label class="check">
+        <input type="radio" name="group" />
+        <em class="label">Radio04</em>
+    </label>
+    <label class="check">
+        <input type="radio" name="group" />
+        <em class="label">Radio05</em>
+    </label>
+</div>
+                </div>
+                <pre class="code_box"><code></code></pre>
+                <pre class="style_box"><code>
+/*  Select / Radio / CheckInput */
+/* input */
+input {vertical-align:middle;}
+
+input[type="text"], input[type="email"], input[type="number"], input[type="tel"], input[type="password"], input[type="url"], input[type="search"], input[type="file"], textarea {height:42px; padding:0 15px; background-color:#fff; border:1px solid #e8e5e2; border-radius:0; -webkit-appearance:none; -moz-appearance:none; -ms-appearance:none; -o-appearance:none;}
+
+.check {padding-left:20px; line-height:1; position:relative; display:inline-block;}
+.check > * {line-height:1.4; vertical-align:middle; display:inline-block;}
+.check input {margin:0 0 0 1px; position:absolute;}
+.check .label:before, .check .label:after {content:''; position:absolute; display:inline-block;}
+
+/* radio */
+.check input[type='radio'], .check input[type='radio'] + .label:before {width:12px; height:12px; background-color:#fff; border:1px solid #ccc; border-radius:50%; top:3px; left:0;}
+.check input[type='radio']:checked + .label:after {width:8px; height:8px; background-color:#333; border-radius:50%; top:6px; left:3px;}
+
+/* checkbox */
+.check input[type='checkbox'], .check input[type='checkbox'] + .label:before {width:12px; height:12px; background-color:#fff; border:1px solid #ccc; top:3px; left:0;}
+.check input[type='checkbox']:checked + .label:after {width:5px; height:9px; border:2px solid #333; border-top:0; border-left:0; top:2px; left:4px; -webkit-transform:rotate(45deg); transform:rotate(45deg);}
+
+.check_ani {position:relative; display:inline-block;}
+.check_ani input {margin:0 0 0 1px; position:absolute; opacity:0;}
+.check_ani em {min-height:22px; padding-left:48px; position:relative; display:block;}
+.check_ani em:before {width:42px; height:22px; background-color:#ccc; border:0; border-radius:60px; content:''; position:absolute; top:0; left:0; display:inline-block;}
+.check_ani input[type='checkbox'] {opacity:0;}
+.check_ani input[type='checkbox'] + em:after {width:18px; height:18px; background-color:#fff; border-radius:50%; content:''; position:absolute; top:50%; left:2px; z-index:1; display:block; transform:translateY(-50%); transition:all 0.2s;}
+.check_ani input[type='checkbox']:checked + em:before {background-color:#ff7200;}
+.check_ani input[type='checkbox']:checked + em:after {left:22px;}
+                </code></pre>
+            </div>
+        </li>
+        <!-- // Select / Radio / CheckInput-->
+
+          <!-- Input Form -->
+          <li>
+            <div class="item">
+                <h3>Input Form</h3>
+                <ul class="explain">
+                    <li>&lt;label &gt;에 [err] 클래스 추가 시 오류문구 노출</li>
+                </ul>
+                <div class="design_box">
+<ul class="form_group">
+    <li>
+        <p class="form_tit">Default :</p>
+        <label class="input">
+            <i>Placeholder</i>
+            <input type="text" onkeyup="input_btn_chk(this);">
+            <em>error message</em>
+            <button class="icon_del" type="button" onclick="input_btn_fn(this)">delete</button>
+        </label>
+    </li>
+    <li>
+        <p class="form_tit">Password :</p>
+        <label class="input err">
+            <i>Placeholder</i>
+            <input class="password" type="password" onkeyup="input_btn_chk(this);">
+            <em>error message</em>
+            <button type="button" class="icon_pss" onclick="input_btn_chg()">text</button> 
+        </label>
+    </li>
+    <li>
+        <p class="form_tit">Input + button :</p>
+        <div class="label_wrap">
+            <label class="input">
+                <i>Placeholder</i>
+                <input class="text" type="text" onkeyup="input_btn_chk(this);">
+                <em>error message</em>
+                <button class="icon_del" type="button" onclick="input_btn_fn(this)">text</button> 
+            </label>
+            <button class="btn_mid btn_ok"><em>Check</em></button>
+        </div>
+    </li>
+</ul>         
+                </div>
+                <pre class="code_box"><code></code></pre>
+                <pre class="style_box"><code>
+.form_group > li + li {padding-top:20px;}
+.form_group .form_tit {margin-top:0; margin-bottom:6px; font-size:14px !important; font-family:'Noto Sans'; line-height:20px !important; text-align:left !important;}
+.form_group .form_tit em {color:#888; font-weight:400; display:inline-block;}
+.form_group .form_tit.required:after {margin-left:2px; color:#d60812; font-size:14px; content:'*'; display:inline-block;}
+
+label.input, label.select {position:relative; display:block; flex:1;}
+label.input i {color:#aaa; font-size:16px; font-style:normal; line-height:18px; white-space:nowrap; text-overflow:ellipsis; overflow:hidden; position:absolute; top:11px; right:0; left:15px;}/* placeholder */
+label.input input[type='text'], label.input input[type='password'], label.input input[type='number'] {width:100%; font-size:16px; font-family:'MyLotte'; line-height:18px;}
+label.input > em {margin-top:5px; color:#ff7200; font-size:12px; font-family:'Noto Sans'; line-height:18px; display:none;}
+label.input.err > em {display:block;}
+label.input * {flex:1 auto;}
+
+label.input button[class*='icon_'] {width:24px; height:24px; font-size:0; background-repeat:no-repeat; position:absolute; top:10px; right:10px; z-index:1; display:none;}
+label.input button[class*='icon_'] + button[class*='icon_'] {margin-right:34px;}
+label.input button.icon_del {background:url('../images/common/icon_search_del.png') 50% no-repeat; background-size:cover; border:0;}
+label.input button.icon_pss.active, label.input  button.icon_pss {background-size:cover;}
+label.input button.icon_pss.active {background-image:url('../images/common/icon_pass_view.png');}
+label.input button.icon_pss {background-image:url('../images/common/icon_pass_hide.png'); border:0;}
+.select select{width:100%; height:42px; padding:0 20px 0 10px; border:1px solid #e8e5e2;}
+
+.label_wrap {position:relative; flex:1; display:flex; gap:10px;}
+
+.label_wrap label + label {margin-top:10px;}
+                </code></pre>
+            </div>
+        </li>
+        <!-- //Input Form -->
+
+        <!-- multi form -->
+        <li>
+            <div class="item">
+                <h3>Multi Form</h3>
+                <ul class="explain">
+                    <li>multi_form에 에러 메시지 노출 시 "multi_form"에 err 클래스 추가, "multi_form err"와 근접해 있는 em이 노출됨</li>
+                </ul>
+                <div class="design_box">
+<ul class="form_group">
+    <li>
+        <!-- select + input -->
+        <div class="multi_form">
+            <label class="select">
+                <select>
+                    <option>Option01</option>
+                    <option>Option02</option>
+                    <option>Option03</option>
+                </select>
+            </label>
+            <label class="input">
+                <i>Placeholder</i>
+                <input type="text" onkeyup="input_btn_chk(this);">
+                <em>error message</em>
+                <button class="icon_del" type="button" onclick="input_btn_fn(this)">delete</button>
+            </label>
+        </div>
+        <!-- error message -->
+        <em>error message!!</em>
+        <!-- //error message -->
+        <!-- //select + input -->
+    </li>
+    <li>
+        <!-- input + input -->
+        <div class="multi_form">
+            <label class="input">
+                <i>Placeholder</i>
+                <input type="number" onkeyup="input_btn_chk(this);">
+                <em>error message</em>
+                <button class="icon_del" type="button" onclick="input_btn_fn(this)">delete</button>
+            </label>
+            <label class="input">
+                <i>Placeholder</i>
+                <input type="text" onkeyup="input_btn_chk(this);">
+                <em>error message</em>
+                <button class="icon_del" type="button" onclick="input_btn_fn(this)">delete</button>
+            </label>
+        </div>
+        <!-- //input + input -->
+    </li>
+</ul>
+                </div>
+                <pre class="code_box"><code></code></pre>
+                <pre class="style_box"><code>.multi_form {display:flex; flex-wrap:wrap; align-items:center; gap:8px;}
+.multi_form label {flex:1;}
+.multi_form + em {display:none;}
+.multi_form.err + em {margin-top: 5px;color: #ff7200; font-size: 12px; font-family: 'Noto Sans'; line-height: 18px; display:block;}
+
+label.input, label.select {position:relative; display:block; flex:1;}
+label.input i {color:#aaa; font-size:16px; font-style:normal; line-height:18px; white-space:nowrap; text-overflow:ellipsis; overflow:hidden; position:absolute; top:11px; right:0; left:15px;}/* placeholder */
+label.input input[type='text'], label.input input[type='password'], label.input input[type='number'] {width:100%; font-size:16px; font-family:'MyLotte'; line-height:18px;}
+label.input > em {margin-top:5px; color:#ff7200; font-size:12px; font-family:'Noto Sans'; line-height:18px; display:none;}
+label.input.err > em {display:block;}
+label.input * {flex:1 auto;}
+
+label.input button[class*='icon_'] {width:24px; height:24px; font-size:0; background-repeat:no-repeat; position:absolute; top:10px; right:10px; z-index:1; display:none;}
+label.input button[class*='icon_'] + button[class*='icon_'] {margin-right:34px;}
+label.input button.icon_del {background:url('../images/common/icon_search_del.png') 50% no-repeat; background-size:cover; border:0;}
+label.input button.icon_pss.active, label.input  button.icon_pss {background-size:cover;}
+label.input button.icon_pss.active {background-image:url('../images/common/icon_pass_view.png');}
+label.input button.icon_pss {background-image:url('../images/common/icon_pass_hide.png'); border:0;}
+.select select{width:100%; height:42px; padding:0 20px 0 10px; border:1px solid #e8e5e2;}
+
+.label_wrap {position:relative; flex:1; display:flex; gap:10px;}
+
+.label_wrap label + label {margin-top:10px;}</code></pre>
+            </div>
+        </li>
+        <!-- //multi form -->
+
+        <!-- sticky galler -->
+        <li>
+            <div class="item">
+                <h3>Sticky Gallery</h3>
+                <div class="design_box">
+<div class="sticky_gallery">
+    <ul>
+        <li>
+            <span class="thumb"><em><img src="./images/sample/house_01.jpg" alt=""></em></span>
+        </li>
+        <li>
+            <span class="thumb"><em><img src="./images/sample/house_02.jpg" alt=""></em></span>
+        </li>
+        <li>
+            <span class="thumb"><em><img src="./images/sample/house_03.jpg" alt=""></em></span>
+        </li>
+        <li>
+            <span class="thumb"><em><img src="./images/sample/house_04.jpg" alt=""></em></span>
+        </li>
+        <li>
+            <span class="thumb"><em><img src="./images/sample/house_03.jpg" alt=""></em></span>
+        </li>
+        <li>
+            <span class="thumb"><em><img src="./images/sample/house_04.jpg" alt=""></em></span>
+        </li>
+        <li>
+            <span class="thumb"><em><img src="./images/sample/house_02.jpg" alt=""></em></span>
+        </li>
+        <li>
+            <span class="thumb"><em><img src="./images/sample/house_03.jpg" alt=""></em></span>
+        </li>
+        <li>
+            <span class="thumb"><em><img src="./images/sample/house_03.jpg" alt=""></em></span>
+        </li>
+        <li>
+            <span class="thumb"><em><img src="./images/sample/house_04.jpg" alt=""></em></span>
+        </li>
+    </ul>
+</div>
+                </div>
+                <pre class="code_box"><code></code></pre>
+                <pre class="style_box"><code>
+.sticky_gallery {width:100%; margin-top:20px; box-sizing:border-box; min-height:100px;}
+.sticky_gallery ul {position:relative;}
+.sticky_gallery ul:after {display:block; clear:both; content:"";}
+.sticky_gallery ul li {display:inline-block; position:absolute; transition:all 0.5s;}
+.sticky_gallery ul li img {display:block; width:100%;}
+                </code></pre>
+            </div>
+        </li>
+        <!-- //sticky galler -->
+
+        <!-- arrow hover -->
+        <li class="arrow hover">
+            <div class="item">
+                <h3>arrow hover</h3>
+                <ul class="explain">
+                    <li>class [swiper-button-next], [swiper-button-prev]로 스타일 구현.</li>
+                    <li>swiper로 이용 시, .swiper-button-next::after, .swiper-button-prev::after{display:none;} 진행 후 css 작성</li>
+                </ul>
+                <div class="design_box" style="height: 100px; position:relative;">
+<div class="swiper-button-next">
+    <p>Next</p>
+    <span></span>
+    <span></span>
+</div>
+<div class="swiper-button-prev">
+    <p>prev</p>
+    <span></span>
+    <span></span>
+</div>
+                </div>
+                <pre class="code_box"><code></code></pre>
+                <pre class="style_box"><code>
+.swiper-button-next::after, .swiper-button-prev::after{display:none;}
+.swiper-button-prev{margin-left:1%}
+.swiper-button-next{margin-right:1%}
+.swiper-button-next,.swiper-button-prev{width:5%; height:4%; transform: translateY(-50%);}
+.swiper-button-next >p,.swiper-button-prev>p{color:#fff; letter-spacing: 0.5vw; line-height:1vw; text-transform:uppercase;}
+.swiper-button-next >p{margin-right:15%; transform:rotate(-90deg);}
+.swiper-button-prev>p{margin-left:15%; transform:rotate(-90deg);}
+.swiper-button-prev > span,.swiper-button-next > span{width:4px; background:#fff; position:absolute; display:block; transition:all 0.3s;}
+.swiper-button-prev span:first-of-type,.swiper-button-next span:first-of-type{top: 50%; bottom:0}
+.swiper-button-prev span:last-of-type,.swiper-button-next span:last-of-type{top: 0%; bottom: 50%;}
+.swiper-button-prev span:first-of-type,.swiper-button-prev span:last-of-type{left:0;}
+.swiper-button-next span:first-of-type,.swiper-button-next span:last-of-type{right:0;}
+
+/* hover */
+.swiper-button-prev:hover span:first-of-type{margin-top:-5px; transform:rotate(-45deg);}
+.swiper-button-prev:hover span:last-of-type{margin-bottom:-5px; transform:rotate(45deg);}
+.swiper-button-next:hover span:first-of-type{margin-top:-5px; transform:rotate(45deg);}
+.swiper-button-next:hover span:last-of-type{margin-bottom:-5px; transform:rotate(-45deg);}
+                </code></pre>
+            </div>
+        </li>
+        <!-- // arrow hover -->
+
+        <!-- element_jumps -->
+        <li class="jumps">
+            <div class="item">
+                <h3>element_jumps</h3>
+                <ul class="explain">
+                    <li>스크롤 이벤트이기 때문에 거꾸로 다시 진행하는 부분은 현재까지 불가함(해당부분 확인 중)</li>
+                    <li>반복횟수 등은 js파일에서 수정 가능!</li>
+                </ul>
+                <div class="design_box">
+                    <ul class="element_jumps">
+                        <li><img src="../images/clients_01.png" alt="홈앤쇼핑"></li>
+                        <li><img src="../images/clients_02.png" alt="이마트"></li>
+                        <li><img src="../images/clients_03.png" alt="우리은행"></li>
+                        <li><img src="../images/clients_04.png" alt="롯데면세점"></li>
+                        <li><img src="../images/clients_05.png" alt="신세계"></li>
+                        <li><img src="../images/clients_06.png" alt="리바트"></li>
+                        <li><img src="../images/clients_07.png" alt="미래에셋"></li>
+                        <li><img src="../images/clients_08.png" alt="gsshop"></li>
+                        <li><img src="../images/clients_09.png" alt="nice평가정보"></li>
+                        <li><img src="../images/clients_10.png" alt="cj프레시웨어"></li>
+                    </ul>
+                </div>
+                <pre class="code_box"><code></code></pre>
+                <pre class="style_box"><code>
+                /* element_jumps */
+.element_jumps.ul {display:flex; flex-wrap:wrap;}
+.element_jumps.ul li {width:20%; padding:0 2vw 2vw 2vw; box-sizing: border-box;}
+.element_jumps.ul li img{width:100%;}
+
+/* keyframes animation */
+@keyframes jumps {
+  0%, 40%, 100% {transform:translateY(0)}
+  20% {transform: translateY(-1.2rem);}
+}
+
+@keyframes titledeco {
+  0% {opacity:0; transform: translateY(125%);}
+  100% {opacity:1; transform: translateY(0);}
+}
+            </code></pre>
+        </div>
+    </li>
+    <!-- //element_jumps -->
+        
+    </ul>
+</div>

@@ -1,0 +1,52 @@
+<ul class="explain">
+    <li>Modal 호출 : modal.open('모달 ID', '타입'); //사이즈 = full, small</li>
+    <li>타입: no_dim = dim 생성 안함. layer = 모달 호출 버튼의 위치 계산하여 모달 오픈</li>
+    <li>data-cont : ajax를 이용하여 모달 콘텐츠 호출할 경우 사용 [data-cont="호출할 콘텐츠 경로"]</li>
+</ul>
+
+<!-- modal open button -->
+<a href="#none" onclick="modal.open('code_modal', 'full');" data-cont="modal_sample/sample_small" class="btn_min btn_ok">Full Modal</a>
+<a href="#none" onclick="modal.open('modal_01', 'small');" class="btn_min btn_ok">Small Modal (sample 02)</a>
+<a href="#none" onclick="modal.open('modal_02', 'mid');" class="btn_min btn_ok">Full Modal (sample 03)</a>
+<a href="#none" onclick="modal.open('code_modal', 'layer no_dim');" data-cont="modal_sample/sample_small" class="btn_min btn_ok">Alert Modal</a>
+<!-- //modal open button -->
+
+<!-- sample modal -->
+<div id="modal_01" class="modal_wrap" style="">
+    <div class="modal_container">
+        <!-- modal header -->
+        <div class="modal_header">Title Small Modal (sample 02)
+            <a href="#none" onclick="modal.close();" class="btn_close">닫기</a>
+        </div>
+        <!-- //modal header -->
+        <!-- modal content -->
+        <div class="modal_content">Modal Content 01</div>
+        <!-- //modal content -->
+        <!-- modal bottom -->
+        <div class="modal_bottom">
+            <a href="#none" class="btn_min btn_confirm">확인</a>
+            <a href="#none" onclick="modal.close();" class="btn_min btn_cancel">취소</a>
+        </div>
+        <!-- //modal bottom -->
+    </div>
+</div>
+
+<div id="modal_02" class="modal_wrap" style="">
+    <div class="modal_container">
+        <!-- modal header -->
+        <div class="modal_header">Title Small Modal (sample 03)
+            <a href="#none" onclick="modal.close();" class="btn_close">닫기</a>
+        </div>
+        <!-- //modal header -->
+        <!-- modal content -->
+        <div class="modal_content">Modal Content 02</div>
+        <!-- //modal content -->
+        <!-- modal bottom -->
+        <div class="modal_bottom">
+            <a href="#none" class="btn_min btn_confirm">확인</a>
+            <a href="#none" onclick="modal.close();" class="btn_min btn_cancel">취소</a>
+        </div>
+        <!-- //modal bottom -->
+    </div>
+</div>
+<!-- //sample modal -->

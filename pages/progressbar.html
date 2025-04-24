@@ -1,0 +1,70 @@
+<div class="wrap">
+    <section class="sec01">
+        <article class="content">
+            <div class="progress">
+                <span class="bar"></span>
+                <p class="txt">
+                    0%
+                </p>
+            </div>
+            가<br>
+            나<br>
+            다<br>
+            라<br>
+            마<br>
+            바<br>
+            사<br>
+            아<br>
+            자<br>
+            차<br>
+            카<br>
+            타<br>
+            파<br>
+            하
+        </article>
+    </section>
+</div>
+
+<style>
+    .sec01 {background: #ddd;}
+    .sec01 .content {font-size:170px; overflow:initial;}
+    .sec01 .content .progress {width:50%; height:50px; border:1px solid #222;; text-align: center; position:sticky; left:50%; top:10px;  transform:translateX(-50%);}
+    .sec01 .content .progress .bar {width:0%; height:100%;; background-color: #111; display:block; }
+    .sec01 .content .progress .txt {font-size:30px;}
+</style>
+
+<script>
+$(function(){
+    var text = $('.progress .txt'); //퍼센트 값을 담을 엘리먼트
+    var progressBar = $('.progress .bar'); //퍼센트 게이지 엘리먼트
+    function getPercent() {
+        var scrollHeight = $('.sec01').height(); //스크롤 거리를 구합니다 (스크롤 되어야하는 content 의 실제 높이)
+        var scrollView = $('.design').height() // 해당요소 보여져야하는 요소의 높이 (브라우저의 높이 == $('window').height())
+        var scrollRealHeight = (scrollHeight - scrollView); // 요소의 실제높이 - 브라우저 높이, 스크롤 할 실제 거리를 구합니다
+        var designScrollTop = $('.design').scrollTop(); //스크롤 위치를 구합니다 (스크롤바의 현재 위치)
+        var scrollPercent = (designScrollTop / scrollRealHeight) * 100; //백분율을 구합니다
+        var textPercent = Math.round(scrollPercent); //텍스트에 삽입될 값은 소수점을 버려줍니다
+        console.log('scrollHeight', scrollHeight)
+        console.log('scrollView', scrollView)
+        console.log('designScrollTop', designScrollTop)
+        render(textPercent,scrollPercent);
+    };
+
+    function render(textPercent,scrollPercent) {
+        text.text(textPercent + '%'); //텍스트 값을 업데이트합니다
+        progressBar.css({ //게이지 값을 업데이트합니다
+            width : scrollPercent + '%'
+        });
+    };
+
+    function init() {
+        getPercent();
+    };
+
+    $('.design').scroll(function() { //스크롤되어야 하는 영역에 스크롤 이벤트를 추가합니다.
+        getPercent();
+        
+    });
+    init(); //초기화
+});
+</script>

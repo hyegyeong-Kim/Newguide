@@ -1,0 +1,30 @@
+<script>
+// document.addEventListener("DOMContentLoaded", function(){
+    const menu_wrap = document.querySelector("header ul");
+    const menuArray = [
+        {title:"Elements"},
+        {title:"JS"},
+        {title:"Lab"},
+        // {title:"Interaction"},
+        // {title:"Request"},
+        // {title:"test"},
+    ];
+
+    menuArray.forEach((i) => {  
+        const temp = document.createElement('li');
+        temp.innerHTML = '<button onclick="ajax(\'sample/'+i.title+'\',\'.content\')">'+i.title+'</button>';
+        menu_wrap.append(temp);
+    });
+
+    let menu_btn = document.querySelectorAll('header li button');
+    menu_btn.forEach(function(t){
+        t.addEventListener('click', function(){
+            window.scrollTo({top: 0});
+        });
+    });
+// });
+</script>
+<div id="header" class="guide">
+    <h1 onclick="location.href='./index.html'">Markup Style Guide</h1>
+    <ul></ul>
+</div>

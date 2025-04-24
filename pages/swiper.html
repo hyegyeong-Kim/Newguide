@@ -1,0 +1,93 @@
+<link rel="stylesheet" href="./css/swiper.css">
+<script type="text/javascript" async="" src="./js/swiper.js"></script>
+
+<style>
+    .swiper-slide {padding:3rem; color:#fff; font-weight:700; text-align:center;}
+    .slide01 {background-color:red}
+    .slide02 {background-color:orange}
+    .slide03 {background-color:green}
+    .slide04 {background-color:blue}
+    .slide05 {background-color:purple;}
+</style>
+
+<script>
+
+    setTimeout(function(){
+        var option = {
+            loop:true,
+            slidesPerView: 1,
+            loopAdditionalSlides:0, 
+            watchSlidesProgress: true,
+            autoplay:{
+                delay: 300, // 시간 설정
+                disableOnInteraction: false, // false-스와이프 후 자동 재생
+            },
+            on: {
+                init: function(){
+                    var slide_len;
+                    //this.autoplay.stop();
+                },
+                slideChange: function () {
+                },
+                slideChangeTransitionEnd: function(){
+                    let swiper = this
+                },
+                progress: function(){
+                    let swiper = this;
+                    for (let i = 0; i < swiper.slides.length; i++) {
+                        let slideProgress = swiper.slides[i].progress,
+                        innerOffset = swiper.width * 0.5,
+                        innerTranslate = slideProgress * innerOffset;
+                        swiper.slides[i].querySelector(".item").style.transform = "translateX(" + innerTranslate + "px)";
+                    }
+                },
+                touchStart: function() {
+                    let swiper = this;
+                    for (let i = 0; i < swiper.slides.length; i++) {
+                        swiper.slides[i].style.transition = "";
+                    }
+                },
+                setTransition: function(speed) {
+                    let swiper = this;
+                    for (let i = 0; i < swiper.slides.length; i++) {
+                        swiper.slides[i].style.transition = speed + "ms";
+                        swiper.slides[i].querySelector(".item").style.transition = speed + "ms";
+                    }
+                }
+            }
+        }
+        var swiper = new Swiper('.swiper-container', option);
+
+        $('.content button').click(function(){
+            if($(this).hasClass('puase')){
+                swiper.autoplay.start();
+                $(this).text('Play').removeClass('puase')
+            } else {
+                swiper.autoplay.stop();
+                $(this).text('Pause').addClass('puase')
+            }
+        });
+    },1500);
+</script>
+
+<button>Play</button>
+
+<div class="visual swiper-container">
+    <ul class="swiper-wrapper">
+        <li class="swiper-slide slide01">
+            <p class="item">slide01</p>
+        </li>
+        <li class="swiper-slide slide02">
+            <p class="item">slide02</p>
+        </li>
+        <li class="swiper-slide slide03">
+            <p class="item">slide03</p>
+        </li>
+        <li class="swiper-slide slide04">
+            <p class="item">slide04</p>
+        </li>
+        <li class="swiper-slide slide05">
+            <p class="item">slide05</p>
+        </li>
+    </ul>
+</div>

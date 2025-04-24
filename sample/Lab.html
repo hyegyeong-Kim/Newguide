@@ -1,0 +1,152 @@
+<script>
+var sample_list = document.querySelectorAll('.sample_wrap > ul > li');
+sample_list.forEach((t) => {
+    var design = t.querySelector('.design_box'),
+    code = t.querySelector('.code_box'),
+    Source_code = String(design.innerHTML);
+
+    const b = document.createElement('button');
+    b.innerHTML = 'View source'
+    t.querySelector('h3').append(b)
+
+    t.getElementsByTagName('h3')[0].children[0].addEventListener('click', function(e){
+        const code_box = t.getElementsByClassName('code_box');
+        const style_box = t.getElementsByClassName('style_box');
+        if(code_box[0].classList.contains('active')){
+            code_box[0].classList.remove("active");
+            style_box[0].classList.remove("active");
+            e.currentTarget.textContent = "View source"
+        } else {
+            code_box[0].classList.add("active");
+            style_box[0].classList.add("active");
+            e.currentTarget.textContent = "Hide source"
+        }
+    });
+    
+    code.children[0].innerHTML = escapeHtml(Source_code)
+});
+
+var count = 5;
+var hori_mg = 10;
+var verti_mg = 10;
+
+document.getElementsByTagName('h2')[0].children[0].addEventListener('click', function(e){
+    if(document.querySelector('.sample_wrap').classList.contains('division')){
+        document.querySelector('.sample_wrap').classList.remove('division');
+
+        /* function 재호출 */
+        var e = '.sticky_gallery ul li';
+        sticky_gallery.deployment(e, count, hori_mg, verti_mg);
+
+
+        progress_bar(document.querySelector('h2'))
+        /* //function 재호출 */
+    } else {
+        document.querySelector('.sample_wrap').classList.add('division');
+
+        /* function 재호출 */
+        var e = '.sticky_gallery ul li';
+        sticky_gallery.deployment(e, count, hori_mg, verti_mg);
+
+
+        progress_bar(document.querySelector('h2'))
+        /* //function 재호출 */
+    }
+});
+
+function escapeHtml(str) {
+    var map = {
+        '&': '&amp;',
+        '<': '&lt;',
+        '>': '&gt;',
+        '"': '&quot;',
+        "'": '&#039;'
+    };
+    return str.replace(/[&<>"']/g, function(m) { return map[m]; });
+}
+
+
+progress_bar(document.querySelector('h2'))
+</script>
+<div class="sample_wrap">
+    <h2>Lab<span>(아무거나 생각나는대로 시~작)</span>
+        <button><em>분할</em></button>
+    </h2>
+    <ul><!-- [design_box] pre 자동 생성으로 pre 기준으로 소스 들여쓰기 필요 -->
+        <!-- tab -->
+        <li>
+            <div class="item">
+                <h3>Draw modal</h3>
+                <ul class="explain">
+                    <li>Shift + 마우스 드래그</li>
+                </ul>
+                <div class="design_box">
+<script>
+var currentMousePos = { x: -1, y: -1 };
+
+document.addEventListener('keydown', (event) => {
+    if(event.keyCode == '16'){
+        document.getElementsByClassName('test_modal')[0].classList.add('draw_ready');
+    }
+});
+document.addEventListener('keyup', (event) => {
+    if(event.keyCode == '16'){
+        document.getElementsByClassName('test_modal')[0].classList.remove('draw_ready');
+    }
+});
+
+document.addEventListener('mousedown', (event) => {
+    if(document.getElementsByClassName('test_modal')[0].classList.contains('draw_ready')){
+        currentMousePos.x = event.pageX;
+        currentMousePos.y = event.pageY;
+        document.getElementsByClassName('test_modal')[0].querySelector('.modal_content').style.cssText='top:'+currentMousePos.y+'px;left:'+currentMousePos.x+'px;'
+    }
+});
+document.addEventListener('mouseup', (event) => {
+    if(document.getElementsByClassName('test_modal')[0].classList.contains('draw_ready')){
+        getStyle = document.getElementsByClassName('test_modal')[0].querySelector('.modal_content').getAttribute('style').split(';');
+        size = [];
+        for(var i=0; i<getStyle.length; i++){
+            if(getStyle[i].length > 0){
+                size.push(getStyle[i].split(':')[1]);
+            }
+        }
+
+        width = event.pageX - Number(size[1].replace('px',''));
+        height = event.pageY - Number(size[0].replace('px',''));
+        document.getElementsByClassName('test_modal')[0].querySelector('.modal_content').style.width=width +'px';
+        document.getElementsByClassName('test_modal')[0].querySelector('.modal_content').style.height=height +'px';
+
+        getStyle = document.getElementsByClassName('test_modal')[0].classList.add('active');
+
+        document.getElementsByClassName('test_modal')[0].querySelector('input').focus();
+    }
+});
+</script>
+<style>
+    .test_modal {background-color:rgba(0,0,0,0.1); border:1px solid rgba(0,0,0,0.2); position:fixed;}/* top:0; right:0; bottom:0; left:0; z-index:100; display:none;}*/
+    .test_modal.active, .test_modal.draw_ready {top:0; right:0; bottom:0; left:0; z-index:999; display:block; backdrop-filter:blur(3px);}
+    .modal_content {display:none;}
+    .test_modal.active .modal_content {background-color:blue; position:absolute; top:20px; right:20px; bottom:20px; left:20px; display:flex; flex-direction:column; gap:20px;}
+</style>
+<div class="test_modal">
+    <div class="modal_content">
+        <input type="text" />
+        <textarea style="flex:1;"></textarea>
+        <div class="btnSection">
+            <button onclick="this.closest('.test_modal').removeAttribute('style'); this.closest('.test_modal').classList.remove('active')"><em>확인</em></button>
+        </div>
+    </div>
+</div>
+                </div>
+                <pre class="code_box"><code></code></pre>
+                <pre class="style_box"><code>
+.test_modal {background-color:rgba(0,0,0,0.1); border:1px solid rgba(0,0,0,0.2); position:fixed;}
+.test_modal.active, .test_modal.draw_ready {top:0; right:0; bottom:0; left:0; z-index:999; display:block; backdrop-filter:blur(3px);}
+.modal_content {display:none;}
+.test_modal.active .modal_content {background-color:blue; position:absolute; top:20px; right:20px; bottom:20px; left:20px; display:flex; flex-direction:column; gap:20px;}
+                </code></pre>
+            </div>
+        </li>
+    </ul>
+</div>
