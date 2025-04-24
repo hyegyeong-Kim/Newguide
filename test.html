@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Markup Style Guide</title>
+
+<link rel="stylesheet" href="./css/reset.css">
+<link rel="stylesheet" href="./css/common.css">
+<link rel="stylesheet" href="./css/form.css">
+
+<script src="https://code.jquery.com/jquery-latest.min.js"></script>
+<script type="text/javascript" async="" src="./js/common.js"></script>
+
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+
+    html {font-size:62.5%;}
+    body {font-size:1.6rem; font-family:"Roboto", sans-serif; background-color:#f0f0f0;}
+    html, body {height:100%;}
+
+    #wrap {height:100vh; padding:3rem; overflow:hidden; display:flex; flex-direction:column;}
+    header {margin-bottom:5rem;}
+    header div {margin-top:2.6rem;}
+    header strong {font-size:2.8rem; font-weight:700;}
+    header p {margin-top:1.6rem;}
+
+    #container {overflow:hidden; display:flex; flex:1;}
+    .panel {width:150px; margin-right:3rem;}
+    .panel li + li {margin-top:1.6rem;}
+    .panel li ul {margin-top:1rem; margin-left:1rem;}
+    .panel li li + li {margin-top:1rem;}
+    .panel button {font-weight:700;}
+    .panel li li button {font-weight:400;}
+
+    .content {padding:2.5rem; background-color:#fff; border-radius:0.5rem; overflow:auto; flex:1; display:flex; flex-direction:column;}
+    .content h2 {margin-bottom:1.4rem; padding-bottom:1.5rem; font-size:2rem; font-weight:700; position:relative;}
+    .content h2 button {margin-left:1.5rem; padding:0.4rem 0.6rem; color:#fff; font-size:1.2rem; font-weight:400; background-color:#222; border-radius:0.4rem;}
+    .content h2 button.active {color:#222; background-color:#f2f2f2;}
+
+    .explain {margin-bottom:2rem;}
+    .explain li {padding-left:10px; position:relative;}
+    .explain li + li {margin-top:5px;}
+    .explain li:before {width:3px; height:3px; background-color:#666; content:''; position:absolute; top:10px; left:0; display:inline-block;}
+
+    .design {padding:1rem; border:0.1rem solid #ddd; overflow:auto;}
+    .code {margin-top:1rem; padding:2rem; color: #222; font-size:1.4rem; line-height: 1.4; white-space: pre-wrap; background-color: #f2f2f2; border: 1px solid #ddd; overflow:auto; display:none;}
+    .code.active {display:block;}
+
+    .design > label.input {margin-bottom:1rem;}
+    .design > label[class*='check'] + label[class*='check'] {margin-left:1rem;}
+</style>
+
+<script>
+    $(document).ready(function(){
+        var panel_menu = ['Accordion',
+                'Tab',
+                'Form_Group',
+                'Multi_Form',
+                'Progressbar',
+                'Scrollupdown',
+                'Input',
+                'Modal',
+                'Toast',
+                'Swiper',
+                'countnum'
+            ].sort()
+            
+            //sort_menu = panel_menu.sort();
+        for(i=0; i<panel_menu.length; i++){
+            $('.panel ul').append('<li><button>'+panel_menu[i]+'</button></li>');
+        }
+
+        /* page load */
+        $('.panel').delegate('button','click', function(e){
+            var title = $(this).text();
+            if($(this).text().indexOf(' ') > -1){
+                title = $(this).text().replace(' ','_');
+            }
+
+            if($(this).siblings().length){
+
+            } else {
+                $.ajax({
+                    url: './pages/'+(title.toLowerCase())+'.html',
+                    method: 'get',
+                    //dataType:'html',
+                    success: function(data) {
+                        $('.content').empty().append('<h2></h2>'
+                        +'<div class="design"></div>'
+                        +'<pre class="code"><code></code></pre>');
+                        $('.content h2').text(e.currentTarget.innerText);
+                        $('.content .design').html(data);
+                        $('.content h2').after($('.content .design').find('.explain'));
+    
+                        //
+                        var sample_list = document.querySelectorAll('.content');
+                        sample_list.forEach((t) => {
+                            var design = t.querySelector('.design'),
+                            code = t.querySelector('.code'),
+                            Source_code = String(design.innerHTML);
+    
+                            const b = document.createElement('button');
+                            b.innerHTML = 'View source'
+                            t.querySelector('h2').append(b)
+    
+                            t.getElementsByTagName('h2')[0].children[0].addEventListener('click', function(e){
+                                const code = t.getElementsByClassName('code');
+                                if(code[0].classList.contains('active')){
+                                    code[0].classList.remove("active");
+                                    e.currentTarget.textContent = "View source"
+                                    e.currentTarget.classList.remove('active')
+                                } else {
+                                    code[0].classList.add("active");
+                                    e.currentTarget.textContent = "Hide source"
+                                    e.currentTarget.classList.add('active')
+                                }
+                            });
+                            
+                            if(code.children[0].textContent == ''){
+                                code.children[0].innerHTML = escapeHtml(Source_code)
+                            }
+                        });
+                        
+                        function escapeHtml(str) {
+                            var map = {
+                                '&': '&amp;',
+                                '<': '&lt;',
+                                '>': '&gt;',
+                                '"': '&quot;',
+                                "'": '&#039;'
+                            };
+                            return str.replace(/[&<>"']/g, function(m) { return map[m]; });
+                        }
+                    },
+                    complete: function(data) {
+                    },
+                    error: function(data) {
+                        $('.content').html('<div class="fail">페이지 준비중입니다.</div>');
+                    }
+                });
+            }
+        });
+        /* //page load */
+    });
+</script>
+</head>
+
+<body>
+
+<div id="wrap">
+    <header>
+        <h1><img src="http://rianag.com/resource/img/ci_top.png" alt="" /></h1>
+        <div>
+            <strong>Rianag Markup Style Guide</strong>
+            <p>의미와 속도 향상을 고려한 설계, 협업의 효율성 향상 및 웹접근성을 보장하는 마크업 가이드</p>
+        </div>
+    </header>
+    <div id="container">
+        <div class="panel">
+            <ul></ul>
+        </div>
+        <div class="content">
+            <h2>Title
+                <button>View source</button>
+            </h2>
+        </div>
+    </div>
+
+    <footer></footer>
+
+    <!-- modal -->
+     <div id="code_modal" class="modal_wrap">
+        <div class="modal_container"></div>
+     </div>
+     </div>
+    <!-- //modal -->
+</div>
+    
+</body>
+</html>
